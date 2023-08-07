@@ -4,5 +4,5 @@ import cgitb
 cgitb.enable()
 from wsgiref.handlers import CGIHandler
 
-from ??? import app
+from app import app
 CGIHandler().run(app)
