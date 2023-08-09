@@ -5,7 +5,7 @@ on:
       - 'integration'
   pull_request:
     branches:
-      -　'integration'
+      - 'integration'
 jobs:
   build:
     name: Build
