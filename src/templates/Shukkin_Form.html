@@ -1,28 +1,31 @@
-<!DOCTYPE HTML>
-<head>
-  <meta lang="ja">
-  <link rel="stylesheet" href="style3.css">
-  <script src="https://kit.fontawesome.com/fd4cebc555.js" crossorigin="anonymous"></script>
-  <title>支出額入力フォーム</title>
-</head>
-<body>
-  <h3>出金額入力フォーム</h3>
-  <form action="#" method="post">
-    <div class="help">
-      <span>カテゴリー</span>
-    </div>
-      <select name="category">
-          <option value="#" id="fir">カテゴリーを選択してください</option>
-          <option value="#">食費</option>
-          <option value="#">交通費</option>
-          <option value="#">日用品費</option>
-          <option value="#">被服費</option>
-          <option value="#">娯楽費</option>
-      </select>
-      <div class="help">
-        <span>出金額</span>
-      </div>
-      <input type="number" name="money"><br>
-      <input type="submit" value="送信" id="submit">
-  </form>
-</body>
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="../static/css/style3.css">
+        <script src="https://kit.fontawesome.com/fd4cebc555.js" crossorigin="anonymous"></script>
+        <script src="../static/js/main.js"></script>
+        <title>支出額入力フォーム</title>
+    </head>
+    <body>
+        <h3>支出額入力フォーム</h3>
+        <form action="#" method="post">
+            <div class="help">
+                <span>カテゴリー</span>
+            </div>
+            <select name="category">
+                <option value="0" hidden>カテゴリーを選択してください</option>
+                <option value="1">食費</option>
+                <option value="2">交通費</option>
+                <option value="3">日用品費</option>
+                <option value="4">被服費</option>
+                <option value="5">娯楽費</option>
+            </select>
+            <div class="help">
+                <span>出金額</span>
+            </div>
+            <input type="text" onblur="inComma(2);" pattern="\d*" type="number" name="money" id="mo"><br>
+            <input type="submit" onclick="clearText(2)" value="送信" id="submit">
+        </form>
+    </body>
+</html>

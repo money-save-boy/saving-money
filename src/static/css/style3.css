@@ -1,8 +1,10 @@
+@charset "utf-8";
+
 html{
     margin: 0;
     padding: 0;
     text-align: center;
-    font-size: 2em;
+    font-size: 3em;
     font-family: "游ゴシック体", YuGothic, "游ゴシック", "Yu Gothic", sans-serif;
 }
 h3{
@@ -20,6 +22,7 @@ span{
 input{
     margin: 3%;
     width: 50%;
+    font-size: 100%;
     border-top: none;
     border-left: none;
     border-right: none;
@@ -34,6 +37,12 @@ input:focus{
     outline: none;
     border-bottom:1px solid forestgreen;
 }
+#mo{
+    text-align: right;
+}
+#money{
+    text-align: right;
+}
 #money:focus{
     margin: 3%;
     width: 50%;
@@ -46,10 +55,12 @@ input:focus{
 select{
     margin: 3%;
     width: 50%;
+    font-size: 50%;
     border-top: none;
     border-left: none;
     border-right: none;
     border-bottom:1px solid black;
+    background-color: #fff;
 }
 select:focus{
     margin: 3%;
@@ -68,19 +79,16 @@ select:focus{
 .help span{
     font-size: 1em;
 }
-.help p{
-    padding: 0;
-    margin: 1% 0 0 2%;
-    font-size: 0.6em;
-    color: dimgray;
-}
 #submit{
     width: 30%;
     text-align: center;
     border-bottom:0px;
     color: forestgreen;
+    background-color: #ececec;
     font-size: 0.5em;
     border-radius: 30px;
+    padding: 10px 0;
+    transition: all .3s;
 }
 #submit:hover{
     background-color: forestgreen;
@@ -91,8 +99,11 @@ select:focus{
     text-align: center;
     border-bottom:0px;
     color: #e73562;
+    background-color: #ececec;
     font-size: 0.5em;
     border-radius: 30px;
+    padding: 10px 0;
+    transition: all .3s;
 }
 #sub:hover{
     background-color: #e73562;
