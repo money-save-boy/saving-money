@@ -2,18 +2,20 @@
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <link rel="stylesheet" href="../static/css/style3.css">
+        <link rel="stylesheet" href="/src/static/css/style3.css">
         <script src="https://kit.fontawesome.com/fd4cebc555.js" crossorigin="anonymous"></script>
-        <script src="../static/js/main.js"></script>
+        <script src="/src/static/js/main.js"></script>
+        <script src="/src/static/js/liff_spending.js"></script>
         <title>支出額入力フォーム</title>
     </head>
     <body>
         <h3>支出額入力フォーム</h3>
-        <form action="#" method="post">
+        <form action="/src/in/2" method="post" name="spendingForm">
+            <input type="text" name="spending_userID" id="spending_userID" hidden>
             <div class="help">
                 <span>カテゴリー</span>
             </div>
-            <select name="category">
+            <select name="category" id="category">
                 <option value="0" hidden>カテゴリーを選択してください</option>
                 <option value="1">食費</option>
                 <option value="2">交通費</option>
@@ -25,7 +27,7 @@
                 <span>出金額</span>
             </div>
             <input type="text" onblur="inComma(2);" pattern="\d*" type="number" name="money" id="mo"><br>
-            <input type="submit" onclick="clearText(2)" value="送信" id="submit">
+            <input type="submit" onclick="checkValue(2)" value="送信" class="submit">
         </form>
     </body>
 </html>
