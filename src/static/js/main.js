@@ -38,3 +38,29 @@ function clearText(el){
 
     targetId.value = "";
 }
+
+function checkValue(el){
+    var money;
+    var category;
+    var formName;
+
+    if(el == 1){
+        money = document.getElementById("money");
+        formName = document.budgetForm;
+    } else if(el == 2){
+        money = document.getElementById("mo");
+        category = document.getElementById("category");
+        formName = document.spendingForm;
+    }
+
+    if(money.value.length == 0){
+        alert("金額を入力してください");
+        return;
+    } else if(el == 2 && category.value.length == 0){
+        alert("カテゴリーを選択してください");
+        return;
+    }
+
+    money.value = money.value.replace(/[^0-9]/g, "");
+    formName.submit();
+}
