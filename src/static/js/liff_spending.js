@@ -1,9 +1,10 @@
 window.onload = function (){
-    fetch("/src/secret.json")
+    fetch("secret.json")
         .then((response) => response.json())
         .then((data) => {
             liff.init({
-                liffId: data.liffID
+                liffId: data.liffID,
+                withLoginOnExternalBrowser: true
             })
             .then(() => {
                 if(!liff.isLoggedIn()){
@@ -24,10 +25,4 @@ window.onload = function (){
                 });
             });
         });
-}
-
-window.onbeforeunload = function (){
-    if(liff.isLoggedIn()){
-        liff.logout();
-    }
 }
