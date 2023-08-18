@@ -33,11 +33,6 @@ input{
     border-bottom:1px solid black;
 }
 input:focus{
-    margin: 3%;
-    width: 50%;
-    border-top: none;
-    border-left: none;
-    border-right: none;
     outline: none;
     border-bottom:1px solid forestgreen;
 }
