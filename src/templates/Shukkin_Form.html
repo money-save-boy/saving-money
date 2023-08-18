@@ -4,13 +4,14 @@
         <meta charset="UTF-8">
         <link rel="stylesheet" href="/src/static/css/style3.css">
         <script src="https://kit.fontawesome.com/fd4cebc555.js" crossorigin="anonymous"></script>
+        <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
         <script src="/src/static/js/main.js"></script>
         <script src="/src/static/js/liff_spending.js"></script>
         <title>支出額入力フォーム</title>
     </head>
     <body>
         <h3>支出額入力フォーム</h3>
-        <form action="/src/in/2" method="post" name="spendingForm">
+        <form action="/src/in_2" method="post" name="spendingForm">
             <input type="text" name="spending_userID" id="spending_userID" hidden>
             <div class="help">
                 <span>カテゴリー</span>
@@ -27,7 +28,7 @@
                 <span>出金額</span>
             </div>
             <input type="text" onblur="inComma(2);" pattern="\d*" type="number" name="money" id="mo"><br>
-            <input type="submit" onclick="checkValue(2)" value="送信" class="submit">
+            <input type="button" onclick="checkValue(2)" value="送信" class="submit">
         </form>
     </body>
 </html>
