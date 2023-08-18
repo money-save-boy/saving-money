@@ -1,14 +1,12 @@
 window.onload = function (){
-    fetch("/src/secret.json")
+    fetch("secret.json")
         .then((response) => response.json())
         .then((data) => {
             liff.init({
-                liffId: data.liffID
+                liffId: data.liffID,
+                withLoginOnExternalBrowser: true
             })
             .then(() => {
-                if(!liff.isLoggedIn()){
-                    liff.login();
-                }
                 var idToken = liff.getIDToken();
                 var postData = "id_token=" + idToken + "&client_id=" + data.channelID;
                 fetch("https://api.line.me/oauth2/v2.1/verify", {
@@ -25,10 +23,4 @@ window.onload = function (){
                 });
             });
         });
-}
-
-window.onbeforeunload = function (){
-    if(liff.isLoggedIn()){
-        liff.logout();
-    }
 }
