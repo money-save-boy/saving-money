@@ -34,7 +34,47 @@ function clearText(el){
         targetId = document.getElementById("money");
     } else if(el == 2){
         targetId = document.getElementById("mo");
+        document.getElementById("category").value = 0;
     }
 
     targetId.value = "";
+}
+
+function checkValue(el){
+    var money;
+    var category;
+    var formName;
+
+    if(el == 1){
+        money = document.getElementById("money");
+        formName = document.budgetForm;
+    } else if(el == 2){
+        money = document.getElementById("mo");
+        category = document.getElementById("category");
+        formName = document.spendingForm;
+    }
+
+    if(money.value.length == 0){
+        alert("金額を入力してください");
+        return;
+    } else if(el == 2 && category.value == 0){
+        alert("カテゴリーを選択してください");
+        return;
+    }
+
+    if(el == 1){
+        var ret = window.confirm("すでに予算が登録されている場合は上書きされます。\nこのまま予算を登録しますか？");
+        if(ret){
+            money.value = money.value.replace(/[^0-9]/g, "");
+            formName.submit();
+            clearText(el);
+        } else {
+            clearText(el);
+            return;
+        }
+    } else {
+        money.value = money.value.replace(/[^0-9]/g, "");
+        formName.submit();
+        clearText(el);
+    }
 }
