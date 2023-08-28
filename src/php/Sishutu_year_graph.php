@@ -19,6 +19,9 @@
 ?>
 <script>
     var ctx = document.getElementById('myChart').getContext('2d');//2D画像として描画
+    <?php if($result = NULL){
+        echo '<h2>Your data does not exist</h2>';
+    }?>
     var myChart = new Chart(ctx, {
         type: 'line',
         data: {

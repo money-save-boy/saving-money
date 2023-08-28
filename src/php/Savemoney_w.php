@@ -5,7 +5,7 @@
     <script src="https://kit.fontawesome.com/fd4cebc555.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
     <?php include('connect.php'); ?>
-    <title>節約額表示</title>
+    <title>支出額表示</title>
 </head>
 <body>
     <div class="osirase">
@@ -14,10 +14,14 @@
         <p id="mod">今月の予算残高</p>
         <p id="save">これまでの貯金額</p>
     </div>
+    <div class="NoTimeChange" onclick="location.href='/src/php/Savemoney_y.php'">
+        <p>年</p>
+    </div>
+    <div class="NoTimeChange" onclick="location.href='/src/php/Savemoney_m.php'">
+        <p>月</p>
+    </div>
     <div class="TimeChange">
-        <a class="nocheck" href="Savemoney_y.php">年</a>
-        <a class="nocheck" href="Savemoney_m.php">月</a>
-        <a class="checked" href="#">週</a>
+        <p>週</p>
     </div>
     <div class="GraphArea">
     <canvas id="myChart"></canvas>
@@ -31,7 +35,7 @@
         <div class="PageChange1">
             <i id="pig" class="fa-solid fa-piggy-bank fa-5x" style="color: #ffffff;"></i>
         </div>
-        <div class="PageChange2" onclick="toWallet()">
+        <div class="PageChange2"  onclick="location.href='/src/php/Wallet_m.php'">
             <i id="wallet" class="fa-solid fa-wallet fa-5x" style="color: #ffffff;"></i>
         </div>
     </footer>

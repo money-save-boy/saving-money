@@ -14,21 +14,22 @@
         <p id="mod">今月の予算残高</p>
         <p id="save">これまでの貯金額</p>
     </div>
+    <div class="NoTimeChange" onclick="location.href='/src/php/Wallet_y.php'">
+        <p>年</p>
+    </div>
     <div class="TimeChange">
-        <a class="nocheck" href="Wallet_y.php">年</a>
-        <a class="checked" href="#">月</a>
+        <p>月</p>
     </div>
     <div class="GraphArea">
         <canvas id="myChart"></canvas>
-            <?php include('Tyokin_month_graph.php'); ?>
-        </div>
+        <?php include('Tyokin_month_graph.php'); ?>
     </div>
     <div class="History">
         <div id="histitle">貯金履歴</div>
         <?php include('History_m.php') ?>
     </div>
     <footer>
-        <div class="PageChange1">
+        <div class="PageChange1" onclick="location.href='/src/php/Savemoney_m.php'">
             <i id="pig" class="fa-solid fa-piggy-bank fa-5x" style="color: #ffffff;"></i>
         </div>
         <div class="PageChange2">

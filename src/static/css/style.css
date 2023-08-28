@@ -18,7 +18,6 @@ html{
     border-radius: 50px;
     padding: 1% 2%;
     font-size: 1.5em;
-    position: fixed;
     top: 2%;
     right: 5%;
 }
@@ -53,26 +52,25 @@ body{
     flex-direction: row;
     justify-content: space-around;
     vertical-align: middle;
-    background-color: #009854;
+    background-color: #027f47;
+    border: 2px solid #027f47;
     margin-top: 0.5%;
     font-size: 2em;
-    width: 100%;
-    font-size: 2em;
-}
-.nocheck{
-    margin: 2% 16%;
     width: calc(100% / 3);
-    background-color: rgb(130, 133, 131);
-    border-bottom: 3px solid #009854;
-    color: #009854;
-    text-decoration: none;
-}
-.checked{
-    margin: 2% 16%;
-    background-color: #009854;
-    border-bottom: 3px solid #009854;
     color: white;
-    text-decoration: none;
+}
+.TimeChange{
+    height: 5%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    vertical-align: middle;
+    background-color: mediumseagreen;
+    border: 2px solid #027f47;
+    margin-top: 0.5%;
+    font-size: 2em;
+    width: calc(100% / 3);
+    color: white;
 }
 .GraphArea{
     font-size: 2em;

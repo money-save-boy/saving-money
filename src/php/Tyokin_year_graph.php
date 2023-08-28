@@ -19,6 +19,9 @@
 ?>
 <script>
     var ctx = document.getElementById('myChart').getContext('2d');//2D画像として描画
+    <?php if($result = NULL){
+        echo '<h2>Your data does not exist</h2>';
+    }?>
     var myChart = new Chart(ctx, {
         type: 'line',
         data: {
@@ -31,9 +34,9 @@
                     echo $row["SUM(tyokin)"].",";
                 } ?>],
                 backgroundColor: 
-                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(2, 164, 135, 0.2)',
                 borderColor: 
-                    'rgba(255, 99, 132, 1)',
+                    'rgba(2, 164, 135, 1)',
                 borderWidth: 1
             }]
         },

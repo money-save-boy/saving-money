@@ -15,20 +15,21 @@
         <p id="save">これまでの貯金額</p>
     </div>
     <div class="TimeChange">
-        <a class="checked">年</a>
-        <a class="nocheck">月</a>
+        <p>年</p>
+    </div>
+    <div class="NoTimeChange" onclick="location.href='/src/php/Wallet_m.php'">
+        <p>月</p>
     </div>
     <div class="GraphArea">
         <canvas id="myChart"></canvas>
-            <?php include('Tyokin_year_graph.php'); ?>
-        </div>
+        <?php include('Tyokin_year_graph.php'); ?>
     </div>
     <div class="History">
         <div id="histitle">貯金履歴</div>
         <?php include('History_y.php') ?>
     </div>
     <footer>
-        <div class="PageChange1">
+        <div class="PageChange1" onclick="location.href='/src/php/Savemoney_m.php'">
             <i id="pig" class="fa-solid fa-piggy-bank fa-5x" style="color: #ffffff;"></i>
         </div>
         <div class="PageChange2">
