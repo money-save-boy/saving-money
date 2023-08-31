@@ -1,14 +1,13 @@
 <?php
-    ob_start();
     const SERVER = 'mysql216.phy.lolipop.lan';
     const DBNAME = 'LAA1516911-moneysaveboy';
     const USER = 'LAA1516911';
     const PASS = 'Pass0120';
     $connect = 'mysql:host='. SERVER. ';dbname='. DBNAME. ';charset=utf8';
 
-    header('Access-Control-Allow-Origin: *');
-    header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept');
-    header("Content-type: application/json; charset=UTF-8");
+    //header('Access-Control-Allow-Origin: *');
+    //header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept');
+    //header("Content-type: application/json; charset=UTF-8");
 
     $input_json = file_get_contents('php://input');
     $post = json_decode( $input_json, true );
@@ -31,5 +30,4 @@
     } catch (PDOException $e) {
         echo "クエリの実行に失敗しました: " . $e->getMessage();
     }
-    ob_end_flush();
 ?>
