@@ -1,7 +1,8 @@
 <?php
     $pdo = new PDO($connect, USER, PASS);
-    $str = 'select DATE_FORMAT(torokubi, "%Y-%u") as torokubi, category, sum(money) from History where user_id = "1" group by torokubi';
+    $str = 'select DATE_FORMAT(torokubi, "%Y-%u") as torokubi, category, sum(money) from History where user_id = ? group by torokubi';
     $sql = $pdo -> query($str);
+    $sql -> execute($ID);
     if(is_array($sql)){
         foreach($sql as $row){
             echo '<div class="data">';
@@ -11,6 +12,6 @@
             echo '</div>';
         }
     }else{
-        echo '<h2>Your data does not exist</h2>'
+        echo '<h2>Your data does not exist</h2>';
     }
 ?>

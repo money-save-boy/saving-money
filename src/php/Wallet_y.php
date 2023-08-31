@@ -4,6 +4,7 @@
     <link rel="stylesheet" href="../static/css/style2.css">
     <script src="https://kit.fontawesome.com/fd4cebc555.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="/src/js/GetId.js"></script>
     <?php include('connect.php'); ?>
     <title>貯金額表示</title>
 </head>
@@ -11,8 +12,8 @@
     <div class="osirase">
         <h1>お知らせ</h1>
         <input type="button" value="ログアウト" id="logout">
-        <p id="mod">今月の予算残高</p>
-        <p id="save">これまでの貯金額</p>
+        <?php include('Zandaka_hyoji.php'); ?>
+        <?php include('Tyokingaku_hyoji.php'); ?>
     </div>
     <div class="TimeChange">
         <p>年</p>
