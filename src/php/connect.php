@@ -7,7 +7,8 @@
     // 受信したJSONデータを処理する
     $jsonData = file_get_contents("php://input");
     $data = json_decode($jsonData, true);
-    $ID = $data['sub'];
+    echo $data;
+    //$ID = $data['sub'];
     // レスポンスを送信
     $response = array('status' => 'success');
     echo json_encode($response);  
