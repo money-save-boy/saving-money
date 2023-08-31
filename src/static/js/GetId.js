@@ -29,3 +29,19 @@ fetch("secret.json")
         });
     });
 }
+const postData = {
+    operate: 'fetch',
+    option: 'none'
+  }
+  fetch( url,
+    {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(postData)
+    } )
+    .then( res => res.json() )
+    .then( files => {
+      setData( files )
+    } )
