@@ -1,10 +1,10 @@
 <!DOCTYPE HTML>
 <head>
     <meta lang="ja">
-    <link rel="stylesheet" href="../static/css/style2.css">
+    <link rel="stylesheet" href="/src/static/css/style2.css">
     <script src="https://kit.fontawesome.com/fd4cebc555.js" crossorigin="anonymous"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
-    <script src="/src/js/GetId.js"></script>
+    <script src="/src/static/js/postID.js"></script>
     <?php include('connect.php'); ?>
     <title>貯金額表示</title>
 </head>
@@ -15,7 +15,7 @@
         <?php include('Zandaka_hyoji.php'); ?>
         <?php include('Tyokingaku_hyoji.php'); ?>
     </div>
-    <div class="NoTimeChange" onclick="location.href='/src/php/Wallet_y.php'">
+    <div class="NoTimeChange" onclick="location.href='/src/saving_year'">
         <p>年</p>
     </div>
     <div class="TimeChange">
@@ -30,7 +30,7 @@
         <?php include('History_m.php') ?>
     </div>
     <footer>
-        <div class="PageChange1" onclick="location.href='/src/php/Savemoney_m.php'">
+        <div class="PageChange1" onclick="location.href='/src/spending_month'">
             <i id="pig" class="fa-solid fa-piggy-bank fa-5x" style="color: #ffffff;"></i>
         </div>
         <div class="PageChange2">
