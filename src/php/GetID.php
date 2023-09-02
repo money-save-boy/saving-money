@@ -1,6 +1,6 @@
 <?php
 // リクエストがPOSTメソッドでない場合はエラーを返す
-if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
+if ($_SERVER['id'] !== 'POST') {
     http_response_code(405); // メソッド不許可のステータスコード
     die('Method Not Allowed');
 }
