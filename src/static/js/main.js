@@ -1,19 +1,19 @@
-function inComma(inputNum){
+function inComma(inputNum) {
     var tagId;
 
-    if(inputNum == 1){
+    if (inputNum == 1) {
         tagId = document.getElementById("money");
-    } else if(inputNum == 2){
+    } else if (inputNum == 2) {
         tagId = document.getElementById("mo");
     }
 
     var input = tagId.value;
 
-    if(input.match(/[０-９]/g)){
-        input = input.replace(/[０-９]/g, function(s) {
+    if (input.match(/[０-９]/g)) {
+        input = input.replace(/[０-９]/g, function (s) {
             return String.fromCharCode(s.charCodeAt(0) - 0xFEE0);
         });
-    } else if(input.match(/[^0-9,]/g)){
+    } else if (input.match(/[^0-9,]/g)) {
         alert("数字で入力してください");
         tagId.value = "";
         return;
@@ -22,17 +22,17 @@ function inComma(inputNum){
     input = input.replace(/[^0-9]/g, "");
     inAns = input.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
 
-    if(inAns.match(/[^0-9]/g)){
+    if (inAns.match(/[^0-9]/g)) {
         tagId.value = inAns;
     }
 }
 
-function clearText(el){
+function clearText(el) {
     var targetId;
 
-    if(el == 1){
+    if (el == 1) {
         targetId = document.getElementById("money");
-    } else if(el == 2){
+    } else if (el == 2) {
         targetId = document.getElementById("mo");
         document.getElementById("category").value = 0;
     }
@@ -40,31 +40,31 @@ function clearText(el){
     targetId.value = "";
 }
 
-function checkValue(el){
+function checkValue(el) {
     var money;
     var category;
     var formName;
 
-    if(el == 1){
+    if (el == 1) {
         money = document.getElementById("money");
         formName = document.budgetForm;
-    } else if(el == 2){
+    } else if (el == 2) {
         money = document.getElementById("mo");
         category = document.getElementById("category");
         formName = document.spendingForm;
     }
 
-    if(money.value.length == 0){
+    if (money.value.length == 0) {
         alert("金額を入力してください");
         return;
-    } else if(el == 2 && category.value == 0){
+    } else if (el == 2 && category.value == 0) {
         alert("カテゴリーを選択してください");
         return;
     }
 
-    if(el == 1){
+    if (el == 1) {
         var ret = window.confirm("すでに予算が登録されている場合は上書きされます。\nこのまま予算を登録しますか？");
-        if(ret){
+        if (ret) {
             money.value = money.value.replace(/[^0-9]/g, "");
             formName.submit();
             clearText(el);
@@ -73,8 +73,14 @@ function checkValue(el){
             return;
         }
     } else {
-        money.value = money.value.replace(/[^0-9]/g, "");
-        formName.submit();
-        clearText(el);
+        var ret = window.confirm("今までに一度も予算を登録していない場合、支出は登録できません。\nこのまま支出を登録しますか？");
+        if (ret) {
+            money.value = money.value.replace(/[^0-9]/g, "");
+            formName.submit();
+            clearText(el);
+        } else {
+            clearText(el);
+            return;
+        }
     }
 }
