@@ -1,5 +1,5 @@
 window.onload = function () {
-    fetch("secret.json")
+    fetch("/src/secret.json")
         .then((response) => response.json())
         .then((data) => {
             liff.init({
