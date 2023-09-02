@@ -17,12 +17,12 @@ with open('secret.json') as f:
 # 予算入力フォーム表示
 @app.route('/budget')
 def budget():
-    return render_template('Yosan_Form.html')
+    return render_template('html/Yosan_Form.html')
 
 # 支出入力フォーム表示
 @app.route('/spending')
 def spending():
-    return render_template('Shukkin_Form.html')
+    return render_template('html/Shukkin_Form.html')
 
 #データベース接続
 @app.route('/in_<int:page>', methods = ['POST'])
@@ -50,7 +50,7 @@ def connectDB(page):
             cursor.execute('SELECT * FROM Yosan')
         except Exception as e:
             t = e.__class__.__name__
-            return render_template('error.html', error = t)
+            return render_template('html/error.html', error = t)
         rows = cursor.fetchall()
 
         for row in rows:
@@ -70,7 +70,7 @@ def connectDB(page):
                         cursor.execute('SELECT * FROM History')
                     except Exception as e:
                         t = e.__class__.__name__
-                        return render_template('error.html', error = t)
+                        return render_template('html/error.html', error = t)
                     cols = cursor.fetchall()
                     total = 0
 
@@ -85,14 +85,14 @@ def connectDB(page):
                         cursor.execute('INSERT INTO Tyokin(user_id, tyokin, torokubi) VALUES(%s, %s, %s)', (budget_userID, yBudget, today))
                     except Exception as e:
                         t = e.__class__.__name__
-                        return render_template('error.html', error = t)
+                        return render_template('html/error.html', error = t)
 
             elif yYear < tYear:
                 try:
                     cursor.execute('SELECT * FROM History')
                 except Exception as e:
                     t = e.__class__.__name__
-                    return render_template('error.html', error = t)
+                    return render_template('html/error.html', error = t)
                 cols = cursor.fetchall()
                 total = 0
 
@@ -107,26 +107,26 @@ def connectDB(page):
                     cursor.execute('INSERT INTO Tyokin(user_id, tyokin, torokubi) VALUES(%s, %s, %s)', (budget_userID, yBudget, today))
                 except Exception as e:
                     t = e.__class__.__name__
-                    return render_template('error.html', error = t)
+                    return render_template('html/error.html', error = t)
 
             try:
                 cursor.execute('UPDATE Users SET user_name = %s WHERE user_id = %s', (userName, budget_userID))
                 cursor.execute('UPDATE Yosan SET zandaka = %s, torokubi = %s WHERE user_id = %s', (budget, today, budget_userID))
             except Exception as e:
                 t = e.__class__.__name__
-                return render_template('error.html', error = t)
+                return render_template('html/error.html', error = t)
         else:
             try:
                 cursor.execute('INSERT INTO Users VALUES(%s, %s)', (budget_userID, userName))
                 cursor.execute('INSERT INTO Yosan VALUES(%s, %s, %s)', (budget_userID, budget, today))
             except Exception as e:
                 t = e.__class__.__name__
-                return render_template('error.html', error = t)
+                return render_template('html/error.html', error = t)
 
         connect.commit()
         connect.close()
 
-        return render_template('Yosan_Complete.html')
+        return render_template('html/Yosan_Complete.html')
 
     #支出入力
     elif page == 2:
@@ -150,11 +150,11 @@ def connectDB(page):
             cursor.execute('INSERT INTO History(user_id, category, money, torokubi) VALUES(%s, %s, %s, %s)', (spending_userID, category, spending, today))
         except Exception as e:
             t = e.__class__.__name__
-            return render_template('error.html', error = t)
+            return render_template('html/error.html', error = t)
         connect.commit()
         connect.close()
 
-        return render_template('Shukkin_Complete.html')
+        return render_template('html/Shukkin_Complete.html')
 
 #MessagingAPI
 handler = WebhookHandler(info['channelSecret'])
