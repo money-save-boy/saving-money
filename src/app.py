@@ -46,22 +46,84 @@ def connectDB(page):
         today = datetime.date.today()
         flag = False
 
-        cursor.execute('SELECT * FROM Yosan')
+        try:
+            cursor.execute('SELECT * FROM Yosan')
+        except Exception as e:
+            t = e.__class__.__name__
+            return render_template('error.html', error = t)
         rows = cursor.fetchall()
 
         for row in rows:
             if row['user_id'] == budget_userID:
                 flag = True
+                yBudget = row['zandaka']
+
+                tMonth = today.month
+                tYear = today.year
+                yMonth = row['torokubi'].month
+                yYear = row['torokubi'].year
 
         if flag:
-            cursor.execute('UPDATE Users SET user_name = %s WHERE user_id = %s', (userName, budget_userID))
-            cursor.execute('UPDATE Yosan SET zandaka = %s, torokubi = %s WHERE user_id = %s', (budget, today, budget_userID))
+            if yYear == tYear:
+                if yMonth < tMonth:
+                    try:
+                        cursor.execute('SELECT * FROM History')
+                    except Exception as e:
+                        t = e.__class__.__name__
+                        return render_template('error.html', error = t)
+                    cols = cursor.fetchall()
+                    total = 0
+
+                    for col in cols:
+                        if col['user_id'] == budget_userID:
+                            total += col['money']
+
+                    yBudget -= total
+                    if yBudget < 0:
+                        yBudget = 0
+                    try:
+                        cursor.execute('INSERT INTO Tyokin(user_id, tyokin, torokubi) VALUES(%s, %s, %s)', (budget_userID, yBudget, today))
+                    except Exception as e:
+                        t = e.__class__.__name__
+                        return render_template('error.html', error = t)
+
+            elif yYear < tYear:
+                try:
+                    cursor.execute('SELECT * FROM History')
+                except Exception as e:
+                    t = e.__class__.__name__
+                    return render_template('error.html', error = t)
+                cols = cursor.fetchall()
+                total = 0
+
+                for col in cols:
+                    if col['user_id'] == budget_userID:
+                        total += col['money']
+
+                yBudget -= total
+                if yBudget < 0:
+                    yBudget = 0
+                try:
+                    cursor.execute('INSERT INTO Tyokin(user_id, tyokin, torokubi) VALUES(%s, %s, %s)', (budget_userID, yBudget, today))
+                except Exception as e:
+                    t = e.__class__.__name__
+                    return render_template('error.html', error = t)
+
+            try:
+                cursor.execute('UPDATE Users SET user_name = %s WHERE user_id = %s', (userName, budget_userID))
+                cursor.execute('UPDATE Yosan SET zandaka = %s, torokubi = %s WHERE user_id = %s', (budget, today, budget_userID))
+            except Exception as e:
+                t = e.__class__.__name__
+                return render_template('error.html', error = t)
         else:
-            cursor.execute('INSERT INTO Users VALUES(%s, %s)', (budget_userID, userName))
-            cursor.execute('INSERT INTO Yosan VALUES(%s, %s, %s)', (budget_userID, budget, today))
+            try:
+                cursor.execute('INSERT INTO Users VALUES(%s, %s)', (budget_userID, userName))
+                cursor.execute('INSERT INTO Yosan VALUES(%s, %s, %s)', (budget_userID, budget, today))
+            except Exception as e:
+                t = e.__class__.__name__
+                return render_template('error.html', error = t)
 
         connect.commit()
-        cursor.close()
         connect.close()
 
         return render_template('Yosan_Complete.html')
@@ -84,10 +146,14 @@ def connectDB(page):
         spending = int(spending_money)
         today = datetime.date.today()
 
-        cursor.execute('INSERT INTO History(user_id, category, money, torokubi) VALUES(%s, %s, %s, %s)', (spending_userID, category, spending, today))
+        try:
+            cursor.execute('INSERT INTO History(user_id, category, money, torokubi) VALUES(%s, %s, %s, %s)', (spending_userID, category, spending, today))
+        except Exception as e:
+            t = e.__class__.__name__
+            return render_template('error.html', error = t)
         connect.commit()
-        cursor.close()
         connect.close()
+
         return render_template('Shukkin_Complete.html')
 
 #MessagingAPI
@@ -105,7 +171,6 @@ def hook():    #Webhookの検証
         abort(400)
     return abort(200, 'OK')
 
-#オウム返し
 @handler.add(MessageEvent, message = TextMessage)    #テキストメッセージの場合
 def message(event):
     if event.message.text == '予算残高':
