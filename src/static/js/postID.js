@@ -7,6 +7,9 @@ window.onload = function () {
                 withLoginOnExternalBrowser: true
             })
             .then(() => {
+                if(!liff.isLoggedIn()){
+                    liff.login();
+                }
                 var idToken = liff.getIDToken();
                 var postData = "id_token=" + idToken + "&client_id=" + data.channelID;
                 fetch("https://api.line.me/oauth2/v2.1/verify", {
