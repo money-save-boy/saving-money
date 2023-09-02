@@ -24,6 +24,31 @@ def budget():
 def spending():
     return render_template('html/Shukkin_Form.html')
 
+# 月間支出履歴表示
+@app.route('/spending_month')
+def spending_month():
+    return render_template('php/Savemoney_m.php')
+
+# 年間支出履歴表示
+@app.route('/spending_year')
+def spending_year():
+    return render_template('php/Savemoney_y.php')
+
+# 週間支出履歴表示
+@app.route('/spending_week')
+def spending_week():
+    return render_template('php/Savemoney_w.php')
+
+# 月間貯金履歴表示
+@app.route('/saving_month')
+def saving_month():
+    return render_template('php/Wallet_m.php')
+
+# 年間貯金履歴表示
+@app.route('/saving_year')
+def saving_year():
+    return render_template('php/Wallet_y.php')
+
 #データベース接続
 @app.route('/in_<int:page>', methods = ['POST'])
 def connectDB(page):
