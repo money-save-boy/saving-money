@@ -3,6 +3,7 @@
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
     http_response_code(405); // メソッド不許可のステータスコード
     die('Method Not Allowed');
+    echo $_SERVER['REQUEST_METHOD'];
 }
 
 // JSONデータを受け取り、連想配列に変換する
