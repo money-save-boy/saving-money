@@ -4,8 +4,9 @@
     <link rel="stylesheet" href="../static/css/style.css">
     <script src="https://kit.fontawesome.com/fd4cebc555.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
-    <script src="/src/static/js/liff_budget.js"></script>
+    <script src="/src/static/js/postID.js"></script>
     <?php include('connect.php'); ?>
+    <?php include('GetID.php'); ?>
     <title>支出額表示</title>
 </head>
 <body>
