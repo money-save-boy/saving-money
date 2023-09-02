@@ -46,7 +46,11 @@ def connectDB(page):
         today = datetime.date.today()
         flag = False
 
-        cursor.execute('SELECT * FROM Yosan')
+        try:
+            cursor.execute('SELECT * FROM Yosan')
+        except Exception as e:
+            t = e.__class__.__name__
+            return render_template('error.html', error = t)
         rows = cursor.fetchall()
 
         for row in rows:
@@ -62,7 +66,11 @@ def connectDB(page):
         if flag:
             if yYear == tYear:
                 if yMonth < tMonth:
-                    cursor.execute('SELECT * FROM History')
+                    try:
+                        cursor.execute('SELECT * FROM History')
+                    except Exception as e:
+                        t = e.__class__.__name__
+                        return render_template('error.html', error = t)
                     cols = cursor.fetchall()
                     total = 0
 
@@ -73,10 +81,18 @@ def connectDB(page):
                     yBudget -= total
                     if yBudget < 0:
                         yBudget = 0
-                    cursor.execute('INSERT INTO Tyokin(user_id, tyokin, torokubi) VALUES(%s, %s, %s)', (budget_userID, yBudget, today))
+                    try:
+                        cursor.execute('INSERT INTO Tyokin(user_id, tyokin, torokubi) VALUES(%s, %s, %s)', (budget_userID, yBudget, today))
+                    except Exception as e:
+                        t = e.__class__.__name__
+                        return render_template('error.html', error = t)
 
             elif yYear < tYear:
-                cursor.execute('SELECT * FROM History')
+                try:
+                    cursor.execute('SELECT * FROM History')
+                except Exception as e:
+                    t = e.__class__.__name__
+                    return render_template('error.html', error = t)
                 cols = cursor.fetchall()
                 total = 0
 
@@ -87,13 +103,25 @@ def connectDB(page):
                 yBudget -= total
                 if yBudget < 0:
                     yBudget = 0
-                cursor.execute('INSERT INTO Tyokin(user_id, tyokin, torokubi) VALUES(%s, %s, %s)', (budget_userID, yBudget, today))
+                try:
+                    cursor.execute('INSERT INTO Tyokin(user_id, tyokin, torokubi) VALUES(%s, %s, %s)', (budget_userID, yBudget, today))
+                except Exception as e:
+                    t = e.__class__.__name__
+                    return render_template('error.html', error = t)
 
-            cursor.execute('UPDATE Users SET user_name = %s WHERE user_id = %s', (userName, budget_userID))
-            cursor.execute('UPDATE Yosan SET zandaka = %s, torokubi = %s WHERE user_id = %s', (budget, today, budget_userID))
+            try:
+                cursor.execute('UPDATE Users SET user_name = %s WHERE user_id = %s', (userName, budget_userID))
+                cursor.execute('UPDATE Yosan SET zandaka = %s, torokubi = %s WHERE user_id = %s', (budget, today, budget_userID))
+            except Exception as e:
+                t = e.__class__.__name__
+                return render_template('error.html', error = t)
         else:
-            cursor.execute('INSERT INTO Users VALUES(%s, %s)', (budget_userID, userName))
-            cursor.execute('INSERT INTO Yosan VALUES(%s, %s, %s)', (budget_userID, budget, today))
+            try:
+                cursor.execute('INSERT INTO Users VALUES(%s, %s)', (budget_userID, userName))
+                cursor.execute('INSERT INTO Yosan VALUES(%s, %s, %s)', (budget_userID, budget, today))
+            except Exception as e:
+                t = e.__class__.__name__
+                return render_template('error.html', error = t)
 
         connect.commit()
         connect.close()
