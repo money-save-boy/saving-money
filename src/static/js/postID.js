@@ -2,9 +2,6 @@ window.onload = function () {
     fetch("/src/secret.json")
         .then((response) => response.json())
         .then((data) => {
-            if (!liff.isLoggedIn()) {
-                liff.login({ redirectUri: "/src/php/Savemoney.php" });
-            }
             liff.init({
                 liffId: data.liffID,
                 withLoginOnExternalBrowser: true
