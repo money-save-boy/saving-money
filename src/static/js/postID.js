@@ -20,10 +20,10 @@ window.onload = function () {
                 .then((liffData) => {
                     var id = liffData.sub;
                     // JSONデータをPHPに送信
-                    fetch('/src/php/GetID.php', {
-                        method: 'POST',
+                    fetch("/src/php/GetID.php", {
+                        method: "POST",
                         headers: {
-                            'Content-Type': 'application/json',
+                            "Content-Type": "application/json"
                         },
                         body: JSON.stringify({ id: id }), // idをJSONデータとして送信
                     })
@@ -33,7 +33,7 @@ window.onload = function () {
                         console.log(data);
                     })
                     .catch(error => {
-                        console.error('Error:', error);
+                        console.error("Error:", error);
                     });
                 });
             });
