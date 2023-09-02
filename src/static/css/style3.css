@@ -14,6 +14,16 @@ p{
     margin-top: 30%;
     font-weight: 500;
 }
+.errorP{
+    font-size: .8rem;
+    padding: 0 10px;
+    line-height: 1.3rem;
+}
+.errorSpan{
+    padding: 5px;
+    background-color: #f0f05c;
+    color: #be2424;
+}
 form{
     padding-top: 20%;
 }
