@@ -198,26 +198,124 @@ def hook():    #Webhookの検証
 
 @handler.add(MessageEvent, message = TextMessage)    #テキストメッセージの場合
 def message(event):
+    connect = MySQLdb.connect(
+        host = info['server'],
+        user = info['user'],
+        passwd = info['pass'],
+        db = info['db'],
+        use_unicode = True,
+        charset = 'utf8'
+    )
+    cursor = connect.cursor(MySQLdb.cursors.DictCursor)
+
     if event.message.text == '予算残高':
+        a = 0
+        b = 0
+        total = 0
+        text = ''
+        today = datetime.date.today()
+
+        cursor.execute('SELECT * FROM Yosan')
+        a1 = cursor.fetchall()
+        for a2 in a1:
+            if a2['user_id'] == event.source.user_id:
+                a = a2['zandaka']
+
+        cursor.execute('SELECT * FROM History')
+        b1 = cursor.fetchall()
+        for b2 in b1:
+            if b2['user_id'] == event.source.user_id:
+                if b2['torokubi'].month == today.month:
+                    b += b2['money']
+
+        if a == 0:
+            text = '予算が登録されていません'
+        else:
+            total = a - b
+            total = f'{total:,}'
+            text = '予算残高は' + str(total) + '円です'
+
         line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text = 'いっぱい残ってる')
+        TextSendMessage(text = text)
         )
+
+        connect.commit()
+        connect.close()
     elif event.message.text == '合計支出':
+        today = datetime.date.today()
+        total = 0
+        text = ''
+
+        cursor.execute('SELECT * FROM History')
+        a1 = cursor.fetchall()
+        for a2 in a1:
+            if a2['user_id'] == event.source.user_id:
+                if a2['torokubi'].month == today.month:
+                    total += a2['money']
+
+        total = f'{total:,}'
+        text = '今月の合計支出は' + str(total) + '円です'
+
         line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text = 'あんまり使ってない')
+        TextSendMessage(text = text)
         )
+
+        connect.commit()
+        connect.close()
+    elif event.message.text == '合計貯金':
+        total = 0
+        text = ''
+
+        cursor.execute('SELECT * FROM Tyokin')
+        a1 = cursor.fetchall()
+        for a2 in a1:
+            if a2['user_id'] == event.source.user_id:
+                total += a2['tyokin']
+
+        total = f'{total:,}'
+        text = '今までの合計貯金は' + str(total) + '円です'
+
+        line_bot_api.reply_message(
+        event.reply_token,
+        TextSendMessage(text = text)
+        )
+
+        connect.commit()
+        connect.close()
     elif event.message.text == '支出履歴':
+        today = datetime.date.today()
+        a = 0
+        date = ''
+        text = '最大で10件を表示しています\n\n'
+        cnt = 0
+
+        cursor.execute('SELECT * FROM History')
+        a1 = cursor.fetchall()
+        for a2 in a1:
+            if cnt == 10:
+                break
+
+            if a2['user_id'] == event.source.user_id:
+                a = a2['money']
+                date = a2['torokubi']
+                category = a2['category']
+                text += date.strftime('%Y/%m/%d') + ' [' + category + '] ' + str(a) + '円\n'
+                cnt += 1
+
+        if cnt > 0:
+            text += '\nより詳細な履歴は支出グラフボタンから確認できます'
+        else:
+            text = '履歴が登録されていません'
+
         line_bot_api.reply_message(
         event.reply_token,
-        TextSendMessage(text = '100円くらい\n200円くらい\n1000円くらい')    #\nは改行
+        TextSendMessage(text = text)
         )
-    else:
-        line_bot_api.reply_message(
-        event.reply_token,
-        TextSendMessage(text = 'まだ準備できてないよ')
-        )
+
+        connect.commit()
+        connect.close()
 
 if __name__ == '__main__':
     app.run()
