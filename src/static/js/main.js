@@ -62,10 +62,16 @@ function checkValue(el) {
         return;
     }
 
+    money.value = money.value.replace(/[^0-9]/g, "");
+    if(money.value == 0){
+        alert("0以上の数字で入力してください");
+        clearText(el);
+        return;
+    }
+
     if (el == 1) {
         var ret = window.confirm("すでに予算が登録されている場合は上書きされます。\nこのまま予算を登録しますか？");
         if (ret) {
-            money.value = money.value.replace(/[^0-9]/g, "");
             formName.submit();
             clearText(el);
         } else {
@@ -75,7 +81,6 @@ function checkValue(el) {
     } else {
         var ret = window.confirm("今までに一度も予算を登録していない場合、支出は登録できません。\nこのまま支出を登録しますか？");
         if (ret) {
-            money.value = money.value.replace(/[^0-9]/g, "");
             formName.submit();
             clearText(el);
         } else {
