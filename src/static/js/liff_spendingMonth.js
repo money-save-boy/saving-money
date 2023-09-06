@@ -29,14 +29,7 @@ window.onload = function () {
                         },
                         body: JSON.stringify({ id: id }), // idをJSONデータとして送信
                     })
-                    .then(response => response.json())
-                    .then(data => {
-                        // サーバーからの応答を処理する
-                        console.log(data);
-                    })
-                    .catch(error => {
-                        console.error("Error:", error);
-                    });
+                    alert("send");
                 });
             });
         });
