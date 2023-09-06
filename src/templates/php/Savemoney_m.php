@@ -8,6 +8,8 @@
     <script src="/src/static/js/liff_spendingMonth.js"></script>
     <?php include('connect.php'); ?>
     <?php
+        $alert = "<script type='text/javascript'>alert('実行開始');</script>";
+        echo $alert;
         $requestMethod = $_SERVER['REQUEST_METHOD'];
         echo "リクエストメソッド: " . $requestMethod;
         // リクエストがPOSTメソッドでない場合はエラーを返す
@@ -29,7 +31,7 @@
         // 受け取ったIDを変数として定義
         if (isset($data['id'])) {
             $ID = $data['id'];
-            
+
         } else {
             http_response_code(400); // バッドリクエストのステータスコード
             die('Missing "id" field in JSON data');
