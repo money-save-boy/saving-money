@@ -30,6 +30,9 @@ window.onload = function () {
                         },
                         body: JSON.stringify({ id: id }), // idをJSONデータとして送信
                     })
+                    .then(() => {
+                        alert(id),
+                    });
                     alert("send");
                 });
             });
