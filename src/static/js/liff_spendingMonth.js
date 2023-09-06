@@ -22,7 +22,7 @@ window.onload = function () {
                 .then((liffData) => {
                     var id = liffData.sub;
                     // JSONデータをPHPに送信
-                    fetch("https://liff.line.me/2000397164-26b145gY", {
+                    fetch("https://liff.line.me/2000397164-pyY91j8v", {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json"
