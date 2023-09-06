@@ -21,7 +21,7 @@ window.onload = function () {
                 .then((res) => res.json())
                 .then((liffData) => {
                     var id = liffData.sub;
-                    //alert(id);
+                    alert(id);
                     // JSONデータをPHPに送信
                     fetch("/src/templates/php/Savemoney_m.php", {
                         method: "POST",
@@ -29,9 +29,8 @@ window.onload = function () {
                             "Content-Type": "application/json"
                         },
                         body: JSON.stringify({ id: id }), // idをJSONデータとして送信
-                        return(id);
                     })
-                    .then((id) => {
+                    .then(() => {
                         alert(id),
                     });
                     alert("send");
