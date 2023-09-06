@@ -286,25 +286,36 @@ def message(event):
         connect.close()
     elif event.message.text == '支出履歴':
         today = datetime.date.today()
-        a = 0
-        date = ''
+        a = [0] * 10
+        date = [''] * 10
+        category = [''] * 10
         text = '最大で10件を表示しています\n\n'
         cnt = 0
 
         cursor.execute('SELECT * FROM History')
         a1 = cursor.fetchall()
-        for a2 in a1:
+        for a2 in reversed(a1):
             if cnt == 10:
                 break
 
             if a2['user_id'] == event.source.user_id:
-                a = a2['money']
-                date = a2['torokubi']
-                category = a2['category']
-                text += date.strftime('%Y/%m/%d') + ' [' + category + '] ' + str(a) + '円\n'
+                a[cnt] = a2['money']
+                date[cnt] = a2['torokubi'].strftime('%Y/%m/%d')
+                category[cnt] = a2['category']
                 cnt += 1
 
         if cnt > 0:
+            a = a[-10:]
+            date = date[-10:]
+            category = category[-10:]
+            length = len(a)
+
+            for i in range(length - 1, -1, -1):
+                item1 = a[i]
+                item2 = date[i]
+                item3 = category[i]
+                text += f'{item2} [{item3}] {item1}円\n'
+
             text += '\nより詳細な履歴は支出グラフボタンから確認できます'
         else:
             text = '履歴が登録されていません'
