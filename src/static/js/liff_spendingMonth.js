@@ -23,7 +23,7 @@ window.onload = function () {
                     var id = liffData.sub;
                     alert(id);
                     // JSONデータをPHPに送信
-                    fetch("https://liff.line.me/2000397164-pyY91j8v", {
+                    fetch("/src/templates/php/Savemoney_m.php", {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json"
