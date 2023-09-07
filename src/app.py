@@ -255,7 +255,7 @@ def message(event):
                     total += a2['money']
 
         total = f'{total:,}'
-        text = '今月の合計支出は' + str(total) + '円です'
+        text = '今月の支出は' + str(total) + '円です'
 
         line_bot_api.reply_message(
         event.reply_token,
@@ -275,7 +275,7 @@ def message(event):
                 total += a2['tyokin']
 
         total = f'{total:,}'
-        text = '今までの合計貯金は' + str(total) + '円です'
+        text = '今までの貯金額は' + str(total) + '円です'
 
         line_bot_api.reply_message(
         event.reply_token,
@@ -289,7 +289,7 @@ def message(event):
         a = [0] * 10
         date = [''] * 10
         category = [''] * 10
-        text = '最大で10件を表示しています\n\n'
+        text = '最新のものから最大で10件を表示しています\n\n'
         cnt = 0
 
         cursor.execute('SELECT * FROM History')
