@@ -28,15 +28,15 @@
         data: {
             labels: [<?php foreach($result as $row){
                         echo '"'.($row["mon"]).'",';
-             }?>],
+            }?>],
             datasets: [{
                 label: '支出額',
                 data: [<?php foreach($result as $row){
                     echo $row["SUM(money)"].",";
                 } ?>],
-                backgroundColor: 
+                backgroundColor:
                     'rgba(255, 99, 132, 0.2)',
-                borderColor: 
+                borderColor:
                     'rgba(255, 99, 132, 1)',
                 borderWidth: 1
             }]
@@ -44,7 +44,7 @@
         options: {
             scales: {
                 yAxes: [{
-                    ticks: {     
+                    ticks: {
                         beginAtZero: true,//グラフの初期値を０に指定
                     }
                 }]
