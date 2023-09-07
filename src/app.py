@@ -305,9 +305,9 @@ def message(event):
                 cnt += 1
 
         if cnt > 0:
-            a = a[-10:]
-            date = date[-10:]
-            category = category[-10:]
+            a = a[-cnt:]
+            date = date[-cnt:]
+            category = category[-cnt:]
             length = len(a)
 
             for i in range(length - 1, -1, -1):
