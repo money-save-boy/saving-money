@@ -63,8 +63,8 @@ function checkValue(el) {
     }
 
     money.value = money.value.replace(/[^0-9]/g, "");
-    if(money.value == 0){
-        alert("0以上の数字で入力してください");
+    if(money.value <= 0){
+        alert("0より大きい数字で入力してください");
         clearText(el);
         return;
     }
