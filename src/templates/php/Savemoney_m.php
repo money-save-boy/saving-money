@@ -1,7 +1,7 @@
 <?php
-        $alert = "<script type='text/javascript'>alert('実行開始');</script>";
-        echo $alert;
-        $requestMethod = $_SERVER['REQUEST_METHOD'];
+    $alert = "<script type='text/javascript'>alert('実行開始');</script>";
+    echo $alert;
+    $requestMethod = $_SERVER['REQUEST_METHOD'];
         echo "リクエストメソッド: " . $requestMethod;
         // リクエストがPOSTメソッドでない場合はエラーを返す
         if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
@@ -68,3 +68,4 @@
         </div>
     </footer>
 </body>
+</html>
