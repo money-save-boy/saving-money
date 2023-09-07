@@ -28,7 +28,8 @@
             die('Missing "id" field in JSON data');
         }
     ?>
-<!DOCTYPE HTML>
+<!DOCTYPE html>
+<html>
 <head>
     <meta lang="ja">
     <link rel="stylesheet" href="/src/static/css/style.css">
