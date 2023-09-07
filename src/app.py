@@ -305,18 +305,18 @@ def message(event):
                 cnt += 1
 
         if cnt > 0:
-            a = a[-cnt:]
-            date = date[-cnt:]
-            category = category[-cnt:]
-            length = len(a)
+            if cnt < 10:
+                text += '\n'.join([f'{date[i]} [{category[i]}] {a[i]}円' for i in range(cnt - 1, -1, -1)])
+                text += '\n\nより詳細な履歴は支出グラフボタンから確認できます'
+            else:
+                a = a[-10:]
+                date = date[-10:]
+                category = category[-10:]
+                length = len(a)
 
-            for i in range(length - 1, -1, -1):
-                item1 = a[i]
-                item2 = date[i]
-                item3 = category[i]
-                text += f'{item2} [{item3}] {item1}円\n'
+                text += '\n'.join([f'{date[i]} [{category[i]}] {a[i]}円' for i in range(length - 1, -1, -1)])
+                text += '\n\nより詳細な履歴は支出グラフボタンから確認できます'
 
-            text += '\nより詳細な履歴は支出グラフボタンから確認できます'
         else:
             text = '履歴が登録されていません'
 
