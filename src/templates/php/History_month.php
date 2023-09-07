@@ -6,8 +6,8 @@
     if(is_array($sql)){
         foreach($sql as $row){
             echo '<div class="data">';
-            echo '<p>', $row['torokubi'], '</p>'; 
-            echo '<p>', $row['category'], '</p>'; 
+            echo '<p>', $row['torokubi'], '</p>';
+            echo '<p>', $row['category'], '</p>';
             echo '<p>', $row['sum(money)'], '</p>';
             echo '</div>';
         }
