@@ -12,7 +12,6 @@
                     WHERE user_id = ?
                     GROUP BY mon";
             $stmt = $pdo->query($sql);
-
             $sql -> execute($ID);
             $result = $stmt->fetchAll();
         } catch (PDOException $e) {

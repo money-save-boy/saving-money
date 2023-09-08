@@ -20,12 +20,12 @@
         // 受け取ったIDを変数として定義
         if (isset($data['id'])) {
             $ID = $data['id'];
-            $a = '<script>alert("ID取得成功");</script>';
-            echo $a;
         } else {
             http_response_code(400); // バッドリクエストのステータスコード
             die('Missing "id" field in JSON data');
         }
+        $a = '<script>alert("php実行");</script>';
+        echo $a;
 ?>
 <!DOCTYPE html>
 <html>
