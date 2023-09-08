@@ -20,8 +20,8 @@
         // 受け取ったIDを変数として定義
         if (isset($data['id'])) {
             $ID = $data['id'];
-            $responseData = ['message' => 'Received data: ' . json_encode($ID)];
             header('Content-Type: application/json');
+            $responseData = ['message' => 'Received data: ' . json_encode($ID)];
             echo json_encode($responseData);
         } else {
             http_response_code(400); // バッドリクエストのステータスコード
