@@ -20,16 +20,12 @@
         // 受け取ったIDを変数として定義
         if (isset($data['id'])) {
             $ID = $data['id'];
-            $json_array = json_encode($ID);
+            print_r($ID);
         } else {
             http_response_code(400); // バッドリクエストのステータスコード
             die('Missing "id" field in JSON data');
         }
 ?>
-<script>
-    const js_array2 = JSON.parse('<?php echo $json_array; ?>');
-    console.log(js_array2);
-</script>
 <!DOCTYPE html>
 <html>
 <head>
