@@ -20,7 +20,12 @@
         // 受け取ったIDを変数として定義
         if (isset($data['id'])) {
             $ID = $data['id'];
-            print_r($ID);
+            function console_log($data){
+                echo '<script>';
+                echo 'console.log('.json_encode($data).')';
+                echo '</script>';
+            }
+            console_log($ID);
         } else {
             http_response_code(400); // バッドリクエストのステータスコード
             die('Missing "id" field in JSON data');
