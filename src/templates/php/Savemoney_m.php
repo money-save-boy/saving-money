@@ -24,9 +24,8 @@
             http_response_code(400); // バッドリクエストのステータスコード
             die('Missing "id" field in JSON data');
         }
-        $a = '<script>alert("php実行");</script>';
-        echo $a;
 ?>
+<script>alert('php実行完了');</script>
 <!DOCTYPE html>
 <html>
 <head>
