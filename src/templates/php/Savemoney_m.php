@@ -20,9 +20,9 @@
         // 受け取ったIDを変数として定義
         if (isset($data['id'])) {
             $ID = $data['id'];
-            header('Content-Type: application/json');
+          /*  header('Content-Type: application/json');
             $responseData = ['message' => 'Received data: ' . json_encode($ID)];
-            echo json_encode($responseData);
+            echo json_encode($responseData); */
         } else {
             http_response_code(400); // バッドリクエストのステータスコード
             die('Missing "id" field in JSON data');
