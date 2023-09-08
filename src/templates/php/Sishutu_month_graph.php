@@ -12,11 +12,8 @@
                     WHERE user_id = ?
                     GROUP BY mon";
             $stmt = $pdo->query($sql);
-            if(isset($ID)){
-                $sql -> execute($ID);
-            }else{
-                echo '<h2>Your ID does not exist</h2>';
-            }
+            echo $ID;
+            //$sql -> execute($ID);
             $result = $stmt->fetchAll();
         } catch (PDOException $e) {
             echo $e;
