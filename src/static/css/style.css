@@ -96,7 +96,7 @@ footer{
     width: 50%;
     background-color: #009854;
 }
-#pig{
+.fa-solid fa-piggy-bank{
     content: "f4d3";
     position: absolute;
     bottom: 30%;

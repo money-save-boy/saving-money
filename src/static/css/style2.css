@@ -95,7 +95,7 @@ img{
     border-top: 2px solid #ff4d79;
     background-color: #ffe5f2;
 }
-#pig{
+.fa-solid fa-piggy-bank{
     content: "f4d3";
     position: absolute;
     bottom: 30%;
