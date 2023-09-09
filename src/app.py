@@ -85,7 +85,6 @@ def connectDB(page):
             if row['user_id'] == budget_userID:
                 flag = True
                 yBudget = row['zandaka']
-
                 tMonth = today.month
                 tYear = today.year
                 yMonth = row['torokubi'].month
@@ -111,6 +110,19 @@ def connectDB(page):
                         yBudget = 0
                     try:
                         cursor.execute('INSERT INTO Tyokin(user_id, tyokin, torokubi) VALUES(%s, %s, %s)', (budget_userID, yBudget, today))
+                        text = ''
+                        cursor.execute('SELECT * FROM Tyokin')
+                        a1 = cursor.fetchall()
+                        for a2 in a1:
+                            if a2['user_id'] == budget_userID:
+                                a = a2['tyokin']
+                                a = f'{a:,}'
+                                text = '先月の貯金額は'+ str(a) +'円でした'
+                                #テキスト送信
+                                line_bot_api.push_message(
+                                    budget_userID,
+                                    TextSendMessage(text = text)
+                                    )
                     except Exception as e:
                         t = e.__class__.__name__
                         return render_template('html/error.html', error = t)
@@ -179,10 +191,38 @@ def connectDB(page):
         except Exception as e:
             t = e.__class__.__name__
             return render_template('html/error.html', error = t)
+
+        #Messaging APIでの処理
+        a = 0
+        b = 0
+        total = 0
+        text = ''
+
+        cursor.execute('SELECT * FROM Yosan')
+        a1 = cursor.fetchall()
+        for a2 in a1:
+            if a2['user_id'] == spending_userID:
+                a = a2['zandaka']
+
+        cursor.execute('SELECT * FROM History')
+        b1 = cursor.fetchall()
+        for b2 in b1:
+            if b2['user_id'] == spending_userID:
+                if b2['torokubi'].month == today.month:
+                    b += b2['money']
+
+        total = a - b
+        #totalが予算残高
+        #bが合計額
+        if b > total:
+            text = '予算オーバーです！'
+            #テキスト送信
+            line_bot_api.push_message(
+                spending_userID,
+                TextSendMessage(text = text)
+                )
         connect.commit()
         connect.close()
-
-        
         return render_template('html/Shukkin_Complete.html')
 
 #MessagingAPI
