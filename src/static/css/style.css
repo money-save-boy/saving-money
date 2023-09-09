@@ -121,7 +121,7 @@ footer{
     height: 85px;
     filter: drop-shadow(0 7px 7px #125821);
 }
-@media only screen and (min-width: 961px){
+@media only screen and (min-width: 1200px){
     .TimeChange{
         height: 3%;
         display: flex;
@@ -139,13 +139,13 @@ footer{
         left: 20%;
         height: 25px;
         filter: drop-shadow(0 7px 7px #166a44);
-        padding: 5% 0;
+        padding: 2.3% 0;
     }
     #wallet{
         position: absolute;
         right: 21%;
         height: 25px;
         filter: drop-shadow(0 7px 7px #125821);
-        padding: 5% 0;
+        padding: 2.3% 0;
     }
 } 
