@@ -61,14 +61,14 @@ body{
 .nocheck{
     padding-top: 1.4%;
     width: calc(100% / 3);
-    background-color: #eefff2;
+    background-color: #027f47;
     color: #009854;
     text-decoration: none;
 }
 .checked{
     padding-top: 1.4%;
     width: calc(100% / 3);
-    background-color: #027f47;
+    background-color: #eefff2;
     color: white;
     text-decoration: none;
 }
