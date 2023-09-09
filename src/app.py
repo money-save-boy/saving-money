@@ -1,6 +1,7 @@
 #coding: utf-8
 
 from flask import Flask, render_template, request, abort
+import requests
 import json
 import MySQLdb
 import datetime
@@ -27,7 +28,9 @@ def spending():
 # 月間支出履歴表示
 @app.route('/spending_month')
 def spending_month():
-    return render_template('php/Savemoney_m.php')
+    php_server_url = 'https://aso2201030.verse.jp/src/templates/php/Savemoney_m.php'
+    response = requests.get(php_server_url)
+    return response.content, response.status_code
 
 # 年間支出履歴表示
 @app.route('/spending_year')
