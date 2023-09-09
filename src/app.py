@@ -94,7 +94,7 @@ def connectDB(page):
             if yYear == tYear:
                 if yMonth < tMonth:
                     try:
-                        cursor.execute('SELECT * FROM History WHERE torokubi >= DATE_ADD( DATE_ADD( LAST_DAY( NOW( ) ) , INTERVAL 1DAY ) , INTERVAL -2 MONTH ) AND torokubi < DATE_ADD( DATE_ADD( LAST_DAY( NOW( ) ) , INTERVAL 1 DAY ) , INTERVAL -1 MONTH )')') #先月分の支出を出力
+                        cursor.execute('SELECT * FROM History WHERE torokubi >= DATE_ADD(DATE_ADD(LAST_DAY(NOW()), INTERVAL 1 DAY), INTERVAL -2 MONTH) AND torokubi < DATE_ADD(DATE_ADD(LAST_DAY(NOW()), INTERVAL 1 DAY), INTERVAL -1 MONTH)')    #先月分の支出を出力
                     except Exception as e:
                         t = e.__class__.__name__
                         return render_template('html/error.html', error = t)
@@ -162,12 +162,12 @@ def connectDB(page):
             except Exception as e:
                 t = e.__class__.__name__
                 return render_template('html/error.html', error = t)
-        
+
         connect.commit()
         connect.close()
 
         return render_template('html/Yosan_Complete.html')
-        
+
 
     #支出入力
     elif page == 2:
