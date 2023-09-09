@@ -29,6 +29,9 @@ window.onload = function () {
                         },
                         body: JSON.stringify({ id: id }), // idをJSONデータとして送信
                     })
+                    .catch(error => {
+                        alert(error);
+                    })
                 });
             });
         });
