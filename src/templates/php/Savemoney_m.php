@@ -1,8 +1,7 @@
-
 <!DOCTYPE html>
-<html>
+<html lang="ja">
+
 <head>
-    <meta lang="ja">
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/src/static/css/style.css">
     <script src="https://kit.fontawesome.com/fd4cebc555.js" crossorigin="anonymous"></script>
@@ -11,40 +10,28 @@
     <script src="/src/static/js/liff_spendingMonth.js"></script>
     <title>支出額表示</title>
 </head>
+
 <body>
-    <?php include('connect.php'); ?>
+    <?php include 'connect.php'; ?>
     <?php
-    $requestMethod = $_SERVER['REQUEST_METHOD'];
-        echo "リクエストメソッド: " . $requestMethod;
-        // リクエストがPOSTメソッドでない場合はエラーを返す
-        if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-            http_response_code(405); // メソッド不許可のステータスコード
-            die('Method Not Allowed');
-        }
+    // JSONデータを受け取り、連想配列に変換する
+    $jsonData = file_get_contents('/src/static/js/liff_spendingMonth.js');
+    $data = json_decode($jsonData, true);
+    echo $data;
 
-        // JSONデータを受け取り、連想配列に変換する
-        $jsonData = file_get_contents('php://input');
-        $data = json_decode($jsonData, true);
-
-        // JSONデータの受信と変換が成功したかを確認する
-        if ($data === null) {
-            http_response_code(400); // バッドリクエストのステータスコード
-            die('Invalid JSON data');
-        }
-
-        // 受け取ったIDを変数として定義
-        if (isset($data['id'])) {
-            $ID = $data['id'];
-            echo 'hello world';
-        } else {
-            echo 'こんにちは';
-        }
+    // 受け取ったIDを変数として定義
+    if (isset($data['id'])) {
+        $ID = $data['id'];
+        echo $ID;
+    } else {
+        echo 'IDとれてないよ';
+    }
     ?>
     <div class="osirase">
         <h1>お知らせ</h1>
         <input type="button" value="ログアウト" id="logout">
-        <?php include('Zandaka_hyoji.php'); ?>
-        <?php include('Tyokingaku_hyoji.php'); ?>
+        <?php include 'Zandaka_hyoji.php'; ?>
+        <?php include 'Tyokingaku_hyoji.php'; ?>
     </div>
     <div class="TimeChange">
         <a class="nocheck" href="/css/templates/php/SaveMoney_y.php">年</a>
@@ -52,12 +39,12 @@
         <a class="nocheck" href="/css/templates/php/SaveMoney_w.php">週</a>
     </div>
     <div class="GraphArea">
-    <canvas id="myChart"></canvas>
-        <?php include('Sishutu_month_graph.php'); ?>
+        <canvas id="myChart"></canvas>
+        <?php include 'Sishutu_month_graph.php'; ?>
     </div>
     <div class="History">
         <div id="histitle">支出履歴</div>
-        <?php include('History_month.php') ?>
+        <?php include 'History_month.php' ?>
     </div>
     <footer>
         <div class="PageChange1">
@@ -68,4 +55,5 @@
         </div>
     </footer>
 </body>
+
 </html>
