@@ -28,7 +28,6 @@
     ?>
     <div class="osirase">
         <h1>お知らせ</h1>
-        <input type="button" value="ログアウト" id="logout">
         <?php include ('Zandaka_hyoji.php'); ?>
         <?php include ('Tyokingaku_hyoji.php'); ?>
     </div>
@@ -47,10 +46,10 @@
     </div>
     <footer>
         <div class="PageChange1">
-            <i id="pig" class="fa-solid fa-piggy-bank fa-5x" style="color: #ffffff;"></i>
+            <i id="pig" class="fa-solid fa-piggy-bank" style="color: #ffffff;"></i>
         </div>
         <div class="PageChange2" onclick="location.href='/src/saving_month'">
-            <i id="wallet" class="fa-solid fa-wallet fa-5x" style="color: #ffffff;"></i>
+            <i id="wallet" class="fa-solid fa-wallet" style="color: #ffffff;"></i>
         </div>
     </footer>
 </body>
