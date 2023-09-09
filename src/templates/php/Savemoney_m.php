@@ -12,7 +12,10 @@
 </head>
 
 <body>
-    <?php include 'connect.php'; ?>
+    <?php
+    $connect = include 'connect.php';
+    echo $connect;
+    ?>
     <?php
     // JSONデータを受け取り、連想配列に変換する
     $jsonData = file_get_contents('/src/static/js/liff_spendingMonth.js');
@@ -40,11 +43,17 @@
     </div>
     <div class="GraphArea">
         <canvas id="myChart"></canvas>
-        <?php include 'Sishutu_month_graph.php'; ?>
+        <?php
+        $graph = include 'Sishutu_month_graph.php';
+        echo $graph;
+        ?>
     </div>
     <div class="History">
         <div id="histitle">支出履歴</div>
-        <?php include 'History_month.php' ?>
+        <?php
+        $historyMonth = include 'History_month.php';
+        echo $historyMonth;
+        ?>
     </div>
     <footer>
         <div class="PageChange1">
