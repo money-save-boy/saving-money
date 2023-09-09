@@ -62,7 +62,6 @@ body{
     padding-top: 1%;
     width: 50%;
     background-color: #ff4d79;
-    border-bottom: 3px solid #ff4d79;
     color: #ffe5f2;
     text-decoration: none;
 }
@@ -70,7 +69,6 @@ body{
     padding-top: 1%;
     width: 50%;
     background-color: #ffe5f2;
-    border-bottom: 3px solid #ff4d79;
     color: #ff4d79;
     text-decoration: none;
 }
