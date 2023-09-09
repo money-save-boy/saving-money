@@ -3,23 +3,13 @@ try {
     $pdo = new PDO($connect, USER, PASS);
     $sql = $pdo -> prepare("SELECT SUM(money),DATE_FORMAT(torokubi, '%Y-%m') as mon FROM History
                     WHERE user_id = ?
-<<<<<<< Updated upstream
-                    GROUP BY mon";
+                    GROUP BY mon");
             $stmt = $pdo->query($sql);
             $stmt -> execute($ID);
             $result = $stmt->fetchAll();
         } catch (PDOException $e) {
             echo $e;
         }
-=======
-                    GROUP BY mon");
-    $sql->execute($ID);
-    $stmt = $pdo->query($sql);
-    $result = $stmt->fetchAll();
-} catch (PDOException $e) {
-    echo $e;
-}
->>>>>>> Stashed changes
 ?>
 <script>
     var ctx = document.getElementById('myChart').getContext('2d'); //2D画像として描画
