@@ -10,7 +10,7 @@ window.onload = function () {
             .then(() => {
 
                 var idToken = liff.getIDToken();
-                var postData = "id_token=" + idToken + "&client_id=" + data.channelID;            
+                var postData = "id_token=" + idToken + "&client_id=" + data.channelID;
                 fetch("https://api.line.me/oauth2/v2.1/verify", {
                     method: "POST",
                     headers: {
