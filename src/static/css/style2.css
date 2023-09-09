@@ -95,22 +95,7 @@ img{
     border-top: 2px solid #ff4d79;
     background-color: #ffe5f2;
 }
-.fa-solid fa-piggy-bank::before{
-    content: "f4d3";
-    position: absolute;
-    bottom: 30%;
-    left: 20%;
-    height: 85px;
-    filter: drop-shadow(0 5px 5px #7e3459);
-}
-.fa-solid fa-wallet::before{
-    content: "f555";
-    position: absolute;
-    bottom: 30%;
-    right: 21%;
-    height: 85px;
-    filter: drop-shadow(0 5px 5px #7a1d34);
-}
+
 @media only screen and (min-width: 1200px){
     .TimeChange{
         height: 3%;
