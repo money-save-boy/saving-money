@@ -53,7 +53,7 @@ def saving_year():
     return render_template('php/Wallet_y.php')
 
 #データベース接続
-@app.route('/src/in_<int:page>', methods = ['POST'])
+@app.route('/in_<int:page>', methods = ['POST'])
 def connectDB(page):
     connect = MySQLdb.connect(
         host = info['server'],
