@@ -122,3 +122,32 @@ footer{
     height: 85px;
     filter: drop-shadow(0 7px 7px #125821);
 }
+@media only screen and (min-width: 961px){
+    .TimeChange{
+        height: 3%;
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        vertical-align: middle;
+        background-color: #027f47;
+        border: 2px solid #027f47;
+        margin-top: 0.5%;
+        font-size: 2em;
+        width: 100%;
+        color: white;
+    }
+    #pig{
+        position: absolute;
+        bottom: 30%;
+        left: 20%;
+        height: 50px;
+        filter: drop-shadow(0 7px 7px #166a44);
+    }
+    #wallet{
+        position: absolute;
+        bottom: 30%;
+        right: 21%;
+        height: 50px;
+        filter: drop-shadow(0 7px 7px #125821);
+    }
+} 
