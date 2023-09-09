@@ -11,46 +11,51 @@
 </head>
 
 <body>
-    <?php include ('connect.php'); ?>
     <?php
+        // include ('connect.php');
+    ?>
+    <?php
+    phpinfo();
         // JSONデータを受け取り、連想配列に変換する
-        $jsonData = file_get_contents('php://input');
-        $data = json_decode($jsonData, true);
-        echo $data;
+        // $jsonData = file_get_contents('php://input');
+        // $data = json_decode($jsonData, true);
+        // echo $data;
+        // echo '確認';
 
         // 受け取ったIDを変数として定義
-        if (isset($data['id'])) {
-            $ID = $data['id'];
-            echo $ID;
-        } else {
-            echo 'とれてないよ';
-        }
+        // if (isset($data['id'])) {
+            // $ID = $data['id'];
+            // echo $ID;
+        // } else {
+            // echo 'とれてないよ';
+        // }
     ?>
-    <div class="osirase">
+    <!-- <div class="osirase">
         <h1>お知らせ</h1>
-        <?php include ('Zandaka_hyoji.php'); ?>
-        <?php include ('Tyokingaku_hyoji.php'); ?>
+        <input type="button" value="ログアウト" id="logout">
+        <?php // include ('Zandaka_hyoji.php'); ?>
+        <?php // include ('Tyokingaku_hyoji.php'); ?>
     </div>
     <div class="TimeChange">
-        <a class="nocheck" href='/src/spending_year'>年</a>
+        <a class="nocheck" href="/css/templates/php/SaveMoney_y.php">年</a>
         <a class="checked" href="#">月</a>
-        <a class="nocheck" href='/src/spending_week'>週</a>
+        <a class="nocheck" href="/css/templates/php/SaveMoney_w.php">週</a>
     </div>
     <div class="GraphArea">
         <canvas id="myChart"></canvas>
-        <?php include ('Sishutu_month_graph.php'); ?>
+        <?php // include ('Sishutu_month_graph.php'); ?>
     </div>
     <div class="History">
         <div id="histitle">支出履歴</div>
-        <?php include ('History_month.php'); ?>
+        <?php // include ('History_month.php'); ?>
     </div>
     <footer>
         <div class="PageChange1">
-            <i id="pig" class="fa-solid fa-piggy-bank" style="color: #ffffff;"></i>
+            <i id="pig" class="fa-solid fa-piggy-bank fa-5x" style="color: #ffffff;"></i>
         </div>
         <div class="PageChange2" onclick="location.href='/src/saving_month'">
-            <i id="wallet" class="fa-solid fa-wallet" style="color: #ffffff;"></i>
+            <i id="wallet" class="fa-solid fa-wallet fa-5x" style="color: #ffffff;"></i>
         </div>
-    </footer>
+    </footer> -->
 </body>
 </html>
