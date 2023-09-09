@@ -37,8 +37,8 @@ body{
     font-size: 2em;
 }
 #minus{
-    background-color: mediumseagreen;
-    color: white;
+    background-color: rgb(216, 249, 231);
+    color: red;
     width: 90%;
     margin: 0.5% 5% 0 5%;
     padding: 1% 0;

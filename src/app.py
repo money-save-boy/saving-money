@@ -94,7 +94,7 @@ def connectDB(page):
             if yYear == tYear:
                 if yMonth < tMonth:
                     try:
-                        cursor.execute('SELECT * FROM History')
+                        cursor.execute('SELECT * FROM History WHERE torokubi >= DATE_ADD( DATE_ADD( LAST_DAY( NOW( ) ) , INTERVAL 1DAY ) , INTERVAL -2 MONTH ) AND torokubi < DATE_ADD( DATE_ADD( LAST_DAY( NOW( ) ) , INTERVAL 1 DAY ) , INTERVAL -1 MONTH )')') #先月分の支出を出力
                     except Exception as e:
                         t = e.__class__.__name__
                         return render_template('html/error.html', error = t)
@@ -103,9 +103,9 @@ def connectDB(page):
 
                     for col in cols:
                         if col['user_id'] == budget_userID:
-                            total += col['money']
+                            total += col['money'] #取得した出力をすべて加算
 
-                    yBudget -= total
+                    yBudget -= total #先月の予算から取得したユーザの先月分の支出すべてを減算する
                     if yBudget < 0:
                         yBudget = 0
                     try:
