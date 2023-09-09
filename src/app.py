@@ -224,10 +224,10 @@ def connectDB(page):
                 spending_userID,
                 TextSendMessage(text = text)
                 )
-        return render_template('html/Shukkin_Complete.html')
         connect.commit()
         connect.close()
         
+        return render_template('html/Shukkin_Complete.html')
 
 #MessagingAPI
 handler = WebhookHandler(info['channelSecret'])
