@@ -59,14 +59,14 @@ body{
     font-size: 2em;
 }
 .nocheck{
-    padding-top: 1.4%;
+    padding-top: 1%;
     width: calc(100% / 3);
     background-color: #027f47;
     color: #eefff2;
     text-decoration: none;
 }
 .checked{
-    padding-top: 1.4%;
+    padding-top: 1%;
     width: calc(100% / 3);
     background-color: #eefff2;
     color: #027f47;

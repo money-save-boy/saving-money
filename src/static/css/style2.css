@@ -59,7 +59,7 @@ body{
     font-size: 2em;
 }
 .nocheck{
-    padding-top: 1.4%;
+    padding-top: 1%;
     width: 50%;
     background-color: #ff4d79;
     border-bottom: 3px solid #ff4d79;
@@ -67,7 +67,7 @@ body{
     text-decoration: none;
 }
 .checked{
-    padding-top: 1.4%;
+    padding-top: 1%;
     width: 50%;
     background-color: #ffe5f2;
     border-bottom: 3px solid #ff4d79;
