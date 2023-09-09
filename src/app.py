@@ -53,7 +53,7 @@ def saving_year():
     return render_template('php/Wallet_y.php')
 
 #データベース接続
-@app.route('/in_<int:page>', methods = ['POST'])
+@app.route('/src/in_<int:page>', methods = ['POST'])
 def connectDB(page):
     connect = MySQLdb.connect(
         host = info['server'],
@@ -165,10 +165,10 @@ def connectDB(page):
             except Exception as e:
                 t = e.__class__.__name__
                 return render_template('html/error.html', error = t)
-        return render_template('html/Yosan_Complete.html')
+        
         connect.commit()
         connect.close()
-
+        return render_template('html/Yosan_Complete.html')
         
 
     #支出入力
