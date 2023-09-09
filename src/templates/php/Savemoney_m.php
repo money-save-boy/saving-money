@@ -22,8 +22,7 @@
             $ID = $data['id'];
             echo 'hello world';
         } else {
-            http_response_code(400); // バッドリクエストのステータスコード
-            die('Missing "id" field in JSON data');
+            echo 'こんにちは';
         }
 ?>
 <script>alert('php実行完了');</script>
