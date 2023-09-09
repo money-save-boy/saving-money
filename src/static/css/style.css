@@ -25,27 +25,6 @@ body{
     margin: 0;
     padding: 0;
 }
-
-#mod{
-    background-color: mediumseagreen;
-    color: white;
-    width: 90%;
-    margin: 0 5% 0 5%;
-    padding: 3% 0;
-    text-align: center;
-    border-radius: 30px;
-    font-size: 2em;
-}
-#save{
-    background-color: mediumseagreen;
-    color: white;
-    width: 90%;
-    margin: 0.5% 5% 0 5%;
-    padding: 3% 0;
-    text-align: center;
-    border-radius: 30px;
-    font-size: 2em;
-}
 .TimeChange{
     height: 5%;
     display: flex;
@@ -56,21 +35,44 @@ body{
     border: 2px solid #027f47;
     margin-top: 0.5%;
     font-size: 2em;
-    width: calc(100% / 3);
+    width: 100%;
     color: white;
 }
-.TimeChange{
-    height: 5%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    vertical-align: middle;
+#mod{
     background-color: mediumseagreen;
-    border: 2px solid #027f47;
-    margin-top: 0.5%;
-    font-size: 2em;
-    width: calc(100% / 3);
     color: white;
+    width: 90%;
+    margin: 0 5% 0 5%;
+    padding: 1% 0;
+    text-align: center;
+    border-radius: 30px;
+    font-size: 2em;
+}
+#minus{
+    background-color: mediumseagreen;
+    color: white;
+    width: 90%;
+    margin: 0.5% 5% 0 5%;
+    padding: 1% 0;
+    text-align: center;
+    border-radius: 30px;
+    font-size: 2em;
+}
+.nocheck{
+    height: 5%;
+    margin-top: calc(5% / 2);
+    width: calc(100% / 3);
+    background-color: rgb(208, 210, 208);
+    color: #009854;
+    text-decoration: none;
+}
+.checked{
+    height: 5%;
+    margin-top: calc(5% / 2);
+    width: calc(100% / 3);
+    background-color: #027f47;
+    color: white;
+    text-decoration: none;
 }
 .GraphArea{
     font-size: 2em;

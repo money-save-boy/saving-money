@@ -26,7 +26,17 @@ body{
     margin: 0;
     padding: 0;
 }
-
+.TimeChange{
+    height: 5%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    vertical-align: middle;
+    background-color: #ff4d79;
+    color: white;
+    margin-top: 0.5%;
+    font-size: 2em;
+}
 #mod{
     background-color: #ff6699;
     color: white;
@@ -37,7 +47,7 @@ body{
     border-radius: 30px;
     font-size: 2em;
 }
-#save{
+#minus{
     background-color: #ff6699;
     color: white;
     width: 90%;
@@ -45,17 +55,6 @@ body{
     padding: 3% 0;
     text-align: center;
     border-radius: 30px;
-    font-size: 2em;
-}
-.TimeChange{
-    height: 5%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    vertical-align: middle;
-    background-color: #ff4d79;
-    color: white;
-    margin-top: 0.5%;
     font-size: 2em;
 }
 .nocheck{
