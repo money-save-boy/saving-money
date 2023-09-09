@@ -11,8 +11,8 @@
 <body>
     <div class="osirase">
         <h1>お知らせ</h1>
-        <?php include('Zandaka_hyoji.php'); ?>
-        <?php include('Tyokingaku_hyoji.php'); ?>
+        <?php include 'Zandaka_hyoji.php' ; ?>
+        <?php include 'Tyokingaku_hyoji.php' ; ?>
     </div>
     <div class="TimeChange">
         <a class="checked" href='#'>年</a>
@@ -21,18 +21,18 @@
     </div>
     <div class="GraphArea">
     <canvas id="myChart"></canvas>
-        <?php include('Sishutu_year_graph.php'); ?>
+        <?php include 'Sishutu_year_graph.php'; ?>
     </div>
     <div class="History">
         <div id="histitle">支出履歴</div>
-        <?php include('History_year.php') ?>
+        <?php include 'History_year.php'; ?>
     </div>
     <footer>
         <div class="PageChange1">
-            <p id="pig" class="fa-solid fa-piggy-bank" style="color: #ffffff;"></p>
+            <p id="pig" class="fa-solid fa-piggy-bank" style="color: #ffffff; font-size: 2em;"></p>
         </div>
         <div class="PageChange2"  onclick="location.href='/src/saving_month'">
-            <p id="wallet" class="fa-solid fa-wallet" style="color: #red;"></p>
+            <p id="wallet" class="fa-solid fa-wallet" style="color: #ffffff; font-size: 2em;"></p>
         </div>
     </footer>
 </body>
