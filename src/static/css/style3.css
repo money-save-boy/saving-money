@@ -6,6 +6,7 @@ html{
     text-align: center;
     font-size: 3em;
     font-family: "游ゴシック体", YuGothic, "游ゴシック", "Yu Gothic", sans-serif;
+    min-height: 100%;
 }
 h3{
     margin-top: 15%;
@@ -97,6 +98,7 @@ select:focus{
     font-size: 0.5em;
     border-radius: 30px;
     padding: 10px 0;
+    margin-bottom: 10%;
     transition: all .3s;
 }
 .submit:hover{
@@ -112,6 +114,7 @@ select:focus{
     font-size: 0.5em;
     border-radius: 30px;
     padding: 10px 0;
+    margin-bottom: 10%;
     transition: all .3s;
 }
 .sub:hover{
