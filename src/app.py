@@ -68,11 +68,8 @@ def connectDB(page):
     #予算入力
     if page == 1:
         budget_userID = request.form.get('budget_userID')
-        print(budget_userID)
         userName = request.form.get('budget_userName')
-        print(budget_userName)
         budget_money = request.form.get('money')
-        print(budget_money)
         budget = int(budget_money)
         today = datetime.date.today()
         flag = False
@@ -168,6 +165,7 @@ def connectDB(page):
         
         connect.commit()
         connect.close()
+
         return render_template('html/Yosan_Complete.html')
         
 
