@@ -4,29 +4,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="stylesheet" href="/src/static/css/style.css">
+    <title>支出額表示</title>
     <script src="https://kit.fontawesome.com/fd4cebc555.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
     <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
     <script src="/src/static/js/liff_spendingMonth.js"></script>
-    <title>支出額表示</title>
 </head>
 
 <body>
+    <p id="monthP"></p>
     <?php include ('connect.php'); ?>
     <?php
-        // JSONデータを受け取り、連想配列に変換する
-        $jsonData = file_get_contents('php://input');
-        $data = json_decode($jsonData, true);
-        echo $data;
-
-        // 受け取ったIDを変数として定義
-        if (isset($data['id'])) {
-            $ID = $data['id'];
-            echo $ID;
-        } else {
-            echo 'とれてないよ';
-        }
+    // JSONデータを受け取り、連想配列に変換する
     ?>
+
     <div class="osirase">
         <h1>お知らせ</h1>
         <?php include ('Zandaka_hyoji.php'); ?>
