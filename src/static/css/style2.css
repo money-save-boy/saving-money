@@ -37,8 +37,8 @@ body{
     font-size: 2em;
 }
 #minus{
-    background-color: #ff6699;
-    color: white;
+    background-color: #fadbe6;
+    color: red;
     width: 90%;
     margin: 0.5% 5% 0 5%;
     padding: 3% 0;
@@ -95,22 +95,7 @@ img{
     border-top: 2px solid #ff4d79;
     background-color: #ffe5f2;
 }
-#pig{
-    content: "f4d3";
-    position: absolute;
-    bottom: 30%;
-    left: 20%;
-    height: 85px;
-    filter: drop-shadow(0 5px 5px #7e3459);
-}
-.fa-solid fa-wallet{
-    content: "f555";
-    position: absolute;
-    bottom: 30%;
-    right: 21%;
-    height: 85px;
-    filter: drop-shadow(0 5px 5px #7a1d34);
-}
+
 @media only screen and (min-width: 1200px){
     .TimeChange{
         height: 3%;
@@ -130,7 +115,7 @@ img{
     .checked{
         padding-top: 0.5%;
     }
-    .fa-solid fa-piggy-bank{
+    .fa-solid fa-piggy-bank::before{
         content: "f4d3";
         position: absolute;
         left: 20%;
@@ -138,7 +123,7 @@ img{
         filter: drop-shadow(0 5px 5px #7e3459);
         padding: 3% 0;
     }
-    .fa-solid fa-wallet{
+    .fa-solid fa-wallet::before{
         content: "f555";
         position: absolute;
         right: 21%;
