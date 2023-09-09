@@ -27,7 +27,7 @@ body{
 }
 .TimeChange{
     height: 5%;
-    display: flex;
+    sdisplay: flex;
     flex-direction: row;
     justify-content: space-around;
     vertical-align: middle;
@@ -35,7 +35,7 @@ body{
     border: 2px solid #027f47;
     margin-top: 0.5%;
     font-size: 2em;
-    width: calc(100% / 3);
+    width: 100%;
     color: white;
 }
 #mod{

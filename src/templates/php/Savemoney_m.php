@@ -46,9 +46,9 @@
         <?php include('Tyokingaku_hyoji.php'); ?>
     </div>
     <div class="TimeChange">
-        <a class="nocheck" href="SaveMoney_y.php">年</a>
+        <a class="nocheck" href="/css/templates/php/SaveMoney_y.php">年</a>
         <a class="checked" href="#">月</a>
-        <a class="nocheck" href="SaveMoney_w.php">週</a>
+        <a class="nocheck" href="/css/templates/php/SaveMoney_w.php">週</a>
     </div>
     <div class="GraphArea">
     <canvas id="myChart"></canvas>
