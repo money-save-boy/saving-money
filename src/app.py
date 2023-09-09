@@ -68,11 +68,11 @@ def connectDB(page):
     #予算入力
     if page == 1:
         budget_userID = request.form.get('budget_userID')
-        text = budget_userID
+        print(budget_userID)
         userName = request.form.get('budget_userName')
-        text = budget_userName
+        print(budget_userName)
         budget_money = request.form.get('money')
-        text = budget_money
+        print(budget_money)
         budget = int(budget_money)
         today = datetime.date.today()
         flag = False
