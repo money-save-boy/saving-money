@@ -15,11 +15,9 @@
         <?php include('Zandaka_hyoji.php'); ?>
         <?php include('Tyokingaku_hyoji.php'); ?>
     </div>
-    <div class="NoTimeChange" onclick="location.href='/src/saving_year'">
-        <p>年</p>
-    </div>
     <div class="TimeChange">
-        <p>月</p>
+        <a class="nocheck" href='/src/saving_year'>年</a>
+        <a class="checked" href="#">月</a>
     </div>
     <div class="GraphArea">
         <canvas id="myChart"></canvas>

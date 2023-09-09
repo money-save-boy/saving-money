@@ -14,14 +14,10 @@
         <?php include('Zandaka_hyoji.php'); ?>
         <?php include('Tyokingaku_hyoji.php'); ?>
     </div>
-    <div class="NoTimeChange" onclick="location.href='/src/spending_year'">
-        <p>年</p>
-    </div>
-    <div class="NoTimeChange" onclick="location.href='/src/spending_month'">
-        <p>月</p>
-    </div>
     <div class="TimeChange">
-        <p>週</p>
+        <a class="nocheck" href='/src/spending_year'>年</a>
+        <a class="nocheck" href="/src/spending_month">月</a>
+        <a class="checked" href='#'>週</a>
     </div>
     <div class="GraphArea">
     <canvas id="myChart"></canvas>
