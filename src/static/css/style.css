@@ -139,11 +139,15 @@ footer{
         left: 20%;
         height: 35px;
         filter: drop-shadow(0 7px 7px #166a44);
+        display:flex;
+        align-items: center;
     }
     #wallet{
         position: absolute;
         right: 21%;
         height: 50px;
         filter: drop-shadow(0 7px 7px #125821);
+        display:flex;
+        align-items: center;
     }
 } 
