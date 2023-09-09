@@ -179,6 +179,8 @@ def connectDB(page):
         connect.commit()
         connect.close()
 
+        # Messaging APIでの処理
+        # テキスト送信
         return render_template('html/Shukkin_Complete.html')
 
 #MessagingAPI
