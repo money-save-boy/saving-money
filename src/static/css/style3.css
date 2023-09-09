@@ -1,0 +1,120 @@
+@charset "utf-8";
+
+html{
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    font-size: 3em;
+    font-family: "游ゴシック体", YuGothic, "游ゴシック", "Yu Gothic", sans-serif;
+}
+h3{
+    margin-top: 15%;
+}
+p{
+    margin-top: 30%;
+    font-weight: 500;
+}
+.errorP{
+    font-size: .8rem;
+    padding: 0 10px;
+    line-height: 1.3rem;
+}
+.errorSpan{
+    padding: 5px;
+    background-color: #f0f05c;
+    color: #be2424;
+}
+form{
+    padding-top: 20%;
+}
+span{
+    color: darkgreen;
+}
+#yosan{
+    color: #e73562;
+}
+input{
+    margin: 3%;
+    width: 50%;
+    font-size: 100%;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom:1px solid black;
+}
+input:focus{
+    outline: none;
+    border-bottom:1px solid forestgreen;
+}
+#mo{
+    text-align: right;
+}
+#money{
+    text-align: right;
+}
+#money:focus{
+    margin: 3%;
+    width: 50%;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    outline: none;
+    border-bottom:1px solid #f66a8d;
+}
+select{
+    margin: 3%;
+    width: 50%;
+    font-size: 50%;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom:1px solid black;
+    background-color: #fff;
+}
+select:focus{
+    margin: 3%;
+    width: 50%;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    outline: none;
+    border-bottom:1px solid limegreen;
+}
+.help{
+    display: flex;
+    margin-left: 20%;
+    font-size: 0.7em;
+}
+.help span{
+    font-size: 1em;
+}
+.submit{
+    width: 30%;
+    text-align: center;
+    border-bottom:0px;
+    color: forestgreen;
+    background-color: #ececec;
+    font-size: 0.5em;
+    border-radius: 30px;
+    padding: 10px 0;
+    transition: all .3s;
+}
+.submit:hover{
+    background-color: forestgreen;
+    color: white;
+}
+.sub{
+    width: 30%;
+    text-align: center;
+    border-bottom:0px;
+    color: #e73562;
+    background-color: #ececec;
+    font-size: 0.5em;
+    border-radius: 30px;
+    padding: 10px 0;
+    transition: all .3s;
+}
+.sub:hover{
+    background-color: #e73562;
+    color: white;
+}

@@ -1,0 +1,122 @@
+html{
+    margin: 0;
+    padding: 0;
+    background-color: #ffe5f2;
+    color: #e73562;
+    text-align: center;
+    font-family: "游ゴシック体", YuGothic, "游ゴシック", "Yu Gothic", sans-serif;
+}
+.osirase{
+    background-color: white;
+    padding: 1%;
+}
+#logout{
+    border: none;
+    color: #e73562;
+    background-color: white;
+    border: 1px solid #e73562;
+    border-radius: 50px;
+    padding: 1% 2%;
+    font-size: 1.5em;
+    position: fixed;
+    top: 2%;
+    right: 5%;
+}
+body{
+    margin: 0;
+    padding: 0;
+}
+.TimeChange{
+    height: 5%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    vertical-align: middle;
+    background-color: #ff4d79;
+    color: white;
+    margin-top: 0.5%;
+    font-size: 2em;
+}
+#mod{
+    background-color: #ff6699;
+    color: white;
+    width: 90%;
+    margin: 0 5% 0 5%;
+    padding: 3% 0;
+    text-align: center;
+    border-radius: 30px;
+    font-size: 2em;
+}
+#minus{
+    background-color: #ff6699;
+    color: white;
+    width: 90%;
+    margin: 0.5% 5% 0 5%;
+    padding: 3% 0;
+    text-align: center;
+    border-radius: 30px;
+    font-size: 2em;
+}
+.nocheck{
+    width: 50%;
+    background-color: rgb(225, 222, 223);
+    border-bottom: 3px solid #ff4d79;
+    color: #ff4d79;
+    text-decoration: none;
+}
+.checked{
+    width: 50%;
+    background-color: #ff4d79;
+    border-bottom: 3px solid #ff4d79;
+    color: white;
+    text-decoration: none;
+}
+.GraphArea{
+    font-size: 2em;
+    height: 15%;
+    width: 80%;
+    margin-left: 7.5%;
+}
+#histitle{
+    background-color: #ff4d79;
+    color: white;
+    text-align: center;
+    font-size: 2em;
+}
+footer{
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    height: 10%;
+    display: flex;
+    margin: 0%;
+    padding: 0;
+}
+img{
+    width: 10%;
+    margin: 10% 45%;
+    align-items: center;
+}
+.PageChange1{
+    width:50%;
+    background-color: #ff4d79;
+}
+.PageChange2{
+    width: 50%;
+    border-top: 2px solid #ff4d79;
+    background-color: #ffe5f2;
+}
+#pig{
+    position: absolute;
+    bottom: 30%;
+    left: 20%;
+    height: 85px;
+    filter: drop-shadow(0 5px 5px #7e3459);
+}
+#wallet{
+    position: absolute;
+    bottom: 30%;
+    right: 21%;
+    height: 85px;
+    filter: drop-shadow(0 5px 5px #7a1d34);
+}
