@@ -1,5 +1,10 @@
 <?php
-    echo $ID;
+    if(isset($ID)){
+        echo $ID;
+    }else{
+        echo 'IDもらえてないよ';
+    }
+    
     $pdo = new PDO($connect, USER, PASS);
     $str = 'select DATE_FORMAT(torokubi, "%Y-%m") as torokubi, sum(tyokin) from Tyokin where user_id = ? group by torokubi';
     $sql = $pdo -> query($str);
