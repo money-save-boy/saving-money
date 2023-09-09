@@ -179,6 +179,7 @@ def connectDB(page):
         connect.commit()
         connect.close()
 
+        
         return render_template('html/Shukkin_Complete.html')
 
 #MessagingAPI
