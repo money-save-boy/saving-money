@@ -1,5 +1,5 @@
 window.onload = function () {
-    fetch("/src/secret.json")
+    fetch("secret.json")
         .then((response) => response.json())
         .then((data) => {
             clearToken(data.spendingMonthLiffID);
@@ -22,17 +22,13 @@ window.onload = function () {
                 .then((liffData) => {
                     var id = liffData.sub;
                     // JSONデータをPHPに送信
-                    fetch("/src/templates/php/Savemoney_m.php", {
+                    fetch("templates/php/Savemoney_m.php", {
                         method: "POST",
                         headers: {
                             "Content-Type": "application/json"
                         },
                         body: JSON.stringify({ id: id }), // idをJSONデータとして送信
                     })
-                    .then(() => {
-                        alert(id);
-                    });
-                    alert("send");
                 });
             });
         });

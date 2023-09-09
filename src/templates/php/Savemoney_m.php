@@ -11,13 +11,10 @@
 </head>
 
 <body>
-    <?php
-    $connect = include 'connect.php';
-    echo $connect;
-    ?>
+    <?php include ('connect.php');?>
     <?php
     // JSONデータを受け取り、連想配列に変換する
-    $jsonData = file_get_contents('/src/static/js/liff_spendingMonth.js');
+    $jsonData = file_get_contents('php://input');
     $data = json_decode($jsonData, true);
     echo $data;
 
@@ -26,14 +23,14 @@
         $ID = $data['id'];
         echo $ID;
     } else {
-        echo 'IDとれてないよ';
+        echo 'とれてないよ';
     }
     ?>
     <div class="osirase">
         <h1>お知らせ</h1>
         <input type="button" value="ログアウト" id="logout">
-        <?php include 'Zandaka_hyoji.php'; ?>
-        <?php include 'Tyokingaku_hyoji.php'; ?>
+        <?php include ('Zandaka_hyoji.php'); ?>
+        <?php include ('Tyokingaku_hyoji.php'); ?>
     </div>
     <div class="TimeChange">
         <a class="nocheck" href='/src/spending_year'>年</a>
@@ -42,17 +39,11 @@
     </div>
     <div class="GraphArea">
         <canvas id="myChart"></canvas>
-        <?php
-        $graph = include 'Sishutu_month_graph.php';
-        echo $graph;
-        ?>
+        <?php include ('Sishutu_month_graph.php'); ?>
     </div>
     <div class="History">
         <div id="histitle">支出履歴</div>
-        <?php
-        $historyMonth = include 'History_month.php';
-        echo $historyMonth;
-        ?>
+        <?php include ('History_month.php'); ?>
     </div>
     <footer>
         <div class="PageChange1">
