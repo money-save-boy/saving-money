@@ -27,7 +27,7 @@
         $ID = $data['id'];
         echo $ID;
     } else {
-        echo 'IDとれてないよ';
+        echo 'とれてないよ';
     }
     ?>
     <div class="osirase">
