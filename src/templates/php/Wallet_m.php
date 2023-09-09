@@ -28,7 +28,7 @@
         <?php include 'History_m.php'; ?>
     </div>
     <footer>
-        <div class="PageChange1" onclick="location.href='/src/spending_month'">
+        <div class="PageChange1" onclick="location.href='/src/spending_year'">
             <i id="pig" class="fa-solid fa-piggy-bank fa-5x" style="color: #ffffff;"></i>
         </div>
         <div class="PageChange2">
