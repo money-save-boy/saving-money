@@ -41,7 +41,7 @@ body{
 #mod{
     background-color: mediumseagreen;
     color: white;
-    width: calc(100% / 3);
+    width: 90%;
     margin: 0 5% 0 5%;
     padding: 1% 0;
     text-align: center;
@@ -51,7 +51,7 @@ body{
 #minus{
     background-color: mediumseagreen;
     color: white;
-    width: calc(100% / 3);
+    width: 90%;
     margin: 0.5% 5% 0 5%;
     padding: 1% 0;
     text-align: center;
@@ -62,8 +62,7 @@ body{
     height: 5%;
     margin-top: calc(5% / 2);
     width: calc(100% / 3);
-    background-color: rgb(130, 133, 131);
-    border-bottom: 1px solid #009854;
+    background-color: rgb(208, 210, 208);
     color: #009854;
     text-decoration: none;
 }
@@ -71,8 +70,7 @@ body{
     height: 5%;
     margin-top: calc(5% / 2);
     width: calc(100% / 3);
-    background-color: #009854;
-    border-bottom: 1px solid #009854;
+    background-color: #027f47;
     color: white;
     text-decoration: none;
 }
