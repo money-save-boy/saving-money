@@ -12,7 +12,6 @@
             }else{
                 echo '<p id="minus">予算超過 ¥ -', $row['zandaka'], '</p>';
             }
-
         }
     }
 ?>

@@ -10,18 +10,13 @@
 <body>
     <div class="osirase">
         <h1>お知らせ</h1>
-        <input type="button" value="ログアウト" id="logout">
         <?php include('Zandaka_hyoji.php'); ?>
         <?php include('Tyokingaku_hyoji.php'); ?>
     </div>
     <div class="TimeChange">
-        <p>年</p>
-    </div>
-    <div class="NoTimeChange" onclick="location.href='/src/spending_month'">
-        <p>月</p>
-    </div>
-    <div class="NoTimeChange" onclick="location.href='/src/spending_week'">
-        <p>週</p>
+        <a class="checked" href='#'>年</a>
+        <a class="nocheck" href="/src/spending_month">月</a>
+        <a class="nocheck" href='/src/spending_week'>週</a>
     </div>
     <div class="GraphArea">
     <canvas id="myChart"></canvas>
@@ -33,10 +28,10 @@
     </div>
     <footer>
         <div class="PageChange1">
-            <i id="pig" class="fa-solid fa-piggy-bank fa-5x" style="color: #ffffff;"></i>
+            <i id="pig" class="fa-solid fa-piggy-bank" style="color: #ffffff;"></i>
         </div>
         <div class="PageChange2"  onclick="location.href='/src/saving_month'">
-            <i id="wallet" class="fa-solid fa-wallet fa-5x" style="color: #ffffff;"></i>
+            <i id="wallet" class="fa-solid fa-wallet" style="color: #ffffff;"></i>
         </div>
     </footer>
 </body>
