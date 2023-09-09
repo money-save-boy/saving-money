@@ -50,7 +50,7 @@
             <p class="fa-solid fa-piggy-bank" style="color: #ffffff;"></p>
         </div>
         <div class="PageChange2" onclick="location.href='/src/saving_month'">
-            <i class="fa-solid fa-wallet" style="color: #ffffff;"></i>
+            <p class="fa-solid fa-wallet" style="color: #ffffff;"></p>
         </div>
     </footer>
 </body>
