@@ -1,4 +1,5 @@
 <?php
+    echo $ID;
     $pdo = new PDO($connect, USER, PASS);
     $str = 'select DATE_FORMAT(torokubi, "%Y-%m") as torokubi, sum(tyokin) from Tyokin where user_id = ? group by torokubi';
     $sql = $pdo -> query($str);
