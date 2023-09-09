@@ -96,7 +96,7 @@ footer{
     width: 50%;
     background-color: #009854;
 }
-/* .fa-solid fa-piggy-bank::before{
+.fa-solid fa-piggy-bank::before{
     content: "f4d3";
     position: absolute;
     bottom: 30%;
@@ -111,7 +111,7 @@ footer{
     right: 21%;
     height: 85px;
     filter: drop-shadow(0 7px 7px #125821);
-} */
+}
 @media only screen and (min-width: 1200px){
     .TimeChange{
         height: 3%;
