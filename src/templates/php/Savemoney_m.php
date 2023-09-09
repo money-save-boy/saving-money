@@ -15,7 +15,7 @@
     <?php include ('connect.php');?>
     <?php
     // JSONデータを受け取り、連想配列に変換する
-    $jsonData = file_get_contents('/src/static/js/liff_spendingMonth.js');
+    $jsonData = file_get_contents('php://input');
     $data = json_decode($jsonData, true);
     echo $data;
 
