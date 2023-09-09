@@ -12,8 +12,8 @@
     <div class="osirase">
         <h1>お知らせ</h1>
         <input type="button" value="ログアウト" id="logout">
-        <?php include('Zandaka_hyoji.php'); ?>
-        <?php include('Tyokingaku_hyoji.php'); ?>
+        <?php include 'Zandaka_hyoji.php' ; ?>
+        <?php include 'Tyokingaku_hyoji.php' ; ?>
     </div>
     <div class="TimeChange">
         <a class="checked" href='#'>年</a>
@@ -21,11 +21,11 @@
     </div>
     <div class="GraphArea">
         <canvas id="myChart"></canvas>
-        <?php include('Tyokin_year_graph.php'); ?>
+        <?php include 'Tyokin_year_graph.php' ; ?>
     </div>
     <div class="History">
         <div id="histitle">貯金履歴</div>
-        <?php include('History_y.php') ?>
+        <?php include 'History_y.php'; ?>
     </div>
     <footer>
         <div class="PageChange1" onclick="location.href='/src/spending_month'">
