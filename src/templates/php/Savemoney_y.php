@@ -32,7 +32,7 @@
             <p id="pig" class="fa-solid fa-piggy-bank" style="color: #ffffff;"></p>
         </div>
         <div class="PageChange2"  onclick="location.href='/src/saving_month'">
-            <p id="wallet" class="fa-solid fa-wallet" style="color: #ffffff;"></p>
+            <p id="wallet" class="fa-solid fa-wallet" style="color: #red;"></p>
         </div>
     </footer>
 </body>
