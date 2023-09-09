@@ -103,7 +103,7 @@ img{
     height: 85px;
     filter: drop-shadow(0 5px 5px #7e3459);
 }
-#wallet{
+.fa-solid fa-wallet{
     content: "f555";
     position: absolute;
     bottom: 30%;
@@ -130,7 +130,7 @@ img{
     .checked{
         padding-top: 0.5%;
     }
-    #pig{
+    .fa-solid fa-piggy-bank{
         content: "f4d3";
         position: absolute;
         left: 20%;
@@ -138,7 +138,7 @@ img{
         filter: drop-shadow(0 5px 5px #7e3459);
         padding: 3% 0;
     }
-    #wallet{
+    .fa-solid fa-wallet{
         content: "f555";
         position: absolute;
         right: 21%;
