@@ -138,14 +138,14 @@ footer{
     }
     #pig{
         position: absolute;
-        bottom: 30%;
+    
         left: 20%;
         height: 50px;
         filter: drop-shadow(0 7px 7px #166a44);
     }
     #wallet{
         position: absolute;
-        bottom: 30%;
+        /*bottom: 30%;*/
         right: 21%;
         height: 50px;
         filter: drop-shadow(0 7px 7px #125821);
