@@ -2,10 +2,10 @@ name: FTP Deploy
 on:
   push:
     branches:
-      - 'integration'
+      - 'main'
   pull_request:
     branches:
-      - 'integration'
+      - 'main'
 jobs:
   build:
     name: Build
