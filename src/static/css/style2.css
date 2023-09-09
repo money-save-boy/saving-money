@@ -33,9 +33,10 @@ body{
     justify-content: space-around;
     vertical-align: middle;
     background-color: #ff4d79;
-    color: white;
+    border: 2px solid #ff4d79;
     margin-top: 0.5%;
     font-size: 2em;
+    width: 100%;
 }
 #mod{
     background-color: #ff6699;
@@ -58,15 +59,17 @@ body{
     font-size: 2em;
 }
 .nocheck{
+    padding-top: 1.4%;
     width: 50%;
-    background-color: rgb(225, 222, 223);
+    background-color: #ff4d79;
     border-bottom: 3px solid #ff4d79;
     color: #ff4d79;
     text-decoration: none;
 }
 .checked{
+    padding-top: 1.4%;
     width: 50%;
-    background-color: #ff4d79;
+    background-color: #ffe5f2;
     border-bottom: 3px solid #ff4d79;
     color: white;
     text-decoration: none;
