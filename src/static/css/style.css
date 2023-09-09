@@ -96,7 +96,7 @@ footer{
     width: 50%;
     background-color: #009854;
 }
-.fa-solid fa-piggy-bank{
+.fa-solid fa-piggy-bank::before{
     content: "f4d3";
     position: absolute;
     bottom: 30%;
@@ -104,7 +104,7 @@ footer{
     height: 85px;
     filter: drop-shadow(0 7px 7px #166a44);
 }
-.fa-solid fa-wallet{
+.fa-solid fa-wallet::before{
     content: "f555";
     position: absolute;
     bottom: 30%;
@@ -131,7 +131,7 @@ footer{
     .checked{
         padding-top: 0.5%;
     }
-    .fa-solid fa-piggy-bank{
+    .fa-solid fa-piggy-bank::before{
         content: "f4d3";
         position: absolute;
         left: 20%;
@@ -139,7 +139,7 @@ footer{
         filter: drop-shadow(0 7px 7px #166a44);
         padding: 2.3% 0;
     }
-    .fa-solid fa-wallet{
+    .fa-solid fa-wallet::before{
         content: "f555";
         position: absolute;
         right: 21%;
