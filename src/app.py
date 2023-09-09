@@ -165,11 +165,11 @@ def connectDB(page):
             except Exception as e:
                 t = e.__class__.__name__
                 return render_template('html/error.html', error = t)
-
+        return render_template('html/Yosan_Complete.html')
         connect.commit()
         connect.close()
 
-        return render_template('html/Yosan_Complete.html')
+        
 
     #支出入力
     elif page == 2:
@@ -226,7 +226,7 @@ def connectDB(page):
                 )
         connect.commit()
         connect.close()
-        
+
         return render_template('html/Shukkin_Complete.html')
 
 #MessagingAPI
