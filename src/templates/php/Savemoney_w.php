@@ -29,10 +29,10 @@
     </div>
     <footer>
         <div class="PageChange1">
-            <i id="pig" class="fa-solid fa-piggy-bank" style="color: #ffffff;"></i>
+        <p id="pig" class="fa-solid fa-piggy-bank" style="color: #ffffff; font-size: 3em; filter: drop-shadow(0 5px 5px #166a44); margin-top:3.5%;"></p>
         </div>
         <div class="PageChange2"  onclick="location.href='/src/saving_month'">
-            <i id="wallet" class="fa-solid fa-wallet" style="color: #ffffff;"></i>
+        <p id="wallet" class="fa-solid fa-wallet" style="color: #ffffff; font-size: 3em; filter: drop-shadow(0 5px 5px #125821); margin-top:3.5%;"></p>
         </div>
     </footer>
 </body>
