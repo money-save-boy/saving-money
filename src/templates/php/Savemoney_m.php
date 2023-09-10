@@ -15,6 +15,7 @@
     <?php // include ('connect.php'); ?>
     <?php
 
+        echo '適当に表示';
         $json = file_get_contents('php://input');
         echo var_dump($json);
         $data = json_decode($json, true); // JSONデータを連想配列としてデコード
