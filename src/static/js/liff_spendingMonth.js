@@ -1,3 +1,4 @@
+"use strict";
 document.addEventListener("DOMContentLoaded", function() {
     fetch("/src/secret.json")
     .then((response) => response.json())
