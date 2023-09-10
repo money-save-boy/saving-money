@@ -18,6 +18,8 @@
         //header('Access-Control-Allow-Origin: *');
         //header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept');
         //header("Content-type: application/json; charset=UTF-8");
+        $rawData = file_get_contents('php://input');
+        var_dump($rawData);
         echo '適当に';
         $json = file_get_contents('php://input');
         echo $json;
@@ -30,7 +32,8 @@
         ini_set('display_errors', '1');
 
         echo '受信データ:';
-        print_r($data); // 受信したデータを表示
+        prin$rawData = file_get_contents('php://input');
+var_dump($rawData);t_r($data); // 受信したデータを表示
 
     ?>
 
