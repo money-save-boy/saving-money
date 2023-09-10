@@ -3,7 +3,7 @@
     $str = 'select DATE_FORMAT(torokubi, "%Y-%m") as torokubi, category, sum(money) from History where user_id = ? group by torokubi,category';
     $sql = $pdo -> query($str);
     if(isset($ID)){
-        $sql -> execute("1");
+        $sql -> execute($ID);
     }else{
         echo '<h2>Your ID does not exist</h2>';
     }

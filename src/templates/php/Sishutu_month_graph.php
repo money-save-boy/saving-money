@@ -5,7 +5,7 @@ try {
                     WHERE user_id = ?
                     GROUP BY mon");
         $stmt = $pdo->query($sql);
-        $stmt -> execute('1');
+        $stmt -> execute($ID);
         $result = $stmt->fetchAll();
     } catch (PDOException $e) {
         echo $e;
