@@ -31,11 +31,11 @@ document.addEventListener("DOMContentLoaded", function() {
                     
                 })
                 .then(re => {
-                    console.log('送信データ:', jsonData); // データをコンソールに表示
+                    console.log('success送信データ:', jsonData); // データをコンソールに表示
                     console.log('PHPからの応答:', re); // PHPからの応答をコンソールに表示
                 })
                 .catch(error => {
-                    console.log('送信データ:', jsonData);
+                    console.log('miss送信データ:', jsonData);
                     console.error('エラー:', error); // エラーメッセージをコンソールに表示
                 });
             });
