@@ -4,7 +4,7 @@ try {
     $sql = $pdo -> prepare("SELECT SUM(money),DATE_FORMAT(torokubi, '%Y-%m') as mon FROM History
                     WHERE user_id = '1'
                     GROUP BY mon");
-        $stmt = $pdo->prepare($sql);
+        $stmt = $pdo->queryS($sql);
         //$stmt -> execute('1');
         $result = $stmt->fetchAll();
     } catch (PDOException $e) {
