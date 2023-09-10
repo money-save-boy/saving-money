@@ -22,7 +22,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 var jsonData = JSON.stringify({id: /*liffData.sub*/"dummy"});
                 //var jsonData = JSON.stringify("dummy");
                 console.log('送信データ:', jsonData); // データをコンソールに表示
-                fetch('/src/templates/php/Savemoney_m.php', {
+                fetch('/src/templates/php/Savemoney.php', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
