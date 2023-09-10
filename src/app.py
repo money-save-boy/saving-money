@@ -154,6 +154,7 @@ def connectDB(page):
                 cursor.execute('UPDATE Yosan SET zandaka = %s, torokubi = %s WHERE user_id = %s', (budget, today, budget_userID))
             except Exception as e:
                 t = e.__class__.__name__
+                connect.close()
                 return render_template('html/error.html', error = t)
         else:
             try:
@@ -161,6 +162,7 @@ def connectDB(page):
                 cursor.execute('INSERT INTO Yosan VALUES(%s, %s, %s)', (budget_userID, budget, today))
             except Exception as e:
                 t = e.__class__.__name__
+                connect.close()
                 return render_template('html/error.html', error = t)
         
         connect.commit()
