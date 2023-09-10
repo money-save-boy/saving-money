@@ -34,10 +34,10 @@ document.addEventListener("DOMContentLoaded", function() {
                 .catch(error => {
                     console.error('エラー:', error); // エラーメッセージをコンソールに表示
                 });
-            })
-        })
+            });
+        });
     })
-})
+});
 
 function keyReload(el){
     var keys = [];
