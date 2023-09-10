@@ -13,13 +13,13 @@
 </head>
 
 <body>
-    <?php // include ('connect.php'); ?>
+    <?php  include ('connect.php'); ?>
     <?php
         //header('Access-Control-Allow-Origin: *');
         //header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept');
         //header("Content-type: application/json; charset=UTF-8");
-        $rawData = file_get_contents('php://input');
-        var_dump($rawData);
+        //$rawData = file_get_contents('php://input');
+        //var_dump($rawData);
         /*echo '適当に';
         $json = file_get_contents('php://input');
         echo $json;
@@ -38,8 +38,8 @@
 
     <div class="osirase">
         <h1>お知らせ</h1>
-        <?php // include ('Zandaka_hyoji.php'); ?>
-        <?php // include ('Tyokin_hyoji.php'); ?>
+        <?php  include ('Zandaka_hyoji.php'); ?>
+        <?php  include ('Tyokin_hyoji.php'); ?>
     </div>
     <div class="TimeChange">
         <a class="nocheck" href='/src/spending_year'>年</a>
@@ -48,11 +48,11 @@
     </div>
     <div class="GraphArea">
         <canvas id="myChart"></canvas>
-        <?php // include ('Sishutu_month_graph.php'); ?>
+        <?php  include ('Sishutu_month_graph.php'); ?>
     </div>
     <div class="History">
         <div id="histitle">支出履歴</div>
-        <?php // include ('History_month.php'); ?>
+        <?php  include ('History_month.php'); ?>
     </div>
     <footer>
         <div class="PageChange1">
