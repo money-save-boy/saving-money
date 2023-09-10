@@ -9,10 +9,10 @@
                 ]
             );
             $sql = "SELECT SUM(tyokin),DATE_FORMAT(torokubi, '%Y') as yea FROM Tyokin
-                    WHERE user_id = '1'
+                    WHERE user_id = ?
                     GROUP BY yea";
             $stmt = $pdo->query($sql);
-            //$stmt -> execute($ID);
+            $stmt -> execute($ID);
             $result = $stmt->fetchAll();
         } catch (PDOException $e) {
             echo $e;

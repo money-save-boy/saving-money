@@ -9,10 +9,10 @@
                 ]
             );
             $sql = "SELECT SUM(money),DATE_FORMAT(torokubi, '%Y-%u') as wee FROM History
-                    WHERE user_id = '1'
+                    WHERE user_id = ?
                     GROUP BY wee";
             $stmt = $pdo->query($sql);
-            //$stmt -> execute($ID);
+            $stmt -> execute($ID);
             $result = $stmt->fetchAll();
         } catch (PDOException $e) {
             echo $e;

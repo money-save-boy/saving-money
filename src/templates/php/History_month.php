@@ -1,12 +1,12 @@
 <?php
     $pdo = new PDO($connect, USER, PASS);
-    $str = 'select DATE_FORMAT(torokubi, "%Y-%m") as torokubi, category, sum(money) from History where user_id = "1" group by torokubi,category';
+    $str = 'select DATE_FORMAT(torokubi, "%Y-%m") as torokubi, category, sum(money) from History where user_id = ? group by torokubi,category';
     $sql = $pdo -> query($str);
-    /*if(isset($ID)){
+    if(isset($ID)){
         $sql -> execute("1");
     }else{
         echo '<h2>Your ID does not exist</h2>';
-    }*/
+    }
     if(is_array($sql)){
         foreach($sql as $row){
             echo '<div class="data">';
