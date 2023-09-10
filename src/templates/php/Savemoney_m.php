@@ -1,11 +1,12 @@
+<?php 
+    header('Access-Control-Allow-Origin: *');
+    header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept');
+    header("Content-type: application/json; charset=UTF-8");
+?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-    <?php 
-        header('Access-Control-Allow-Origin: *');
-        header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept');
-        header("Content-type: application/json; charset=UTF-8");
-    ?>
+   
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="stylesheet" href="/src/static/css/style.css">
