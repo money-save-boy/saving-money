@@ -26,6 +26,8 @@
         if (json_last_error() !== JSON_ERROR_NONE) {
             die('JSONデータのデコードエラー: ' . json_last_error_msg());
         }
+        error_reporting(E_ALL);
+        ini_set('display_errors', '1');
 
         echo '受信データ:';
         print_r($data); // 受信したデータを表示
