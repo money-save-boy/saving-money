@@ -15,9 +15,9 @@
 <body>
     <?php // include ('connect.php'); ?>
     <?php
-        header('Access-Control-Allow-Origin: *');
-        header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept');
-        header("Content-type: application/json; charset=UTF-8");
+        //header('Access-Control-Allow-Origin: *');
+        //header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept');
+        //header("Content-type: application/json; charset=UTF-8");
         echo '適当に';
         $json = file_get_contents('php://input');
         echo $json;
