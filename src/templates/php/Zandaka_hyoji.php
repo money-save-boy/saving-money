@@ -1,7 +1,8 @@
 <?php
     $pdo = new PDO($connect, USER, PASS);
     $str = $pdo -> prepare('select zandaka from Yosan where user_id = ?');
-    $str -> execute($ID);
+    //$sql = $pdo -> query($str);
+    //$str -> execute($ID);
     if(!is_array($str)){
         echo '<p id="mod">予算残高 ¥ 0</p>';
     }else {
