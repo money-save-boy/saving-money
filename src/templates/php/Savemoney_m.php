@@ -4,33 +4,37 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="stylesheet" href="/src/static/css/style.css">
+    <title>支出額表示</title>
     <script src="https://kit.fontawesome.com/fd4cebc555.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
     <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
     <script src="/src/static/js/liff_spendingMonth.js"></script>
-    <title>支出額表示</title>
 </head>
 
 <body>
-    <?php include ('connect.php'); ?>
+    <?php // include ('connect.php'); ?>
     <?php
-        // JSONデータを受け取り、連想配列に変換する
-        $jsonData = file_get_contents('php://input');
-        $data = json_decode($jsonData, true);
-        echo $data;
-
-        // 受け取ったIDを変数として定義
-        if (isset($data['id'])) {
-            $ID = $data['id'];
-            echo $ID;
-        } else {
-            echo 'とれてないよ';
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $json = file_get_contents('php://input');
+        var_dump($json);
+        $data = json_decode($json, true); // JSONデータを連想配列としてデコード
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            die('JSONデータのデコードエラー: ' . json_last_error_msg());
         }
+
+        echo '受信データ:';
+        print_r($data); // 受信したデータを表示
+
+        // ここでデータを処理する
+    } else {
+        echo 'POSTリクエストがありません。';
+    }
     ?>
+
     <div class="osirase">
         <h1>お知らせ</h1>
-        <?php include ('Zandaka_hyoji.php'); ?>
-        <?php include ('Tyokingaku_hyoji.php'); ?>
+        <?php // include ('Zandaka_hyoji.php'); ?>
+        <?php // include ('Tyokin_hyoji.php'); ?>
     </div>
     <div class="TimeChange">
         <a class="nocheck" href='/src/spending_year'>年</a>
@@ -39,18 +43,18 @@
     </div>
     <div class="GraphArea">
         <canvas id="myChart"></canvas>
-        <?php include ('Sishutu_month_graph.php'); ?>
+        <?php // include ('Sishutu_month_graph.php'); ?>
     </div>
     <div class="History">
         <div id="histitle">支出履歴</div>
-        <?php include ('History_month.php'); ?>
+        <?php // include ('History_month.php'); ?>
     </div>
     <footer>
         <div class="PageChange1">
-            <p id="pig" class="fa-solid fa-piggy-bank" style="color: #ffffff; font-size: 3em; filter: drop-shadow(0 5px 5px #166a44); margin-top:3.5%;"></p>
+            <i id="pig" class="fa-solid fa-piggy-bank" style="color: #ffffff;"></i>
         </div>
         <div class="PageChange2" onclick="location.href='/src/saving_month'">
-        <p id="wallet" class="fa-solid fa-wallet" style="color: #ffffff; font-size: 3em; filter: drop-shadow(0 5px 5px #125821); margin-top:3.5%;"></p>
+            <i id="wallet" class="fa-solid fa-wallet" style="color: #ffffff;"></i>
         </div>
     </footer>
 </body>
