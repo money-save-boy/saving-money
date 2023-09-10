@@ -1,5 +1,5 @@
-window.onload = function () {
-    fetch("secret.json")
+document.addEventListener("DOMContentLoaded", function() {
+    fetch("/src/secret.json")
     .then((response) => response.json())
     .then((data) => {
         clearToken(data.spendingMonthLiffID);
@@ -19,11 +19,25 @@ window.onload = function () {
             })
             .then((res) => res.json())
             .then((liffData) => {
-                document.getElementById("monthP").value = liffData.sub;
+                var jsonData = JSON.stringify({id: liffData.sub});
+                console.log('送信データ:', jsonData); // データをコンソールに表示
+                fetch('/src/templates/php/Savemoney_m.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: jsonData
+                })
+                .then(re => {
+                    console.log('PHPからの応答:', re); // PHPからの応答をコンソールに表示
+                })
+                .catch(error => {
+                    console.error('エラー:', error); // エラーメッセージをコンソールに表示
+                });
             })
         })
     })
-}
+})
 
 function keyReload(el){
     var keys = [];
