@@ -4,12 +4,12 @@ try {
     $sql = $pdo -> prepare("SELECT SUM(money),DATE_FORMAT(torokubi, '%Y-%m') as mon FROM History
                     WHERE user_id = ?
                     GROUP BY mon");
-            $stmt = $pdo->query($sql);
-            $stmt -> execute('1');
-            $result = $stmt->fetchAll();
-        } catch (PDOException $e) {
-            echo $e;
-        }
+        $stmt = $pdo->query($sql);
+        $stmt -> execute('1');
+        $result = $stmt->fetchAll();
+    } catch (PDOException $e) {
+        echo $e;
+    }
 ?>
 <script>
     var ctx = document.getElementById('myChart').getContext('2d'); //2D画像として描画
