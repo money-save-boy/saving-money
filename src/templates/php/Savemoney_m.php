@@ -16,7 +16,7 @@
     <?php
 
         $json = file_get_contents('php://input');
-        var_dump($json);
+        echo var_dump($json);
         $data = json_decode($json, true); // JSONデータを連想配列としてデコード
         if (json_last_error() !== JSON_ERROR_NONE) {
             die('JSONデータのデコードエラー: ' . json_last_error_msg());
@@ -25,7 +25,6 @@
         echo '受信データ:';
         print_r($data); // 受信したデータを表示
 
-        
     ?>
 
     <div class="osirase">
