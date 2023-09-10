@@ -10,12 +10,12 @@
     if ($data === null && json_last_error() !== JSON_ERROR_NONE) {
         $errorMessage = json_last_error_msg();
         $response = [
-            'status' => 'error',
+            'statusText' => 'error',
             'message' => 'Invalid JSON data: ' . $errorMessage
         ];
     }else{
         $response = [
-            'status' => 'success',
+            'statusText' => 'success',
             'data' => $data
         ];
     }
