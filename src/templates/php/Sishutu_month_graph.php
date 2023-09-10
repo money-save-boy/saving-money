@@ -2,10 +2,10 @@
 try {
     $pdo = new PDO($connect, USER, PASS);
     $sql = $pdo -> prepare("SELECT SUM(money),DATE_FORMAT(torokubi, '%Y-%m') as mon FROM History
-                    WHERE user_id = '1'
+                    WHERE user_id = ?
                     GROUP BY mon");
             $stmt = $pdo->query($sql);
-            //$stmt -> execute($ID);
+            $stmt -> execute('1');
             $result = $stmt->fetchAll();
         } catch (PDOException $e) {
             echo $e;
