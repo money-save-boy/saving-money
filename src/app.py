@@ -29,7 +29,7 @@ def spending():
 @app.route('/spending_month')
 def spending_month():
     php_server_url = 'https://aso2201030.verse.jp/src/templates/php/Savemoney_m.php'
-    response = requests.get(php_server_url)
+    response = requests.post(php_server_url)
     return response.content, response.status_code
 
 # 年間支出履歴表示
