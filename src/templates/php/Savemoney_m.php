@@ -21,9 +21,6 @@
     <?php  include ('connect.php'); ?>
     <?php
         
-        //$rawData = file_get_contents('php://input');
-        //var_dump($rawData);
-        /*echo '適当に';
         $json = file_get_contents('php://input');
         echo $json;
         echo var_dump($json);
@@ -35,7 +32,7 @@
         ini_set('display_errors', '1');
 
         echo '受信データ:';
-        print_r($data); // 受信したデータを表示 */
+        print_r($data); // 受信したデータを表示
 
     ?>
 
