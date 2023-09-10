@@ -3,6 +3,7 @@
     header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept');
     header("Content-type: application/json; charset=UTF-8");
     $json = file_get_contents('php://input');
+    
     echo $json;
     var_dump($json);
     $data = json_decode($json, true); // JSONデータを連想配列としてデコード
@@ -22,7 +23,7 @@
     ini_set('display_errors', '1');
 
 
-    header('Content-Type: application/json');
+    
     echo json_encode($response);
 
     echo '受信データ:';
