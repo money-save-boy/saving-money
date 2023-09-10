@@ -19,8 +19,7 @@ document.addEventListener("DOMContentLoaded", function() {
             })
             .then((res) => res.json())
             .then((liffData) => {
-                var jsonData = JSON.stringify({id: /*liffData.sub*/"dummy"});
-                //var jsonData = JSON.stringify("dummy");
+                var jsonData = JSON.stringify({id: liffData.sub});
                 console.log('送信データ:', jsonData); // データをコンソールに表示
                 fetch('/src/templates/php/Savemoney.php', {
                     method: 'POST',
