@@ -23,14 +23,27 @@
         
         $json = file_get_contents('php://input');
         echo $json;
-        echo var_dump($json);
+        var_dump($json);
         $data = json_decode($json, true); // JSONデータを連想配列としてデコード
-        if (json_last_error() !== JSON_ERROR_NONE) {
-            die('JSONデータのデコードエラー: ' . json_last_error_msg());
+        if ($data === null && json_last_error() !== JSON_ERROR_NONE) {
+            $errorMessage = json_last_error_msg();
+            $response = [
+                'status' => 'error',
+                'message' => 'Invalid JSON data: ' . $errorMessage
+            ];
+        }else{
+            $response = [
+                'status' => 'success',
+                'data' => $data
+            ];
         }
         error_reporting(E_ALL);
         ini_set('display_errors', '1');
-        
+
+
+        header('Content-Type: application/json');
+        echo json_encode($response);
+
         echo '受信データ:';
         print_r($data); // 受信したデータを表示
 
