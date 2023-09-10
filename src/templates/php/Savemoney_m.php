@@ -15,7 +15,7 @@
     <?php // include ('connect.php'); ?>
     <?php
 
-        echo '適当に表示';
+        echo '適当に';
         $json = file_get_contents('php://input');
         echo $json;
         echo var_dump($json);
