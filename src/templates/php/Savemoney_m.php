@@ -32,8 +32,7 @@
         ini_set('display_errors', '1');
 
         echo '受信データ:';
-        prin$rawData = file_get_contents('php://input');
-var_dump($rawData);t_r($data); // 受信したデータを表示
+        print_r($data); // 受信したデータを表示
 
     ?>
 
