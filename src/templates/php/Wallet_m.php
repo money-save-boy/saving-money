@@ -30,10 +30,10 @@
     </div>
     <footer>
         <div class="PageChange1" onclick="location.href='/src/spending_year'">
-            <p id="pig" class="fa-solid fa-piggy-bank" style="color: #ffffff; font-size: 3em; filter: drop-shadow(0 5px 5px #7e3459); margin-top:3.5%;"></p>
+            <p id="pig" class="fa-solid fa-piggy-bank" style="color: #ffffff; font-size: 2em; filter: drop-shadow(0 5px 5px #7e3459); margin-top:3.5%;"></p>
         </div>
         <div class="PageChange2">
-            <p id="pig" class="fa-solid fa-wallet" style="color: #ffffff; font-size: 3em; filter: drop-shadow(0 5px 5px #7a1d34); margin-top:3.5%;"></p>
+            <p id="pig" class="fa-solid fa-wallet" style="color: #ffffff; font-size: 2em; filter: drop-shadow(0 5px 5px #7a1d34); margin-top:3.5%;"></p>
         </div>
     </footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.js"></script>
