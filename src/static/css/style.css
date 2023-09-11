@@ -22,7 +22,7 @@ body{
     vertical-align: middle;
     background-color: #027f47;
     border: 2px solid #027f47;
-    font-size: 2em;
+    font-size: 1.5em;
     width: 100%;
     color: white;
 }
@@ -34,7 +34,7 @@ body{
     padding: 1% 0;
     text-align: center;
     border-radius: 30px;
-    font-size: 2em;
+    font-size: 1.5em;
 }
 #minus{
     background-color: rgb(216, 249, 231);
@@ -44,7 +44,7 @@ body{
     padding: 1% 0;
     text-align: center;
     border-radius: 30px;
-    font-size: 2em;
+    font-size: 1.5em;
 }
 .nocheck{
     padding-top: 1%;
@@ -70,13 +70,13 @@ body{
     background-color: #009854;
     color: white;
     text-align: center;
-    font-size: 2em;
+    font-size: 1em;
 }
 .data{
     display: flex;
     justify-content: space-around;
     width: 75%;
-    font-size: 1.5em;
+    font-size: 1em;
     margin-left: 10%;
 }
 footer{
@@ -105,7 +105,7 @@ footer{
         vertical-align: middle;
         background-color: #027f47;
         border: 2px solid #027f47;
-        font-size: 2em;
+        font-size: 1em;
         width: 100%;
         color: white;
     }
