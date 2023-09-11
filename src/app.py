@@ -73,6 +73,11 @@ def connectDB(page):
         budget = int(budget_money)
         today = datetime.date.today()
         flag = False
+        yYear = 0
+        tYear = 0
+        yMonth = 0
+        tMonth = 0
+        yBudget = 0
 
         try:
             cursor.execute('SELECT * FROM Yosan')
@@ -173,6 +178,7 @@ def connectDB(page):
     elif page == 2:
         spending_userID = request.form.get('spending_userID')
         categoryNumber = request.form.get('category')
+        category = ''
         if categoryNumber == '1':
             category = '食費'
         elif categoryNumber == '2':
