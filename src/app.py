@@ -1,6 +1,6 @@
 #coding: utf-8
 
-from flask import Flask, render_template, request, abort, Response
+from flask import Flask, render_template, request, abort, jsonify
 import subprocess
 import requests
 import json
@@ -26,7 +26,7 @@ def budget():
 def spending():
     return render_template('html/Shukkin_Form.html')
 
-# 月間支出履歴表示
+# 月別支出履歴表示
 @app.route('/spending_month')
 def spending_month():
     php_server_url = 'https://aso2201030.verse.jp/src/templates/php/Savemoney_m.php'
@@ -35,11 +35,32 @@ def spending_month():
 
 @app.route('/spending_month_send', methods = ['POST'])
 def spending_month_send():
-    jsonData = request.get_json()
-    php_server_url = 'https://aso2201030.verse.jp/src/templates/php/info.php'
-    response = requests.post(php_server_url, json = jsonData)
-    php_response = response.text
-    return render_template('html/Savemoney_m.html', php_response = php_response)
+    if request.method == 'POST':
+        # connect = MySQLdb.connect(
+        #     host = info['server'],
+        #     user = info['user'],
+        #     passwd = info['pass'],
+        #     db = info['db'],
+        #     use_unicode = True,
+        #     charset = 'utf8'
+        # )
+        # cursor = connect.cursor(MySQLdb.cursors.DictCursor)
+
+        # jsonData = request.json
+        # data = json.load(jsonData)
+        # spendingSum = [0] * 12
+        # today = datetime.date.today()
+
+        # cursor.execute('SELECT * FROM History')
+        # rows = cursor.fetchall()
+        # for row in rows:
+        #     if row['id'] == data['id'] & today.year == row['torokubi'].year:
+        #         spendingSum[row['torokubi']] += row['money']
+
+        postData = {"data": "id"}
+        post = jsonify(postData)
+
+        return post
 
 # 年間支出履歴表示
 @app.route('/spending_year')

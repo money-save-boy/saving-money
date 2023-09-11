@@ -1,4 +1,3 @@
-"use strict";
 document.addEventListener("DOMContentLoaded", function() {
     fetch("/src/secret.json")
     .then((response) => response.json())
@@ -20,38 +19,31 @@ document.addEventListener("DOMContentLoaded", function() {
             })
             .then((res) => res.json())
             .then((liffData) => {
-                var jsonData = JSON.stringify({id: liffData.sub});
-                console.log('送信データ:', jsonData); // データをコンソールに表示
+                var jsonData = {"id": liffData.sub};
                 fetch('https://aso2201030.verse.jp/src/spending_month_send', {
-                    method: "POST",
+                    method: 'POST',
                     headers: {
-                        "Content-Type": "application/json"
+                        'Content-Type': 'application/json'
                     },
-                    body: jsonData,
+                    body: JSON.stringify(jsonData)
                 })
-                .then((r) => {
-                    console.log(r);
+                .then((r) => r.json())
+                .then((graphData) => {
+                    console.log(graphData)
+                    //let element = document.getElementById("dummy");
+                    //element.innerText="aaaaaaa";
+                    // myChart.data.datasets.forEach((dataset) => {
+                    //     dataset.data.push(graphData["data"]);
+                    // })
+                    // myChart.update();
                 })
-                .catch(error => {
-                    console.log('miss送信データ:', jsonData);
-                    console.log('エラー:', error); // エラーメッセージをコンソールに表示
+                .catch(function(error) {
+                    console.error(error);
                 });
             });
         });
     })
 });
-
-function keyReload(el){
-    var keys = [];
-    for(var i = 0; i < localStorage.length; i++){
-        var key = localStorage.key(i);
-        if(key.indexOf(el) == 0){
-            keys.push(key);
-        }
-    }
-
-    return keys;
-}
 
 function clearToken(id){
     var keyPrefix = `LIFF_STORE:${id}:`;
@@ -70,4 +62,16 @@ function clearToken(id){
             localStorage.removeItem(key)
         })
     }
+}
+
+function keyReload(el){
+    var keys = [];
+    for(var i = 0; i < localStorage.length; i++){
+        var key = localStorage.key(i);
+        if(key.indexOf(el) == 0){
+            keys.push(key);
+        }
+    }
+
+    return keys;
 }
