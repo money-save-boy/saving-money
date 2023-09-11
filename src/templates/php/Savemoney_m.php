@@ -13,21 +13,12 @@
 </head>
 
 <body>
-<<<<<<< HEAD
-    <?php  include 'connect.php'; ?>
-
-    <div class="osirase">
-        <h3>お知らせ</h3>
-        <?php  include 'Zandaka_hyoji.php'; ?>
-        <?php  include 'Tyokin_hyoji.php'; ?>
-=======
     <?php include('connect.php'); ?>
     <div class="osirase">
         <div id="dummy"></div>
         <h1>お知らせ</h1>
         <?php include('Zandaka_hyoji.php'); ?>
         <?php include('Tyokin_hyoji.php'); ?>
->>>>>>> main
     </div>
     <div class="TimeChange">
         <a class="nocheck" href='/src/spending_year'>年</a>
@@ -36,19 +27,11 @@
     </div>
     <div class="GraphArea">
         <canvas id="myChart"></canvas>
-<<<<<<< HEAD
-        <?php  include 'Sishutu_month_graph.php'; ?>
-    </div>
-    <div class="History">
-        <div id="histitle">支出履歴</div>
-        <?php  include 'History_month.php'; ?>
-=======
         <?php include('Sishutu_month_graph.php'); ?>
     </div>
     <div class="History">
         <div id="histitle">支出履歴</div>
         <?php include('History_month.php'); ?>
->>>>>>> main
     </div>
     <footer>
         <div class="PageChange1">
