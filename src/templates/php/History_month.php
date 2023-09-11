@@ -28,9 +28,6 @@ try {
 
     // 結果を表示
     if (!empty($result)) {
-        echo '<h2>Transaction Data</h2>';
-        echo '<table>';
-        echo '<tr><th>Date</th><th>Category</th><th>Total</th></tr>';
         foreach ($result as $row) {
             echo '<div class="data">';
             echo '<p>', $row['torokubi'], '</p>';
