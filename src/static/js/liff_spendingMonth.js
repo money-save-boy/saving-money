@@ -20,22 +20,20 @@ document.addEventListener("DOMContentLoaded", function() {
             .then((res) => res.json())
             .then((liffData) => {
                 var jsonData = {"id": liffData.sub};
-                fetch('https://aso2201030.verse.jp/src/spending_month_send', {
-                    method: 'POST',
+                var json = JSON.stringify(jsonData);
+                fetch('/src/spending_month_send', {
+                    method: "POST",
                     headers: {
-                        'Content-Type': 'application/json'
+                        "Content-Type": "application/json"
                     },
-                    body: JSON.stringify(jsonData)
+                    body: json,
                 })
                 .then((r) => r.json())
                 .then((graphData) => {
-                    console.log(graphData)
-                    //let element = document.getElementById("dummy");
-                    //element.innerText="aaaaaaa";
-                    // myChart.data.datasets.forEach((dataset) => {
-                    //     dataset.data.push(graphData["data"]);
-                    // })
-                    // myChart.update();
+                    for(var i = 0; i < 12; i++){
+                        myChart.data.datasets[0].data[i] = graphData[i];
+                    }
+                    myChart.update();
                 })
                 .catch(function(error) {
                     console.error(error);
