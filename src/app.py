@@ -29,7 +29,7 @@ def spending():
 @app.route('/spending_month')
 def spending_month():
     php_server_url = 'https://aso2201030.verse.jp/src/templates/php/Savemoney_m.php'
-    response = requests.get(php_server_url)
+    response = requests.post(php_server_url)
     return response.content, response.status_code
 
 # 年間支出履歴表示
@@ -73,6 +73,11 @@ def connectDB(page):
         budget = int(budget_money)
         today = datetime.date.today()
         flag = False
+        yYear = 0
+        tYear = 0
+        yMonth = 0
+        tMonth = 0
+        yBudget = 0
 
         try:
             query = f"SELECT * FROM Yosan WHERE user_id='{budget_userID}'"
@@ -143,7 +148,6 @@ def connectDB(page):
                     budget_userID,
                     TextSendMessage(text = '先月の利用がありません')
                     )
-
 
         elif yYear < tYear:#12月→1月の年を跨いだ場合
             #前年の履歴があるなら上と同じ処理を行う
@@ -282,10 +286,12 @@ def connectDB(page):
 
         return render_template('html/Yosan_Complete.html')
 
+
     #支出入力
     elif page == 2:
         spending_userID = request.form.get('spending_userID')
         categoryNumber = request.form.get('category')
+        category = ''
         if categoryNumber == '1':
             category = '食費'
         elif categoryNumber == '2':
@@ -337,6 +343,7 @@ def connectDB(page):
                 )
         connect.commit()
         connect.close()
+
         return render_template('html/Shukkin_Complete.html')
 
 #MessagingAPI

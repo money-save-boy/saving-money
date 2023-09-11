@@ -1,35 +1,54 @@
+<?php
+    header('Access-Control-Allow-Origin: *');
+    header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept');
+    header("Content-type: application/json; charset=UTF-8");
+    $json = file_get_contents('php://input');
+
+    echo $json;
+    var_dump($json);
+    $data = json_decode($json, true); // JSONデータを連想配列としてデコード
+    if ($data === null && json_last_error() !== JSON_ERROR_NONE) {
+        $errorMessage = json_last_error_msg();
+        $response = [
+            'status' => 'error',
+            'message' => 'Invalid JSON data: ' . $errorMessage
+        ];
+    }else{
+        $response = [
+            'status' => 'success',
+            'data' => $data
+        ];
+    }
+    error_reporting(E_ALL);
+    ini_set('display_errors', '1');
+
+
+
+    echo json_encode($response);
+
+    echo '受信データ:';
+    print_r($data); // 受信したデータを表示
+?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="stylesheet" href="/src/static/css/style.css">
+    <title>支出額表示</title>
     <script src="https://kit.fontawesome.com/fd4cebc555.js" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.min.js"></script>
     <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
     <script src="/src/static/js/liff_spendingMonth.js"></script>
-    <title>支出額表示</title>
 </head>
 
 <body>
-    <?php include ('connect.php'); ?>
-    <?php
-        // JSONデータを受け取り、連想配列に変換する
-        $jsonData = file_get_contents('php://input');
-        $data = json_decode($jsonData, true);
-        echo $data;
+    <?php  include ('connect.php'); ?>
 
-        // 受け取ったIDを変数として定義
-        if (isset($data['id'])) {
-            $ID = $data['id'];
-            echo $ID;
-        } else {
-            echo 'とれてないよ';
-        }
-    ?>
     <div class="osirase">
         <h1>お知らせ</h1>
-        <?php include ('Zandaka_hyoji.php'); ?>
-        <?php include ('Tyokingaku_hyoji.php'); ?>
+        <?php  include ('Zandaka_hyoji.php'); ?>
+        <?php  include ('Tyokin_hyoji.php'); ?>
     </div>
     <div class="TimeChange">
         <a class="nocheck" href='/src/spending_year'>年</a>
@@ -38,11 +57,11 @@
     </div>
     <div class="GraphArea">
         <canvas id="myChart"></canvas>
-        <?php include ('Sishutu_month_graph.php'); ?>
+        <?php  include ('Sishutu_month_graph.php'); ?>
     </div>
     <div class="History">
         <div id="histitle">支出履歴</div>
-        <?php include ('History_month.php'); ?>
+        <?php  include ('History_month.php'); ?>
     </div>
     <footer>
         <div class="PageChange1">

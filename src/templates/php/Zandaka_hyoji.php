@@ -1,12 +1,12 @@
 <?php
     $pdo = new PDO($connect, USER, PASS);
-    $str = 'select zandaka from Yosan where user_id = ?';
-    $sql = $pdo -> query($str);
-    $sql -> execute($ID);
-    if(!is_array($sql)){
+    $str = $pdo -> prepare('select zandaka from Yosan where user_id = ?');
+    //$sql = $pdo -> query($str);
+    //$str -> execute($ID);
+    if(!is_array($str)){
         echo '<p id="mod">予算残高 ¥ 0</p>';
     }else {
-        foreach($sql as $row){
+        foreach($str as $row){
             if ($row > 0) {
                 echo '<p id="mod">予算残高 ¥', $row['zandaka'], '</p>';
             }else{
