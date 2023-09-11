@@ -1,3 +1,34 @@
+<?php
+    header('Access-Control-Allow-Origin: *');
+    header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept');
+    header("Content-type: application/json; charset=UTF-8");
+    $json = file_get_contents('php://input');
+
+    echo $json;
+    var_dump($json);
+    $data = json_decode($json, true); // JSONデータを連想配列としてデコード
+    if ($data === null && json_last_error() !== JSON_ERROR_NONE) {
+        $errorMessage = json_last_error_msg();
+        $response = [
+            'status' => 'error',
+            'message' => 'Invalid JSON data: ' . $errorMessage
+        ];
+    }else{
+        $response = [
+            'status' => 'success',
+            'data' => $data
+        ];
+    }
+    error_reporting(E_ALL);
+    ini_set('display_errors', '1');
+
+
+
+    echo json_encode($response);
+
+    echo '受信データ:';
+    print_r($data); // 受信したデータを表示
+?>
 <!DOCTYPE html>
 <html lang="ja">
 <head>
@@ -12,29 +43,12 @@
 </head>
 
 <body>
-    <?php // include ('connect.php'); ?>
-    <?php
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $json = file_get_contents('php://input');
-        var_dump($json);
-        $data = json_decode($json, true); // JSONデータを連想配列としてデコード
-        if (json_last_error() !== JSON_ERROR_NONE) {
-            die('JSONデータのデコードエラー: ' . json_last_error_msg());
-        }
-
-        echo '受信データ:';
-        print_r($data); // 受信したデータを表示
-
-        // ここでデータを処理する
-    } else {
-        echo 'POSTリクエストがありません。';
-    }
-    ?>
+    <?php  include ('connect.php'); ?>
 
     <div class="osirase">
         <h1>お知らせ</h1>
-        <?php // include ('Zandaka_hyoji.php'); ?>
-        <?php // include ('Tyokin_hyoji.php'); ?>
+        <?php  include ('Zandaka_hyoji.php'); ?>
+        <?php  include ('Tyokin_hyoji.php'); ?>
     </div>
     <div class="TimeChange">
         <a class="nocheck" href='/src/spending_year'>年</a>
@@ -43,11 +57,11 @@
     </div>
     <div class="GraphArea">
         <canvas id="myChart"></canvas>
-        <?php // include ('Sishutu_month_graph.php'); ?>
+        <?php  include ('Sishutu_month_graph.php'); ?>
     </div>
     <div class="History">
         <div id="histitle">支出履歴</div>
-        <?php // include ('History_month.php'); ?>
+        <?php  include ('History_month.php'); ?>
     </div>
     <footer>
         <div class="PageChange1">

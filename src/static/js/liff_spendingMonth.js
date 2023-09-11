@@ -1,3 +1,4 @@
+"use strict";
 document.addEventListener("DOMContentLoaded", function() {
     fetch("/src/secret.json")
     .then((response) => response.json())
@@ -22,22 +23,25 @@ document.addEventListener("DOMContentLoaded", function() {
                 var jsonData = JSON.stringify({id: liffData.sub});
                 console.log('送信データ:', jsonData); // データをコンソールに表示
                 fetch('/src/templates/php/Savemoney_m.php', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: jsonData
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: jsonData
+                    
                 })
                 .then(re => {
+                    console.log('success送信データ:', jsonData); // データをコンソールに表示
                     console.log('PHPからの応答:', re); // PHPからの応答をコンソールに表示
                 })
                 .catch(error => {
+                    console.log('miss送信データ:', jsonData);
                     console.error('エラー:', error); // エラーメッセージをコンソールに表示
                 });
-            })
-        })
+            });
+        });
     })
-})
+});
 
 function keyReload(el){
     var keys = [];
