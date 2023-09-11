@@ -10,9 +10,9 @@
 </head>
 <body>
     <div class="osirase">
-        <h1>お知らせ</h1>
-        <?php include('Zandaka_hyoji.php'); ?>
-        <?php include('Tyokingaku_hyoji.php'); ?>
+        <h3>お知らせ</h3>
+        <?php include 'Zandaka_hyoji.php'; ?>
+        <?php include 'Tyokingaku_hyoji.php'; ?>
     </div>
     <div class="TimeChange">
         <a class="nocheck" href='/src/spending_year'>年</a>
@@ -21,11 +21,11 @@
     </div>
     <div class="GraphArea">
     <canvas id="myChart"></canvas>
-        <?php include('Sishutu_week_graph.php'); ?>
+        <?php include 'Sishutu_week_graph.php'; ?>
     </div>
     <div class="History">
         <div id="histitle">支出履歴</div>
-        <?php include('History_week.php') ?>
+        <?php include 'History_week.php'; ?>
     </div>
     <footer>
         <div class="PageChange1">
