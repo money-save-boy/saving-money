@@ -1,6 +1,7 @@
 <!DOCTYPE HTML>
+<html lang="ja">
 <head>
-    <meta lang="ja">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="stylesheet" href="/src/static/css/style2.css">
     <script src="https://kit.fontawesome.com/fd4cebc555.js" crossorigin="anonymous"></script>
@@ -37,3 +38,4 @@
     </footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.bundle.js"></script>
 </body>
+</html>
