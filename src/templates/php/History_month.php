@@ -9,11 +9,8 @@
     }
     if(is_array($sql)){
         foreach($sql as $row){
-            echo '<div class="data">';
-            echo '<p>', $row['torokubi'], '</p>';
-            echo '<p>', $row['category'], '</p>';
-            echo '<p>', $row['sum(money)'], '</p>';
-            echo '</div>';
+            
+            
         }
     }else{
         
@@ -47,11 +44,11 @@ try {
     // 結果を表示
     if (!empty($result)) {
         foreach ($result as $row) {
-            echo '<tr>';
-            echo '<td>', $row['torokubi'], '</td>';
-            echo '<td>', $row['category'], '</td>';
-            echo '<td>', $row['total'], '</td>';
-            echo '</tr>';
+            echo '<div class="data">';
+            echo '<p>', $row['torokubi'], '</p>';
+            echo '<p>', $row['category'], '</p>';
+            echo '<p>', $row['sum(money)'], '</p>';
+            echo '</div>';
         }
         
     } else {
