@@ -11,7 +11,10 @@ try {
             PDO::ATTR_EMULATE_PREPARES => false // プリペアドステートメントを有効化
         ]
     );
+<<<<<<< HEAD
 
+=======
+>>>>>>> main
     // プリペアドステートメントを準備
     $sql = 'SELECT DATE_FORMAT(torokubi, "%Y-%m") as torokubi, category, SUM(money) as total 
             FROM History 
@@ -19,6 +22,7 @@ try {
             GROUP BY torokubi, category';
 
     $stmt = $pdo->prepare($sql);
+<<<<<<< HEAD
 
     // プレースホルダに値をバインドしてクエリを実行
     $stmt->execute(/*[$ID]*/["1"]);
@@ -26,6 +30,12 @@ try {
     // 結果を取得
     $result = $stmt->fetchAll();
 
+=======
+    // プレースホルダに値をバインドしてクエリを実行
+    $stmt->execute(/*[$ID]*/ ['1']);
+    // 結果を取得
+    $result = $stmt->fetchAll();
+>>>>>>> main
     // 結果を表示
     if (!empty($result)) {
         foreach ($result as $row) {
@@ -35,6 +45,10 @@ try {
             echo '<p>', $row['total'], '</p>';
             echo '</div>';
         }
+<<<<<<< HEAD
+=======
+        
+>>>>>>> main
     } else {
         echo '<h2>Your data does not exist</h2>';
     }

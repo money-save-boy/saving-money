@@ -19,40 +19,29 @@ document.addEventListener("DOMContentLoaded", function() {
             })
             .then((res) => res.json())
             .then((liffData) => {
-                var jsonData = JSON.stringify({id: liffData.sub});
-                console.log('送信データ:', jsonData); // データをコンソールに表示
-                fetch('/src/templates/php/Savemoney_m.php', {
-                    method: 'POST',
+                var jsonData = {"id": liffData.sub};
+                var json = JSON.stringify(jsonData);
+                fetch('/src/spending_month_send', {
+                    method: "POST",
                     headers: {
-                        'Content-Type': 'application/json'
+                        "Content-Type": "application/json"
                     },
-                    body: jsonData
-                    
+                    body: json,
                 })
-                .then(re => {
-                    console.log('success送信データ:', jsonData); // データをコンソールに表示
-                    console.log('PHPからの応答:', re); // PHPからの応答をコンソールに表示
+                .then((r) => r.json())
+                .then((graphData) => {
+                    for(var i = 0; i < 12; i++){
+                        myChart.data.datasets[0].data[i] = graphData[i];
+                    }
+                    myChart.update();
                 })
-                .catch(error => {
-                    console.log('miss送信データ:', jsonData);
-                    console.error('エラー:', error); // エラーメッセージをコンソールに表示
+                .catch(function(error) {
+                    console.error(error);
                 });
             });
         });
     })
 });
-
-function keyReload(el){
-    var keys = [];
-    for(var i = 0; i < localStorage.length; i++){
-        var key = localStorage.key(i);
-        if(key.indexOf(el) == 0){
-            keys.push(key);
-        }
-    }
-
-    return keys;
-}
 
 function clearToken(id){
     var keyPrefix = `LIFF_STORE:${id}:`;
@@ -71,4 +60,16 @@ function clearToken(id){
             localStorage.removeItem(key)
         })
     }
+}
+
+function keyReload(el){
+    var keys = [];
+    for(var i = 0; i < localStorage.length; i++){
+        var key = localStorage.key(i);
+        if(key.indexOf(el) == 0){
+            keys.push(key);
+        }
+    }
+
+    return keys;
 }
