@@ -1,6 +1,7 @@
 #coding: utf-8
 
-from flask import Flask, render_template, request, abort
+from flask import Flask, render_template, request, abort, Response
+import subprocess
 import requests
 import json
 import MySQLdb
@@ -29,8 +30,16 @@ def spending():
 @app.route('/spending_month')
 def spending_month():
     php_server_url = 'https://aso2201030.verse.jp/src/templates/php/Savemoney_m.php'
-    response = requests.post(php_server_url)
-    return response.content, response.status_code
+    php_response = requests.get(php_server_url)
+    return php_response.content, php_response.status_code
+
+@app.route('/spending_month_send', methods = ['POST'])
+def spending_month_send():
+    jsonData = request.get_json()
+    php_server_url = 'https://aso2201030.verse.jp/src/templates/php/info.php'
+    response = requests.post(php_server_url, json = jsonData)
+    php_response = response.text
+    return render_template('html/Savemoney_m.html', php_response = php_response)
 
 # 年間支出履歴表示
 @app.route('/spending_year')

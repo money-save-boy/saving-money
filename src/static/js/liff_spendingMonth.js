@@ -22,21 +22,19 @@ document.addEventListener("DOMContentLoaded", function() {
             .then((liffData) => {
                 var jsonData = JSON.stringify({id: liffData.sub});
                 console.log('送信データ:', jsonData); // データをコンソールに表示
-                fetch('/src/templates/php/Savemoney_m.php', {
-                    method: 'POST',
+                fetch('https://aso2201030.verse.jp/src/spending_month_send', {
+                    method: "POST",
                     headers: {
-                        'Content-Type': 'application/json'
+                        "Content-Type": "application/json"
                     },
-                    body: jsonData
-                    
+                    body: jsonData,
                 })
-                .then(re => {
-                    console.log('success送信データ:', jsonData); // データをコンソールに表示
-                    console.log('PHPからの応答:', re); // PHPからの応答をコンソールに表示
+                .then((r) => {
+                    console.log(r);
                 })
                 .catch(error => {
                     console.log('miss送信データ:', jsonData);
-                    console.error('エラー:', error); // エラーメッセージをコンソールに表示
+                    console.log('エラー:', error); // エラーメッセージをコンソールに表示
                 });
             });
         });
