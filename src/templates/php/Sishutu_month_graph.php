@@ -1,15 +1,14 @@
 <?php
 try {
     $pdo = new PDO($connect, USER, PASS);
-    $sql = $pdo -> prepare("SELECT SUM(money),DATE_FORMAT(torokubi, '%Y-%m') as mon FROM History
+    $sql = $pdo->prepare("SELECT SUM(money), DATE_FORMAT(torokubi, '%Y-%m') as mon FROM History
                     WHERE user_id = ?
                     GROUP BY mon");
-        $stmt = $pdo->query($sql);
-        $stmt -> execute($ID);
-        $result = $stmt->fetchAll();
-    } catch (PDOException $e) {
-        echo $e;
-    }
+    $sql->execute(/*[$ID]*/['1']);
+    $result = $sql->fetchAll();
+} catch (PDOException $e) {
+    echo $e->getMessage();
+}
 ?>
 <script>
     var ctx = document.getElementById('myChart').getContext('2d'); //2D画像として描画

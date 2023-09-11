@@ -1,22 +1,22 @@
 <?php
     try {
-            $pdo = new PDO(
-                $connect, USER, PASS,
-                [
-                    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-                    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-                    PDO::ATTR_EMULATE_PREPARES =>false
-                ]
-            );
-            $sql = "SELECT SUM(tyokin),DATE_FORMAT(torokubi, '%Y-%m') as mon FROM Tyokin
-                    WHERE user_id = ?
-                    GROUP BY mon";
-            $stmt = $pdo->query($sql);
-            $stmt -> execute($ID);
-            $result = $stmt->fetchAll();
-        } catch (PDOException $e) {
-            echo $e;
-        }
+        $pdo = new PDO(
+            $connect, USER, PASS,
+            [
+                PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION, //エラーをスローさせる
+                PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC, //デフォルトのfetchがデータを連想配列として返す
+                PDO::ATTR_EMULATE_PREPARES => false //プリペアードステートメントの設定。sqlに挿入する変数をバインドさせる
+            ]
+        );
+        $sql = "SELECT SUM(tyokin), DATE_FORMAT(torokubi, '%Y-%m') as mon FROM Tyokin
+                WHERE user_id = ?
+                GROUP BY mon";
+        $stmt = $pdo->prepare($sql);
+    $stmt->execute(/*[$ID]*/['1']);
+        $result = $stmt->fetchAll();
+    } catch (PDOException $e) {
+        echo $e->getMessage();
+    }
 ?>
 <script>
     var ctx = document.getElementById('myChart').getContext('2d');//2D画像として描画
