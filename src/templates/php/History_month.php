@@ -47,7 +47,7 @@ try {
             echo '<div class="data">';
             echo '<p>', $row['torokubi'], '</p>';
             echo '<p>', $row['category'], '</p>';
-            echo '<p>', $row['sum(money)'], '</p>';
+            echo '<p>', $row['total'], '</p>';
             echo '</div>';
         }
         
