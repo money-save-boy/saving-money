@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
@@ -12,11 +13,24 @@
 </head>
 
 <body>
-    <?php  include ('connect.php'); ?>
+    <?php include('connect.php'); ?>
+    <?php
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+        $json = file_get_contents('php://input'); // HTTP POSTリクエストのボディからJSONデータを取得
+        $data = json_decode($json, true); // JSONデータを連想配列としてデコード
+        if (json_last_error() !== JSON_ERROR_NONE) {
+            die('JSONデータのデコードエラー: ' . json_last_error_msg());
+        }
+
+        echo '受信データ:';
+        print_r($data); // 受信したデータを表示
+    }
+    ?>
     <div class="osirase">
+        <div id="dummy"></div>
         <h1>お知らせ</h1>
-        <?php  include ('Zandaka_hyoji.php'); ?>
-        <?php  include ('Tyokin_hyoji.php'); ?>
+        <?php include('Zandaka_hyoji.php'); ?>
+        <?php include('Tyokin_hyoji.php'); ?>
     </div>
     <div class="TimeChange">
         <a class="nocheck" href='/src/spending_year'>年</a>
@@ -25,11 +39,11 @@
     </div>
     <div class="GraphArea">
         <canvas id="myChart"></canvas>
-        <?php  include ('Sishutu_month_graph.php'); ?>
+        <?php include('Sishutu_month_graph.php'); ?>
     </div>
     <div class="History">
         <div id="histitle">支出履歴</div>
-        <?php  include ('History_month.php'); ?>
+        <?php include('History_month.php'); ?>
     </div>
     <footer>
         <div class="PageChange1">
@@ -39,9 +53,6 @@
             <i id="wallet" class="fa-solid fa-wallet" style="color: #ffffff;"></i>
         </div>
     </footer>
-
-    <script>
-        
-    </script>
 </body>
+
 </html>
