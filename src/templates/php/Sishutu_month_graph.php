@@ -10,18 +10,12 @@ try {
     );
     $sql = "SELECT SUM(money), DATE_FORMAT(torokubi, '%Y-%m') as mon FROM History
                     WHERE user_id = ?
-<<<<<<< HEAD
                     GROUP BY mon";
-    $stmt = $pdo->query($sql);
+    $stmt = $pdo -> query($sql);//sql発行準備
     $stmt->execute(/*[$ID]*/['1']);
     $result = $stmt->fetchAll();
-=======
-                    GROUP BY mon");
-    $sql->execute(/*[$ID]*/['1']);
-    $result = $sql->fetchAll();
     $today = new DateTime();
     $todayYear = $today->format('Y');
->>>>>>> main
 } catch (PDOException $e) {
     echo $e->getMessage();
 }
