@@ -1,23 +1,4 @@
 <?php
-    /*try {
-            $pdo = new PDO(
-                $connect, USER, PASS,
-                [
-                    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-                    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-                    PDO::ATTR_EMULATE_PREPARES =>false
-                ]
-            );
-            $sql = "SELECT SUM(tyokin),DATE_FORMAT(torokubi, '%Y-%m') as mon FROM Tyokin
-                    WHERE user_id = ?
-                    GROUP BY mon";
-            $stmt = $pdo->query($sql);
-            $stmt -> execute($ID);
-            $result = $stmt->fetchAll();
-    } catch (PDOException $e) {
-        echo $e;
-    } */
-    
     try {
         $pdo = new PDO(
             $connect, USER, PASS,
