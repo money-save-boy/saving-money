@@ -36,29 +36,36 @@ def spending_month():
 @app.route('/spending_month_send', methods = ['POST'])
 def spending_month_send():
     if request.method == 'POST':
-        # connect = MySQLdb.connect(
-        #     host = info['server'],
-        #     user = info['user'],
-        #     passwd = info['pass'],
-        #     db = info['db'],
-        #     use_unicode = True,
-        #     charset = 'utf8'
-        # )
-        # cursor = connect.cursor(MySQLdb.cursors.DictCursor)
+        connect = MySQLdb.connect(
+            host = info['server'],
+            user = info['user'],
+            passwd = info['pass'],
+            db = info['db'],
+            use_unicode = True,
+            charset = 'utf8'
+        )
+        cursor = connect.cursor(MySQLdb.cursors.DictCursor)
 
-        # jsonData = request.json
-        # data = json.load(jsonData)
-        # spendingSum = [0] * 12
-        # today = datetime.date.today()
+        jsonData = request.get_json()
+        spendingSum = [0] * 12
+        today = datetime.date.today()
+        postData = []
 
-        # cursor.execute('SELECT * FROM History')
-        # rows = cursor.fetchall()
-        # for row in rows:
-        #     if row['id'] == data['id'] & today.year == row['torokubi'].year:
-        #         spendingSum[row['torokubi']] += row['money']
+        cursor.execute('SELECT * FROM History')
+        rows = cursor.fetchall()
+        for row in rows:
+            if row['user_id'] == jsonData['id'] and today.year == row['torokubi'].year:
+                spendingSum[int(row['torokubi'].month)] += row['money']
 
-        postData = {"data": "id"}
+        i = 0
+        for i in range(len(spendingSum)):
+            postData.append(spendingSum[i])
+            i += 1
+
         post = jsonify(postData)
+
+        cursor.close()
+        connect.close()
 
         return post
 
@@ -113,7 +120,7 @@ def connectDB(page):
             query = f"SELECT * FROM Yosan WHERE user_id='{budget_userID}'"
             cursor.execute(query)
         except Exception as e:
-            t = e.__class__.__name__
+            t =  f"{e.__class__.__name__}: {e}"
             return render_template('html/error.html', error = t)
         rows = cursor.fetchall()
 
