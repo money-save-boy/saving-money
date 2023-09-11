@@ -46,7 +46,7 @@
     <?php  include ('connect.php'); ?>
 
     <div class="osirase">
-        <h1>お知らせ</h1>
+        <h3>お知らせ</h3>
         <?php  include ('Zandaka_hyoji.php'); ?>
         <?php  include ('Tyokin_hyoji.php'); ?>
     </div>
