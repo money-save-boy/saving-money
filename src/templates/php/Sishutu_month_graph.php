@@ -1,5 +1,5 @@
 <?php
-try {
+/* try {
     $pdo = new PDO($connect, USER, PASS);
     $sql = $pdo -> prepare("SELECT SUM(money),DATE_FORMAT(torokubi, '%Y-%m') as mon FROM History
                     WHERE user_id = ?
@@ -7,9 +7,19 @@ try {
             $stmt = $pdo->query($sql);
             $stmt -> execute($ID);
             $result = $stmt->fetchAll();
-        } catch (PDOException $e) {
+} catch (PDOException $e) {
             echo $e;
-        }
+} */
+try {
+    $pdo = new PDO($connect, USER, PASS);
+    $sql = $pdo->prepare("SELECT SUM(money), DATE_FORMAT(torokubi, '%Y-%m') as mon FROM History
+                    WHERE user_id = ?
+                    GROUP BY mon");
+    $sql->execute([$ID]);
+    $result = $sql->fetchAll();
+} catch (PDOException $e) {
+    echo $e->getMessage();
+}
 ?>
 <script>
     var ctx = document.getElementById('myChart').getContext('2d'); //2D画像として描画
