@@ -12,7 +12,7 @@ try {
                     WHERE user_id = ?
                     GROUP BY mon";
     $stmt = $pdo -> query($sql);//sql発行準備
-    $stmt->execute(/*[$ID]*/['1']);
+    $stmt->execute([$ID]);
     $result = $stmt->fetchAll();
     $today = new DateTime();
     $todayYear = $today->format('Y');
