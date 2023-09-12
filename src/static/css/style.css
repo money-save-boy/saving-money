@@ -68,6 +68,8 @@ body{
     margin-left: 7.5%;
 }
 #histitle{
+    position: sticky;
+    top: 1%;
     background-color: #009854;
     color: white;
     text-align: center;
