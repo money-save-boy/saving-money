@@ -91,10 +91,12 @@ footer{
     width:50%;
     background-color: #dff9e4;
     border-top: 2px solid #009854;
+    min-height: 300px;
 }
 .PageChange2{
     width: 50%;
     background-color: #009854;
+    min-height: 300px;
 }
 .fa-solid fa-piggy-bank::before{
     position: sticky;
