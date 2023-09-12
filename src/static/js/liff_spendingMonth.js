@@ -47,7 +47,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     if(budget < 0){
                         document.getElementById("mi").innerHTML = "<p id='minus'>予算超過 ¥" + budget + "</p>";
                     } else {
-                        document.getElementById("md").innerHtml = "<p id='mod'>予算残高 ¥" + budget + "</p>";
+                        document.getElementById("mi").innerHTML = "<p id='mod'>予算残高 ¥" + budget + "</p>";
                     }
                 })
                 .catch(function(error) {

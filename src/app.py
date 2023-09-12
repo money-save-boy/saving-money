@@ -64,6 +64,7 @@ def spending_month_send():
 
         post = jsonify(postData)
 
+        connect.commit()
         cursor.close()
         connect.close()
 
@@ -100,6 +101,7 @@ def displayBudget():
 
     post = jsonify(budget - spending)
 
+    connect.commit()
     cursor.close()
     connect.close()
 
@@ -145,216 +147,65 @@ def connectDB(page):
         budget_money = request.form.get('money')
         budget = int(budget_money)
         today = datetime.date.today()
-        flag = False
-        yYear = 0
-        tYear = 0
-        yMonth = 0
-        tMonth = 0
-        yBudget = 0
 
         try:
-            query = f"SELECT * FROM Yosan WHERE user_id='{budget_userID}'"
+            query = f"SELECT * FROM Yosan WHERE user_id='{budget_userID}'" #予算
             cursor.execute(query)
         except Exception as e:
             t =  f"{e.__class__.__name__}: {e}"
             return render_template('html/error.html', error = t)
         rows = cursor.fetchall()
 
+        #初回利用
         if len(rows) == 0:
-            text = '先月の貯金額がありません'
-            #テキスト送信
-            line_bot_api.push_message(
-                budget_userID,
-                TextSendMessage(text = text)
-            )
-            connect.close()
-            return render_template('html/Yosan_Complete.html')
-
-        # レコードが存在する
-        user = rows[0]
-        query3 = f"SELECT * FROM History WHERE user_id='{budget_userID}'"
-        cursor.execute(query3)
-        user3 = rows[0]
-        tMonth = today.month  #今日の月
-        tYear = today.year  #今日の年
-        yMonth = user3['torokubi'].month  #データベースの月
-        yYear = user3['torokubi'].year #データベースの年
-
-        # 年を跨いでない場合
-        if yYear == tYear:
-            #Historyテーブルからtourokubiの月が今日の月-1のレコードを全件取得する
-            query1 = f"SELECT * FROM History WHERE user_id='{budget_userID}' AND torokubi='{str(tYear)+'-'+str(yMonth)+'-10'}'"
-            cursor.execute(query1)
-            row1 = cursor.fetchall()
-            # もし、それが存在するなら
-            # その月内の利用額を全て加算して取得する
-            nyugou = 0
-            yosan = 0
-            if len(row1) > 0:
-                for b2 in row1:
-                    nyugou += b2['money']
-                #予算から予算額を取得する
-                query2 = f"SELECT * FROM Yosan WHERE user_id='{budget_userID}' AND torokubi='{str(tYear)+'-'+str(yMonth)}'"
+            try:
+                sql = f"INSERT INTO Users VALUES ('{budget_userID}', '{userName}')" #ユーザー登録
+                sql2 = f"INSERT INTO Yosan VALUES ('{budget_userID}', {budget}, '{today}')" #予算登録
+                cursor.execute(sql)
+                cursor.execute(sql2)
+            except Exception as e:
+                t =  f"{e.__class__.__name__}: {e}"
+                return render_template('html/error.html', error = t)
+        else:
+            #レコードが存在する(2回目以降の利用)
+            try:
+                query2 = f"SELECT * FROM History WHERE user_id='{budget_userID}'" #支出履歴
                 cursor.execute(query2)
-                row2 = cursor.fetchall()
-                for a2 in row2:
-                    yosan = a2['zandaka']
-                #nyugouを引いて貯金額とし、テキスト送信
-                if yosan - nyugou <= 0:
-                    # テキスト送信
+                rows3 = cursor.fetchall()
+            except Exception as e:
+                t =  f"{e.__class__.__name__}: {e}"
+                return render_template('html/error.html', error = t)
+
+            for row in rows:
+                total = 0
+                text = ''
+                if (today.year == row['torokubi'].year and today.month > row['torokubi'].month) or today.year > row['torokubi'].year:
+                    for row3 in rows3:
+                        total += row3['money']
+
+                    total = budget - total
+                    if total < 0:
+                        total = 0
+                    sql3 = f"INSERT INTO Tyokin(user_id, tyokin, torokubi) VALUES('{budget_userID}', {total}, {today})"
+                    cursor.execute(sql3)
+
+                    text = f"{int(today.month) - 1}月の貯金額は{total}円でした！"
                     line_bot_api.push_message(
                         budget_userID,
-                        TextSendMessage(text = "貯金額は0です")
-                    )
-                else:
-                    # テキスト送信
-                    line_bot_api.push_message(
-                        budget_userID,
-                        TextSendMessage(text = "貯金額は"+str(yosan - nyugou)+"です")
-                    )
-                
-            # もし存在しないなら
-            # 利用が無いと返答する
-            else :
-                #テキスト送信
-                line_bot_api.push_message(
-                    budget_userID,
-                    TextSendMessage(text = '先月の利用がありません')
+                        TextSendMessage(text = text)
                     )
 
-        elif yYear < tYear:#12月→1月の年を跨いだ場合
-            #前年の履歴があるなら上と同じ処理を行う
-            #Historyテーブルからtourokubiの月が今日の月-1のレコードを全件取得する
-            query5 = f"SELECT * FROM History WHERE user_id='{budget_userID}' AND torokubi='{str(tYear - 1)+'-'+str(12)+'-10'}'"
-            cursor.execute(query5)
-            row5 = cursor.fetchall()
-            # もし、それが存在するなら
-            # その月内の利用額を全て加算して取得する
-            nyugou1 = 0
-            yosan1 = 0
-            if len(row5) > 0:
-                for b2 in row5:
-                    nyugou1 += b2['money']
-                #予算から予算額を取得する
-                query6 = f"SELECT * FROM Yosan WHERE user_id='{budget_userID}' AND torokubi='{str(tYear - 1)+'-'+str(12)}'"
-                cursor.execute(query6)
-                row6 = cursor.fetchall()
-                for a2 in row6:
-                    yosan = a2['zandaka']
-                #nyugouを引いて貯金額とし、テキスト送信
-                if yosan1 - nyugou1 <= 0:
-                    # テキスト送信
-                    line_bot_api.push_message(
-                        budget_userID,
-                        TextSendMessage(text = "貯金額は0です")
-                    )
-                else:
-                    # テキスト送信
-                    line_bot_api.push_message(
-                        budget_userID,
-                        TextSendMessage(text = "貯金額は"+str(yosan1 - nyugou1)+"です")
-                    )
-            #利用がないなら無いと返答する
-            else :
-                #テキスト送信
-                line_bot_api.push_message(
-                    budget_userID,
-                    TextSendMessage(text = '先月の利用がありません')
-                    )
-
-        #INSERTどうしたらいいか分からない問題発生。欒さん頼んだ
-
-            # if yMonth < tMonth:
-            #     try:
-            #         query = f"SELECT * FROM History "#WHERE user_id='{budget_userID} AND torokubi={tYear+'-'+yMonth+'-10'}'"
-            #         cursor.execute(query)
-            #         rows = cursor.fetchall()
-            #         # テキスト送信
-            #         line_bot_api.push_message(
-            #             budget_userID,
-            #             TextSendMessage(text = str(len(rows)))
-            #         )
-            #     except Exception as e:
-            #         t = e.__class__.__name__
-            #         return render_template('html/error.html', error = t)
-            #     cols = cursor.fetchall()
-            #     total = 0
-
-            #     for col in cols:
-            #         if col['user_id'] == budget_userID:
-            #             total += col['money']
-
-            #     yBudget -= total
-            #     if yBudget < 0:
-            #         yBudget = 0
-            #     cursor.execute('SELECT * FROM Tyokin')
-            #     for row in rows:
-            #         if row['user_id'] == budget_userID:
-            #             a = 0
-            #             text = ''
-            #             cursor.execute('SELECT * FROM Tyokin')
-            #             a1 = cursor.fetchall()
-            #             for a2 in a1:
-            #                 if a2['user_id'] == budget_userID:
-            #                     a = a2['tyokin']
-            #             a = f'{a:,}'
-            #             text = '先月の貯金額は'+ str(a) +'円でした'
-            #             #テキスト送信
-            #             line_bot_api.push_message(
-            #                 budget_userID,
-            #                 TextSendMessage(text = text)
-            #                 )
-        
-            #         else :
-            #             text = '先月の貯金額がありません'
-            #             #テキスト送信
-            #             line_bot_api.push_message(
-            #                 budget_userID,
-            #                 TextSendMessage(text = text)
-            #                 )
-            #     try:
-            #         cursor.execute('INSERT INTO Tyokin(user_id, tyokin, torokubi) VALUES(%s, %s, %s)', (budget_userID, yBudget, today))
-            #     except Exception as e:
-            #         t = e.__class__.__name__
-            #         return render_template('html/error.html', error = t)
-
-    #     elif yYear < tYear:
-    #         try:
-    #             cursor.execute('SELECT * FROM History')
-    #         except Exception as e:
-    #             t = e.__class__.__name__
-    #             return render_template('html/error.html', error = t)
-    #         cols = cursor.fetchall()
-    #         total = 0
-
-    #         for col in cols:
-    #             if col['user_id'] == budget_userID:
-    #                 total += col['money']
-
-    #         yBudget -= total
-    #         if yBudget < 0:
-    #             yBudget = 0
-    #         try:
-    #             cursor.execute('INSERT INTO Tyokin(user_id, tyokin, torokubi) VALUES(%s, %s, %s)', (budget_userID, yBudget, today))
-    #         except Exception as e:
-    #             t = e.__class__.__name__
-    #             return render_template('html/error.html', error = t)
-
-    #     try:
-    #         cursor.execute('UPDATE Users SET user_name = %s WHERE user_id = %s', (userName, budget_userID))
-    #         cursor.execute('UPDATE Yosan SET zandaka = %s, torokubi = %s WHERE user_id = %s', (budget, today, budget_userID))
-    #     except Exception as e:
-    #         t = e.__class__.__name__
-    #         return render_template('html/error.html', error = t)
-    # else:
-    #     try:
-    #         cursor.execute('INSERT INTO Users VALUES(%s, %s)', (budget_userID, userName))
-    #         cursor.execute('INSERT INTO Yosan VALUES(%s, %s, %s)', (budget_userID, budget, today))
-    #     except Exception as e:
-    #         t = e.__class__.__name__
-    #         return render_template('html/error.html', error = t)
+            try:
+                sql4 = f"UPDATE Users SET user_name='{userName}' WHERE user_id='{budget_userID}'"
+                sql5 = f"UPDATE Yosan SET zandaka={budget}, torokubi='{today}' WHERE user_id='{budget_userID}'"
+                cursor.execute(sql4)
+                cursor.execute(sql5)
+            except Exception as e:
+                t =  f"{e.__class__.__name__}: {e}"
+                return render_template('html/error.html', error = t)
 
         connect.commit()
+        cursor.close()
         connect.close()
 
         return render_template('html/Yosan_Complete.html')
