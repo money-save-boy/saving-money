@@ -197,7 +197,7 @@ def connectDB(page):
 
             try:
                 sql4 = f"UPDATE Users SET user_name='{userName}' WHERE user_id='{budget_userID}'"
-                sql5 = f"UPDATE Users SET zandaka={budget}, torokubi='{today}' WHERE user_id='{budget_userID}'"
+                sql5 = f"UPDATE Yosan SET zandaka={budget}, torokubi='{today}' WHERE user_id='{budget_userID}'"
                 cursor.execute(sql4)
                 cursor.execute(sql5)
             except Exception as e:
