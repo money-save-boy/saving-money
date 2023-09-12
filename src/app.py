@@ -135,6 +135,39 @@ def displaySaving():
 
     return post
 
+@app.route('/displaySpending', methods = ['POST'])
+def displaySpending():
+    connect = MySQLdb.connect(
+        host = info['server'],
+        user = info['user'],
+        passwd = info['pass'],
+        db = info['db'],
+        use_unicode = True,
+        charset = 'utf8'
+    )
+    cursor = connect.cursor(MySQLdb.cursors.DictCursor)
+
+    jsonData = request.get_json()
+    date = []
+    category = []
+    money = []
+
+    cursor.execute(f"SELECT * FROM History WHERE user_id='{jsonData['id']}'")
+    rows = cursor.fetchall()
+    for row in rows:
+        date.append(f"{row['torokubi'].month}/{row['torokubi'].day}")
+        category.append(row['category'])
+        money.append(row['money'])
+
+    postData = [date, category, money]
+    post = jsonify(postData)
+
+    connect.commit()
+    cursor.close()
+    connect.close()
+
+    return post
+
 # 年間支出履歴表示
 @app.route('/spending_year')
 def spending_year():

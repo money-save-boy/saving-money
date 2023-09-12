@@ -68,6 +68,26 @@ document.addEventListener("DOMContentLoaded", function() {
                         document.getElementById("mo").innerText = saving;
                     }
                 })
+                fetch('/src/displaySpending', {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: json,
+                })
+                .then((displaySpending) => displaySpending.json())
+                .then((spending) => {
+                    var div = document.getElementsByClassName("History")[0];
+                    var text = "<div id='histitle'>支出履歴</div>";
+                    for(var i = 0; i < spending[0].length; i++){
+                        text += "<div class='data'>";
+                        text += "<p>" + spending[0][i] + "</p>";
+                        text += "<p>" + spending[1][i] + "</p>";
+                        text += "<p>¥" + String(spending[2][i]).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,') + "</p>";
+                        text += "</div>";
+                    }
+                    div.innerHTML = text;
+                })
                 .catch(function(error) {
                     console.error(error);
                 });
