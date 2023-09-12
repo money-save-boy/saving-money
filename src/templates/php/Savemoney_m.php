@@ -15,7 +15,6 @@
 <body>
     <?php include('connect.php'); ?>
     <div class="osirase">
-        <div id="dummy"></div>
         <h1>お知らせ</h1>
         <?php echo '<div id="mi"></div>'; ?>
         <?php include('Tyokin_hyoji.php'); ?>
