@@ -107,6 +107,34 @@ def displayBudget():
 
     return post
 
+@app.route('/displaySaving', methods = ['POST'])
+def displaySaving():
+    connect = MySQLdb.connect(
+        host = info['server'],
+        user = info['user'],
+        passwd = info['pass'],
+        db = info['db'],
+        use_unicode = True,
+        charset = 'utf8'
+    )
+    cursor = connect.cursor(MySQLdb.cursors.DictCursor)
+
+    jsonData = request.get_json()
+    total = 0
+
+    cursor.execute(f"SELECT * FROM Tyokin WHERE user_id='{jsonData['id']}'")
+    rows = cursor.fetchall()
+    for row in rows:
+        total += row['tyokin']
+
+    post = jsonify(total)
+
+    connect.commit()
+    cursor.close()
+    connect.close()
+
+    return post
+
 # 年間支出履歴表示
 @app.route('/spending_year')
 def spending_year():

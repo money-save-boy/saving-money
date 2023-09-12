@@ -52,6 +52,22 @@ document.addEventListener("DOMContentLoaded", function() {
                         document.getElementById("mi").innerHTML = "<p id='mod'>予算残高 ¥" + budget + "</p>";
                     }
                 })
+                fetch('/src/displaySaving', {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: json,
+                })
+                .then((displaySaving) => displaySaving.json())
+                .then((saving) => {
+                    if(saving == 0){
+                        document.getElementById("mo").innerText = saving;
+                    } else {
+                        saving = String(saving).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
+                        document.getElementById("mo").innerText = saving;
+                    }
+                })
                 .catch(function(error) {
                     console.error(error);
                 });
