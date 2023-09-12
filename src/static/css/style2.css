@@ -72,6 +72,9 @@ body{
     text-align: center;
     font-size: 1em;
 }
+.History{
+    min-height: 300px;
+}
 footer{
     position: sticky;
     bottom: 0;
