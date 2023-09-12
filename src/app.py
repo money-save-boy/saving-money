@@ -151,19 +151,13 @@ def displaySpending():
     date = []
     category = []
     money = []
-    i = 0
 
-    try:
-        cursor.execute(f"SELECT * FROM History WHERE user_id='{jsonData['id']}'")
-        rows = cursor.fetchall()
-        for row in rows:
-            date.append(f"{row['torokubi'].month}/{row['torokubi'].day}")
-            category.append(row['category'])
-            money.append(row['money'])
-            i += 1
-    except Exception as e:
-            t =  f"{e.__class__.__name__}: {e}"
-            return render_template('html/error.html', error = t)
+    cursor.execute(f"SELECT * FROM History WHERE user_id='{jsonData['id']}'")
+    rows = cursor.fetchall()
+    for row in rows:
+        date.append(f"{row['torokubi'].month}/{row['torokubi'].day}")
+        category.append(row['category'])
+        money.append(row['money'])
 
     postData = [date, category, money]
     post = jsonify(postData)
