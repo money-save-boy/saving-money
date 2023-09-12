@@ -1,22 +1,8 @@
 <?php
-try {
-    $pdo = new PDO(
-        $connect, USER, PASS,
-        [
-            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-            PDO::ATTR_EMULATE_PREPARES =>false
-        ]
-    );
-    $sql = "SELECT SUM(money), DATE_FORMAT(torokubi, '%Y-%m') as mon FROM History
-                    WHERE user_id = ?
-                    GROUP BY mon";
-    $stmt = $pdo -> query($sql);//sql発行準備
-    $stmt->execute([$ID]);
-    $result = $stmt->fetchAll();
+try{
     $today = new DateTime();
     $todayYear = $today->format('Y');
-} catch (PDOException $e) {
+} catch (Throwable $e) {
     echo $e->getMessage();
 }
 ?>
@@ -43,9 +29,6 @@ try {
             scales: {
                 yAxes: [{
                     ticks: {
-                        suggestedMin: 0,
-                        suggestedMax: 100000,
-                        stepSize: 10000,
                         beginAtZero: true, //グラフの初期値を０に指定
                     }
                 }]
