@@ -160,6 +160,7 @@ def displaySpending():
             date[i] = f"{row['torokubi'].month}/{row['torokubi'].day}"
             category[i] = row['category']
             money[i] = row['money']
+            i += 1
     except Exception as e:
             t =  f"{e.__class__.__name__}: {e}"
             return render_template('html/error.html', error = t)
