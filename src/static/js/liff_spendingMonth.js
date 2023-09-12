@@ -28,12 +28,27 @@ document.addEventListener("DOMContentLoaded", function() {
                     },
                     body: json,
                 })
-                .then((r) => r.json())
+                .then((spending_month_send) => spending_month_send.json())
                 .then((graphData) => {
                     for(var i = 0; i < 12; i++){
                         myChart.data.datasets[0].data[i] = graphData[i];
                     }
                     myChart.update();
+                })
+                fetch('/src/displayBudget', {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: json,
+                })
+                .then((displayBudget) => displayBudget.json())
+                .then((budget) => {
+                    if(budget < 0){
+                        document.getElementById("mi").innerHTML = "<p id='minus'>予算超過 ¥" + budget + "</p>";
+                    } else {
+                        document.getElementById("md").innerHtml = "<p id='mod'>予算残高 ¥" + budget + "</p>";
+                    }
                 })
                 .catch(function(error) {
                     console.error(error);
