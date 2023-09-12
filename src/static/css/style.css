@@ -127,11 +127,4 @@ footer{
     .checked{
         padding-top: 0.5%;
     }
-    .fa-solid fa-piggy-bank::before{
-        filter: drop-shadow(0 7px 7px #166a44);
-    }
-    .fa-solid fa-wallet::before{
-        filter: drop-shadow(0 7px 7px #125821);
-        padding: 2.3% 0;
-    }
 } 
