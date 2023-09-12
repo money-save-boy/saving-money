@@ -17,7 +17,7 @@
     <div class="osirase">
         <div id="dummy"></div>
         <h1>お知らせ</h1>
-        <?php include('Zandaka_hyoji.php'); ?>
+        <?php echo '<div id="mi"></div>'; ?>
         <?php include('Tyokin_hyoji.php'); ?>
     </div>
     <div class="TimeChange">
