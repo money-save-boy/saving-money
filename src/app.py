@@ -69,6 +69,35 @@ def spending_month_send():
 
         return post
 
+@app.route('/displayBudget', methods = ['POST'])
+def displayBudget():
+    connect = MySQLdb.connect(
+        host = info['server'],
+        user = info['user'],
+        passwd = info['pass'],
+        db = info['db'],
+        use_unicode = True,
+        charset = 'utf8'
+    )
+    cursor = connect.cursor(MySQLdb.cursors.DictCursor)
+
+    jsonData = request.get_json()
+    budget = 0
+    today = datetime.date.today()
+
+    cursor.execute('SELECT * FROM Yosan')
+    rows = cursor.fetchall()
+    for row in rows:
+        if row['user_id'] == jsonData['id'] and today.month == row['torokubi'].month:
+            budget += row['zandaka']
+
+    post = jsonify(budget)
+
+    cursor.close()
+    connect.close()
+
+    return post
+
 # 年間支出履歴表示
 @app.route('/spending_year')
 def spending_year():
