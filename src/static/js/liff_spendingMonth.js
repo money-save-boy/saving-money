@@ -44,7 +44,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 })
                 .then((displayBudget) => displayBudget.json())
                 .then((budget) => {
-                    console.log(budget);
+                    console.log(typeof budget);
                     if(budget < 0){
                         document.getElementById("mi").innerHTML = "<p id='minus'>予算超過 ¥" + budget + "</p>";
                     } else {
