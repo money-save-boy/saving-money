@@ -15,9 +15,8 @@
 <body>
     <?php include('connect.php'); ?>
     <div class="osirase">
-        <h1>お知らせ</h1>
         <?php echo '<div id="mi"></div>'; ?>
-        <?php include('Tyokin_hyoji.php'); ?>
+        <?php echo '<p id="mod">貯金額 ¥<span id="mo"></span></p>'; ?>
     </div>
     <div class="TimeChange">
         <a class="nocheck" href='/src/spending_year'>年</a>
