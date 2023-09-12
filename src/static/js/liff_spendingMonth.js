@@ -32,8 +32,6 @@ document.addEventListener("DOMContentLoaded", function() {
                 .then((graphData) => {
                     for(var i = 0; i < 12; i++){
                         myChart.data.datasets[0].data[i] = graphData[i];
-                        console.log(myChart.data.labels[i]);
-                        console.log(graphData[i]);
                     }
                     myChart.update();
                 })
