@@ -68,6 +68,17 @@ document.addEventListener("DOMContentLoaded", function() {
                         document.getElementById("mo").innerText = saving;
                     }
                 })
+                fetch('/src/displaySpending', {
+                    method: "POST",
+                    headers: {
+                        "Content-Type": "application/json"
+                    },
+                    body: json,
+                })
+                .then((displaySpending) => displaySpending.json())
+                .then((spending) => {
+                    console.log(spending);
+                })
                 .catch(function(error) {
                     console.error(error);
                 });
