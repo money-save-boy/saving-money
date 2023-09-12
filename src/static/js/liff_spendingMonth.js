@@ -77,14 +77,13 @@ document.addEventListener("DOMContentLoaded", function() {
                 })
                 .then((displaySpending) => displaySpending.json())
                 .then((spending) => {
-                    console.log(spending);
                     var div = document.getElementsByClassName("History")[0];
                     var text = "<div id='histitle'>支出履歴</div>";
                     for(var i = 0; i < spending[0].length; i++){
                         text += "<div class='data'>";
                         text += "<p>" + spending[0][i] + "</p>";
                         text += "<p>" + spending[1][i] + "</p>";
-                        text += "<p>" + spending[2][i] + "</p>";
+                        text += "<p>" + String(spending[2][i]).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,') + "</p>";
                         text += "</div>";
                     }
                     div.innerHTML = text;
