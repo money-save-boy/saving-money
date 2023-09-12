@@ -12,10 +12,10 @@
                     WHERE user_id = ?
                     GROUP BY yea";
             $stmt = $pdo->query($sql);
-            $stmt -> execute($ID);
+        $stmt -> execute(/*[$ID]*/['1']);
             $result = $stmt->fetchAll();
         } catch (PDOException $e) {
-            echo $e;
+            echo $e->getMessage();
         }
 ?>
 <script>

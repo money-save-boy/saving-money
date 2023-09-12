@@ -1,22 +1,22 @@
 <?php
-    try {
-            $pdo = new PDO(
-                $connect, USER, PASS,
-                [
-                    PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
-                    PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
-                    PDO::ATTR_EMULATE_PREPARES =>false
-                ]
-            );
-            $sql = "SELECT SUM(money),DATE_FORMAT(torokubi, '%Y-%u') as wee FROM History
+try {
+    $pdo = new PDO(
+        $connect, USER, PASS,
+        [
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC,
+            PDO::ATTR_EMULATE_PREPARES =>false
+        ]
+    );
+    $sql = "SELECT SUM(money), DATE_FORMAT(torokubi, '%Y-%u') as wee FROM History
                     WHERE user_id = ?
                     GROUP BY wee";
-            $stmt = $pdo->query($sql);
-            $stmt -> execute($ID);
-            $result = $stmt->fetchAll();
-        } catch (PDOException $e) {
-            echo $e;
-        }
+    $stmt = $pdo->query($sql);
+    $stmt->execute(/*[$ID]*/['1']);
+    $result = $stmt->fetchAll();
+} catch (PDOException $e) {
+    echo $e->getMessage();
+}
 ?>
 <script>
     var ctx = document.getElementById('myChart').getContext('2d');//2D画像として描画

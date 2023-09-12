@@ -1,6 +1,7 @@
 <!DOCTYPE HTML>
+<html lang="ja">
 <head>
-    <meta lang="ja">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="stylesheet" href="/src/static/css/style.css">
     <script src="https://kit.fontawesome.com/fd4cebc555.js" crossorigin="anonymous"></script>
@@ -29,10 +30,11 @@
     </div>
     <footer>
         <div class="PageChange1">
-            <p id="pig" class="fa-solid fa-piggy-bank" style="color: #ffffff; font-size: 3em; filter: drop-shadow(0 5px 5px #166a44); margin-top:3.5%;"></p>
+            <p id="pig" class="fa-solid fa-piggy-bank" style="color: #ffffff; font-size: 2em; filter: drop-shadow(0 5px 5px #166a44); margin-top:3.5%;"></p>
         </div>
         <div class="PageChange2"  onclick="location.href='/src/saving_month'">
-            <p id="wallet" class="fa-solid fa-wallet" style="color: #ffffff; font-size: 3em; filter: drop-shadow(0 5px 5px #125821); margin-top:3.5%;"></p>
+            <p id="wallet" class="fa-solid fa-wallet" style="color: #ffffff; font-size: 2em; filter: drop-shadow(0 5px 5px #125821); margin-top:3.5%;"></p>
         </div>
     </footer>
 </body>
+</html>
