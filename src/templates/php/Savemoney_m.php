@@ -35,7 +35,7 @@
     </div>
     <footer>
         <div class="PageChange1">
-            <p id="pig" class="fa-solid fa-piggy-bank" style="color: #ffffff; font-size: 2em; filter: drop-shadow(0 5px 5px #166a44); margin-top:11.5%;"></p>
+            <p id="pig" class="fa-solid fa-piggy-bank" style="color: #ffffff; font-size: 2em; filter: drop-shadow(0 5px 5px #166a44); margin-top:12%;"></p>
         </div>
         <div class="PageChange2" onclick="location.href='/src/saving_month'">
             <p id="wallet" class="fa-solid fa-wallet" style="color: #ffffff; font-size: 2em; filter: drop-shadow(0 5px 5px #125821); margin-top:13%;"></p>
