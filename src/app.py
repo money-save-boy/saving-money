@@ -55,7 +55,7 @@ def spending_month_send():
         rows = cursor.fetchall()
         for row in rows:
             if row['user_id'] == jsonData['id'] and today.year == row['torokubi'].year:
-                spendingSum[int(row['torokubi'].month)] += row['money']
+                spendingSum[int(row['torokubi'].month) - 1] += row['money']
 
         i = 0
         for i in range(len(spendingSum)):
