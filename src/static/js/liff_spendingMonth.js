@@ -30,8 +30,8 @@ document.addEventListener("DOMContentLoaded", function() {
                 })
                 .then((r) => r.json())
                 .then((graphData) => {
-                    for(var i = 1; i <= 12; i++){
-                        myChart.data.datasets[0].data[i] = graphData[i];
+                    for(var i = 0; i < 12; i++){
+                        myChart.data.datasets[0].data[i] = graphData[i + 1];
                     }
                     myChart.update();
                 })
