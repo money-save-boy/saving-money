@@ -148,18 +148,18 @@ def displaySpending():
     cursor = connect.cursor(MySQLdb.cursors.DictCursor)
 
     jsonData = request.get_json()
+    date = []
     category = []
     money = []
-    date = []
     i = 0
 
     try:
         cursor.execute(f"SELECT * FROM History WHERE user_id='{jsonData['id']}'")
         rows = cursor.fetchall()
         for row in rows:
-            date[i] = f"{row['torokubi'].month}/{row['torokubi'].day}"
-            category[i] = row['category']
-            money[i] = row['money']
+            date.append(f"{row['torokubi'].month}/{row['torokubi'].day}")
+            category.append(row['category'])
+            money.append(row['money'])
             i += 1
     except Exception as e:
             t =  f"{e.__class__.__name__}: {e}"
