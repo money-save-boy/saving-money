@@ -156,7 +156,7 @@ def displaySpending():
     cursor.execute(f"SELECT * FROM History WHERE user_id='{jsonData['id']}'")
     rows = cursor.fetchall()
     for row in rows:
-        date[i] = f"{row['torokubi'].month}/{row['torokubi'].date}"
+        date[i] = f"{row['torokubi'].month}/{row['torokubi'].day}"
         category[i] = row['category']
         money[i] = row['money']
 
