@@ -79,6 +79,9 @@ body{
     font-size: 1em;
     margin-left: 10%;
 }
+.History{
+    min-height: 300px;
+}
 footer{
     position: sticky;
     bottom: 0;
@@ -91,12 +94,10 @@ footer{
     width:50%;
     background-color: #dff9e4;
     border-top: 2px solid #009854;
-    min-height: 100px;
 }
 .PageChange2{
     width: 50%;
     background-color: #009854;
-    min-height: 100px;
 }
 .fa-solid fa-piggy-bank::before{
     position: sticky;

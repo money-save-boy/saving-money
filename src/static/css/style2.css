@@ -72,6 +72,9 @@ body{
     text-align: center;
     font-size: 1em;
 }
+.History{
+    min-height: 300px;
+}
 footer{
     position: sticky;
     bottom: 0;
@@ -89,13 +92,11 @@ img{
 .PageChange1{
     width:50%;
     background-color: #ff4d79;
-    min-height: 300px;
 }
 .PageChange2{
     width: 50%;
     border-top: 2px solid #ff4d79;
     background-color: #ffe5f2;
-    min-height: 300px;
 }
 .fa-solid fa-piggy-bank::before{
     content: "f4d3";
