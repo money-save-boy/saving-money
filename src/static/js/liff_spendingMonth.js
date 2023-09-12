@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     }
                     myChart.update();
                 })
-                fetch('src/displayBudget', {
+                fetch('/src/displayBudget', {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
