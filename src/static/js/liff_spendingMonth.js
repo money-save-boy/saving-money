@@ -44,10 +44,11 @@ document.addEventListener("DOMContentLoaded", function() {
                 })
                 .then((displayBudget) => displayBudget.json())
                 .then((budget) => {
-                    budget = budget.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
                     if(budget < 0){
+                        budget = String(budget).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
                         document.getElementById("mi").innerHTML = "<p id='minus'>予算超過 ¥" + budget + "</p>";
                     } else {
+                        budget = String(budget).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
                         document.getElementById("mi").innerHTML = "<p id='mod'>予算残高 ¥" + budget + "</p>";
                     }
                 })
