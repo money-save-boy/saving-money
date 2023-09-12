@@ -83,7 +83,7 @@ document.addEventListener("DOMContentLoaded", function() {
                         text += "<div class='data'>";
                         text += "<p>" + spending[0][i] + "</p>";
                         text += "<p>" + spending[1][i] + "</p>";
-                        text += "<p>" + String(spending[2][i]).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,') + "</p>";
+                        text += "<p>¥" + String(spending[2][i]).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,') + "</p>";
                         text += "</div>";
                     }
                     div.innerHTML = text;
