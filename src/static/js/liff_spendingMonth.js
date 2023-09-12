@@ -44,6 +44,7 @@ document.addEventListener("DOMContentLoaded", function() {
                 })
                 .then((displayBudget) => displayBudget.json())
                 .then((budget) => {
+                    budget = budget.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
                     if(budget < 0){
                         document.getElementById("mi").innerHTML = "<p id='minus'>予算超過 ¥" + budget + "</p>";
                     } else {
