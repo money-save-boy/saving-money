@@ -83,15 +83,22 @@ def displayBudget():
 
     jsonData = request.get_json()
     budget = 0
+    spending = 0
     today = datetime.date.today()
 
     cursor.execute('SELECT * FROM Yosan')
     rows = cursor.fetchall()
     for row in rows:
         if row['user_id'] == jsonData['id'] and today.month == row['torokubi'].month:
-            budget += row['zandaka']
+            budget = row['zandaka']
 
-    post = jsonify(budget)
+    cursor.execute('SELECT * FROM History')
+    cols = cursor.fetchall()
+    for col in cols:
+        if col['user_id'] == jsonData['id'] and today.month == col['torokubi'].month:
+            spending += col['money']
+
+    post = jsonify(budget - spending)
 
     cursor.close()
     connect.close()
