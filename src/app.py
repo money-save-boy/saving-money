@@ -168,9 +168,13 @@ def connectDB(page):
                 return render_template('html/error.html', error = t)
         else:
             #レコードが存在する(2回目以降の利用)
-            query2 = f"SELECT * FROM History WHERE user_id='{budget_userID}'" #支出履歴
-            cursor.execute(query2)
-            rows3 = cursor.fetchall()
+            try:
+                query2 = f"SELECT * FROM History WHERE user_id='{budget_userID}'" #支出履歴
+                cursor.execute(query2)
+                rows3 = cursor.fetchall()
+            except Exception as e:
+                t =  f"{e.__class__.__name__}: {e}"
+                return render_template('html/error.html', error = t)
 
             for row in rows:
                 total = 0
@@ -191,10 +195,14 @@ def connectDB(page):
                         TextSendMessage(text = text)
                     )
 
-            sql4 = f"UPDATE Users SET user_name='{userName}' WHERE user_id='{budget_userID}'"
-            sql5 = f"UPDATE Users SET zandaka={budget}, torokubi='{today}' WHERE user_id='{budget_userID}'"
-            cursor.execute(sql4)
-            cursor.execute(sql5)
+            try:
+                sql4 = f"UPDATE Users SET user_name='{userName}' WHERE user_id='{budget_userID}'"
+                sql5 = f"UPDATE Users SET zandaka={budget}, torokubi='{today}' WHERE user_id='{budget_userID}'"
+                cursor.execute(sql4)
+                cursor.execute(sql5)
+            except Exception as e:
+                t =  f"{e.__class__.__name__}: {e}"
+                return render_template('html/error.html', error = t)
 
         connect.commit()
         cursor.close()
