@@ -44,7 +44,11 @@ document.addEventListener("DOMContentLoaded", function() {
                 })
                 .then((displayBudget) => displayBudget.json())
                 .then((budget) => {
-                    console.log(budget);
+                    if(budget < 0){
+                        document.getElementById("mi").innerText = budget;
+                    } else {
+                        document.getElementById("md").innerText = budget;
+                    }
                 })
                 .catch(function(error) {
                     console.error(error);
