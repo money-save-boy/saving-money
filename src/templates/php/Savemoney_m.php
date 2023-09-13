@@ -13,10 +13,9 @@
 </head>
 
 <body>
-    <?php include('connect.php'); ?>
     <div class="osirase">
-        <?php echo '<div id="mi"></div>'; ?>
-        <?php echo '<p id="mod">貯金額 ¥<span id="mo"></span></p>'; ?>
+        <div id="mi"></div>
+        <p id="mod">貯金額 ¥<span id="mo"></span></p>
     </div>
     <div class="TimeChange">
         <a class="nocheck" href='/src/spending_year'>年</a>
@@ -27,10 +26,9 @@
         <canvas id="myChart"></canvas>
         <?php include('Sishutu_month_graph.php'); ?>
     </div>
-    <div class="History">
-    </div>
+    <div class="History"></div>
     <footer>
-        <div class="PageChange1">
+        <div class="PageChange1" onclick="location.href='#'">
             <p id="pig" class="fa-solid fa-piggy-bank" style="color: #ffffff; font-size: 2em; filter: drop-shadow(0 5px 5px #166a44); margin-top:11.8%;"></p>
         </div>
         <div class="PageChange2" onclick="location.href='/src/saving_month'">
