@@ -54,7 +54,7 @@ body{
     text-decoration: none;
 }
 .checked{
-    padding-top: 1%;
+    padding: 1% 0;
     width: 50%;
     background-color: #ffe5f2;
     color: #ff4d79;
@@ -69,11 +69,18 @@ body{
 #histitle{
     background-color: #ff4d79;
     color: white;
-    text-align: center;
     font-size: 1em;
 }
 .History{
     min-height: 300px;
+}
+.data{
+    display: flex;
+    justify-content: space-around;
+    width: 75%;
+    margin-left: 15%;
+    font-size: 1em;
+    margin-left: 10%;
 }
 footer{
     position: sticky;

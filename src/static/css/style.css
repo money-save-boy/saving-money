@@ -55,7 +55,7 @@ body{
     text-decoration: none;
 }
 .checked{
-    padding-top: 1%;
+    padding: 1% 0;
     width: calc(100% / 3);
     background-color: #eefff2;
     color: #027f47;
@@ -72,18 +72,20 @@ body{
     top: 1%;
     background-color: #009854;
     color: white;
-    text-align: center;
     font-size: 1em;
+    padding: .5% 0;
 }
 .data{
     display: flex;
     justify-content: space-around;
     width: 75%;
+    margin-left: 15%;
     font-size: 1em;
     margin-left: 10%;
 }
 .History{
     min-height: 300px;
+
 }
 footer{
     position: sticky;
@@ -95,7 +97,7 @@ footer{
 }
 .PageChange1{
     width:50%;
-    background-color: #dff9e4;
+    background-color: #eefff2;
     border-top: 2px solid #009854;
 }
 .PageChange2{
