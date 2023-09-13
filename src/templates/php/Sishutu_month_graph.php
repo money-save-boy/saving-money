@@ -26,6 +26,11 @@ try{
             }]
         },
         options: {
+            responsive: false, // グラフの自動サイズ調整を無効にする
+            maintainAspectRatio: false, // アスペクト比を維持しない
+            // グラフのサイズを指定する
+            width: 800,
+            height: 400,
             scales: {
                 yAxes: [{
                     ticks: {
