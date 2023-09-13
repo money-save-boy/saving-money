@@ -16,7 +16,7 @@ try{
                             echo '"' . ($i). '",';
                         } ?>],
             datasets: [{
-                label: <?php echo '"'. $month. '月の支出額"' ?>,
+                label: "支出額",
                 data: [<?php for($i = 1; $i <= $lastDay; $i++) {
                             echo '0,';
                         } ?>],
