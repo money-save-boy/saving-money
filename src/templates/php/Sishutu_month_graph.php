@@ -13,12 +13,12 @@ try{
         type: 'line',
         data: {
             labels: [<?php for($i = 1; $i <= $lastDay; $i++) {
-                            echo '"' . ($month) . '/'. ($i). '",';
+                            echo '"' . ($i). '",';
                         } ?>],
             datasets: [{
-                label: '支出額',
+                label: <?php echo '"'. $month. '月の支出額"' ?>,
                 data: [<?php for($i = 1; $i <= $lastDay; $i++) {
-                            echo 0;
+                            echo '0,';
                         } ?>],
                 backgroundColor: 'rgba(255, 99, 132, 0.2)',
                 borderColor: 'rgba(255, 99, 132, 1)',

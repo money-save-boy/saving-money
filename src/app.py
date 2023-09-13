@@ -53,7 +53,7 @@ def spending_month_send():
         cursor.execute('SELECT * FROM History')
         rows = cursor.fetchall()
         for row in rows:
-            if row['user_id'] == jsonData['id'] and today.year == row['torokubi'].year:
+            if row['user_id'] == jsonData['id'] and today.month == row['torokubi'].month:
                 day = row['torokubi'].day
                 money = row['money']
                 if day in spendingSum:
