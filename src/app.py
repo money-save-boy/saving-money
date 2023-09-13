@@ -320,7 +320,7 @@ def connectDB(page):
         total = a - b
         #totalが予算残高
         #bが合計額
-        if b > total:
+        if total < 0:
             text = '予算オーバーです！'
             #テキスト送信
             line_bot_api.push_message(
