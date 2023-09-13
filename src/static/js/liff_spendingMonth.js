@@ -30,8 +30,12 @@ document.addEventListener("DOMContentLoaded", function() {
                 })
                 .then((spending_month_send) => spending_month_send.json())
                 .then((graphData) => {
-                    for(var i = 0; i < 12; i++){
-                        myChart.data.datasets[0].data[i] = graphData[i];
+                    for(var i = 0; i < graphData.length; i++){
+                        for(var j = 1; j <= myChart.data.labels.length; j++){
+                            if(graphData[i]["day"] == j){
+                                myChart.data.datasets[0].data[j] = graphData[i]["money"];
+                            }
+                        }
                     }
                     myChart.update();
                 })
