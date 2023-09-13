@@ -147,55 +147,51 @@ def displaySaving():
 
 @app.route('/displaySpending_<string:page>', methods = ['POST'])
 def displaySpending(page):
-    try:
-        connect = MySQLdb.connect(
-            host = info['server'],
-            user = info['user'],
-            passwd = info['pass'],
-            db = info['db'],
-            use_unicode = True,
-            charset = 'utf8'
-        )
-        cursor = connect.cursor(MySQLdb.cursors.DictCursor)
+    connect = MySQLdb.connect(
+        host = info['server'],
+        user = info['user'],
+        passwd = info['pass'],
+        db = info['db'],
+        use_unicode = True,
+        charset = 'utf8'
+    )
+    cursor = connect.cursor(MySQLdb.cursors.DictCursor)
 
-        jsonData = request.get_json()
-        date = []
-        category = []
-        money = []
-        today = datetime.now()
-        sWeek = today - timedelta(days = today.weekday())
-        eWeek = sWeek + timedelta(days = 6)
+    jsonData = request.get_json()
+    date = []
+    category = []
+    money = []
+    today = datetime.now()
+    sWeek = today - timedelta(days = today.weekday())
+    eWeek = sWeek + timedelta(days = 6)
 
-        cursor.execute(f"SELECT * FROM History WHERE user_id='{jsonData['id']}'")
-        rows = cursor.fetchall()
-        for row in rows:
-            if page == 'month':
-                if today.month == row['torokubi'].month:
-                    date.append(f"{row['torokubi'].month}/{row['torokubi'].day}")
-                    category.append(row['category'])
-                    money.append(row['money'])
-            elif page == 'year':
-                if today.year == row['torokubi'].year:
-                    date.append({row['torokubi'].month})
-                    category.append(row['category'])
-                    money.append(row['money'])
-            elif page == 'week':
-                if sWeek <= row['torokubi'] <= eWeek:
-                    date.append(f"{row['torokubi'].month}/{row['torokubi'].day}")
-                    category.append(row['category'])
-                    money.append(row['money'])
+    cursor.execute(f"SELECT * FROM History WHERE user_id='{jsonData['id']}'")
+    rows = cursor.fetchall()
+    for row in rows:
+        if page == 'month':
+            if today.month == row['torokubi'].month:
+                date.append(f"{row['torokubi'].month}/{row['torokubi'].day}")
+                category.append(row['category'])
+                money.append(row['money'])
+        elif page == 'year':
+            if today.year == row['torokubi'].year:
+                date.append(row['torokubi'].month)
+                category.append(row['category'])
+                money.append(row['money'])
+        elif page == 'week':
+            if sWeek <= row['torokubi'] <= eWeek:
+                date.append(f"{row['torokubi'].month}/{row['torokubi'].day}")
+                category.append(row['category'])
+                money.append(row['money'])
 
-        postData = [date, category, money]
-        post = jsonify(postData)
+    postData = [date, category, money]
+    post = jsonify(postData)
 
-        connect.commit()
-        cursor.close()
-        connect.close()
+    connect.commit()
+    cursor.close()
+    connect.close()
 
-        return post
-    except Exception as e:
-            t =  f"{e.__class__.__name__}: {e}"
-            return render_template('html/error.html', error = t)
+    return post
 
 # 年間支出履歴表示
 @app.route('/spending_year')
