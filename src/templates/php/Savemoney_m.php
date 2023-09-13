@@ -27,7 +27,9 @@
         <canvas id="myChart"></canvas>
         <?php include('Sishutu_month_graph.php'); ?>
     </div>
-    <div class="History"></div>
+    <div class="History">
+        
+    </div>
     <footer>
         <div class="PageChange1">
             <p id="pig" class="fa-solid fa-piggy-bank" style="color: #ffffff; font-size: 2em; filter: drop-shadow(0 5px 5px #166a44); margin-top:11.8%;"></p>
