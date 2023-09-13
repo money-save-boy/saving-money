@@ -27,8 +27,14 @@ try{
         },
         options: {
             scales: {
+                xAxes: [{
+                    ticks: {
+                        fontSize: 10, // 数字のフォントサイズを設定
+                    }
+                }],
                 yAxes: [{
                     ticks: {
+                        fontSize: 10, // 数字のフォントサイズを設定
                         beginAtZero: true, //グラフの初期値を０に指定
                     }
                 }]
