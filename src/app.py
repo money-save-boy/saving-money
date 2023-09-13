@@ -150,13 +150,15 @@ def displaySpending():
     date = []
     category = []
     money = []
+    today = datetime.date.today()
 
     cursor.execute(f"SELECT * FROM History WHERE user_id='{jsonData['id']}'")
     rows = cursor.fetchall()
     for row in rows:
-        date.append(f"{row['torokubi'].month}/{row['torokubi'].day}")
-        category.append(row['category'])
-        money.append(row['money'])
+        if today.month == row['torokubi'].month:
+            date.append(f"{row['torokubi'].month}/{row['torokubi'].day}")
+            category.append(row['category'])
+            money.append(row['money'])
 
     postData = [date, category, money]
     post = jsonify(postData)
