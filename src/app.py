@@ -29,35 +29,35 @@ def spending():
 # 月別支出履歴表示
 @app.route('/spending_month')
 def spending_month():
-    php_server_url = 'https://aso2201030.verse.jp/src/templates/php/Savemoney_m.php'
-    php_response = requests.get(php_server_url)
-    return php_response.content, php_response.status_code
+    try:
+        php_server_url = 'https://aso2201030.verse.jp/src/templates/php/Savemoney_m.php'
+        php_response = requests.get(php_server_url)
+        return php_response.content, php_response.status_code
+    except Exception as e:
+            t =  f"{e.__class__.__name__}: {e}"
+            return render_template('html/error.html', error = t)
 
 @app.route('/displayGraph_<String: page>', methods = ['POST'])
 def displayGraph(page):
-    if request.method == 'POST':
-        connect = MySQLdb.connect(
-            host = info['server'],
-            user = info['user'],
-            passwd = info['pass'],
-            db = info['db'],
-            use_unicode = True,
-            charset = 'utf8'
-        )
-        cursor = connect.cursor(MySQLdb.cursors.DictCursor)
+    try:
+        if request.method == 'POST':
+            connect = MySQLdb.connect(
+                host = info['server'],
+                user = info['user'],
+                passwd = info['pass'],
+                db = info['db'],
+                use_unicode = True,
+                charset = 'utf8'
+            )
+            cursor = connect.cursor(MySQLdb.cursors.DictCursor)
 
-        jsonData = request.get_json()
-        spendingSum = {}
-        today = datetime.date.today()
-        try:
+            jsonData = request.get_json()
+            spendingSum = {}
+            today = datetime.date.today()
             sWeek = today - timedelta(days=today.weekday())
             eWeek = sWeek + timedelta(days=6)
-        except Exception as e:
-            t =  f"{e.__class__.__name__}: {e}"
-            return render_template('html/error.html', error = t)
-        day = ''
+            day = ''
 
-        try:
             cursor.execute(f"SELECT * FROM History WHERE user_id='{jsonData['id']}'")
             rows = cursor.fetchall()
             for row in rows:
@@ -76,17 +76,17 @@ def displayGraph(page):
                     spendingSum[day] += money
                 else:
                     spendingSum[day] = money
-        except Exception as e:
+
+            post_data = [{"day": k, "money": v} for k, v in spendingSum.items()]
+            post = jsonify(post_data)
+
+            cursor.close()
+            connect.close()
+
+            return post
+    except Exception as e:
             t =  f"{e.__class__.__name__}: {e}"
             return render_template('html/error.html', error = t)
-
-        post_data = [{"day": k, "money": v} for k, v in spendingSum.items()]
-        post = jsonify(post_data)
-
-        cursor.close()
-        connect.close()
-
-        return post
 
 @app.route('/displayBudget', methods = ['POST'])
 def displayBudget():
