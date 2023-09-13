@@ -33,8 +33,8 @@ document.addEventListener("DOMContentLoaded", function() {
                     console.log(graphData);
                     for(var i = 0; i < graphData.length; i++){
                         for(var j = 1; j <= myChart.data.labels.length; j++){
-                            if(graphData[i][day] == j){
-                                myChart.data.datasets[0].data[j] = graphData[i][money];
+                            if(graphData[i]["day"] == j){
+                                myChart.data.datasets[0].data[j] = graphData[i]["money"];
                             }
                         }
                     }
