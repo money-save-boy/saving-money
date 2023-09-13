@@ -49,7 +49,7 @@ def displayGraph(page):
 
             jsonData = request.get_json()
             spendingSum = {}
-            today = datetime.date.today()
+            today = datetime.now()
             sWeek = today - timedelta(days=today.weekday())
             eWeek = sWeek + timedelta(days=6)
             day = ''
