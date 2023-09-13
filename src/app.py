@@ -99,7 +99,7 @@ def displayBudget():
     jsonData = request.get_json()
     budget = 0
     spending = 0
-    today = datetime.date.today()
+    today = datetime.now()
 
     cursor.execute('SELECT * FROM Yosan')
     rows = cursor.fetchall()
@@ -165,7 +165,7 @@ def displaySpending():
     date = []
     category = []
     money = []
-    today = datetime.date.today()
+    today = datetime.now()
 
     cursor.execute(f"SELECT * FROM History WHERE user_id='{jsonData['id']}'")
     rows = cursor.fetchall()
@@ -227,7 +227,7 @@ def connectDB(page):
         userName = request.form.get('budget_userName')#フォームより取得
         budget_money = request.form.get('money')
         budget = int(budget_money)
-        today = datetime.date.today()
+        today = datetime.now()
 
         try:
             query = f"SELECT * FROM Yosan WHERE user_id='{budget_userID}'" #予算
@@ -309,7 +309,7 @@ def connectDB(page):
             category = '娯楽費'
         spending_money = request.form.get('money')
         spending = int(spending_money)
-        today = datetime.date.today()
+        today = datetime.now()
 
         try:
             cursor.execute('INSERT INTO History(user_id, category, money, torokubi) VALUES(%s, %s, %s, %s)', (spending_userID, category, spending, today))
@@ -383,7 +383,7 @@ def message(event):
         b = 0
         total = 0
         text = ''
-        today = datetime.date.today()
+        today = datetime.now()
 
         cursor.execute('SELECT * FROM Yosan')
         a1 = cursor.fetchall()
@@ -413,7 +413,7 @@ def message(event):
         connect.commit()
         connect.close()
     elif event.message.text == '合計支出':
-        today = datetime.date.today()
+        today = datetime.now()
         total = 0
         text = ''
 
@@ -455,7 +455,7 @@ def message(event):
         connect.commit()
         connect.close()
     elif event.message.text == '支出履歴':
-        today = datetime.date.today()
+        today = datetime.now()
         a = [0] * 10
         date = [''] * 10
         category = [''] * 10
