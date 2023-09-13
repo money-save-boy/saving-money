@@ -47,24 +47,23 @@ def spending_month_send():
         cursor = connect.cursor(MySQLdb.cursors.DictCursor)
 
         jsonData = request.get_json()
-        spendingSum = [0] * 12
+        spendingSum = {}
         today = datetime.date.today()
-        postData = []
 
         cursor.execute('SELECT * FROM History')
         rows = cursor.fetchall()
         for row in rows:
             if row['user_id'] == jsonData['id'] and today.year == row['torokubi'].year:
-                spendingSum[int(row['torokubi'].month) - 1] += row['money']
+                day = row['torokubi'].day
+                money = row['money']
+                if day in spendingSum:
+                    spendingSum[day] += money
+                else:
+                    spendingSum[day] = money
 
-        i = 0
-        for i in range(len(spendingSum)):
-            postData.append(spendingSum[i])
-            i += 1
+        post_data = [{"day": k, "money": v} for k, v in spendingSum.items()]
+        post = jsonify(post_data)
 
-        post = jsonify(postData)
-
-        connect.commit()
         cursor.close()
         connect.close()
 

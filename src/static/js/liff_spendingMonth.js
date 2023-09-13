@@ -30,10 +30,11 @@ document.addEventListener("DOMContentLoaded", function() {
                 })
                 .then((spending_month_send) => spending_month_send.json())
                 .then((graphData) => {
-                    for(var i = 0; i < 12; i++){
-                        myChart.data.datasets[0].data[i] = graphData[i];
-                    }
-                    myChart.update();
+                    console.log(graphData);
+                    // for(var i = 0; i < 12; i++){
+                    //     myChart.data.datasets[0].data[i] = graphData[i];
+                    // }
+                    // myChart.update();
                 })
                 fetch('/src/displayBudget', {
                     method: "POST",

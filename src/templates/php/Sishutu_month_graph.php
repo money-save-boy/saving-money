@@ -1,7 +1,8 @@
 <?php
 try{
-    $today = new DateTime();
-    $todayYear = $today->format('Y');
+    $year = date("Y");
+    $month = date("n");
+    $lastDay = date("t", strtotime("$year-$month-01"));
 } catch (Throwable $e) {
     echo $e->getMessage();
 }
@@ -11,12 +12,14 @@ try{
     var myChart = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: [<?php for($i = 1; $i <= 12; $i++) {
-                            echo '"' . ($todayYear) . '-'. ($i). '",';
+            labels: [<?php for($i = 1; $i <= $lastDay; $i++) {
+                            echo '"' . ($month) . '/'. ($i). '",';
                         } ?>],
             datasets: [{
                 label: '支出額',
-                data: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                data: [<?php for($i = 1; $i <= $lastDay; $i++) {
+                            echo 0;
+                        } ?>],
                 backgroundColor: 'rgba(255, 99, 132, 0.2)',
                 borderColor: 'rgba(255, 99, 132, 1)',
                 borderWidth: 1
