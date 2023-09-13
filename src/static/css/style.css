@@ -55,7 +55,7 @@ body{
     text-decoration: none;
 }
 .checked{
-    margin: 1% 0;
+    padding: 1% 0;
     width: calc(100% / 3);
     background-color: #eefff2;
     color: #027f47;
