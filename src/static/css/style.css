@@ -77,7 +77,7 @@ body{
 }
 .data{
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     width: 75%;
     font-size: 1em;
     margin-left: 11.8%;
