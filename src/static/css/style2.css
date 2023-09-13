@@ -17,7 +17,6 @@ body{
 }
 .TimeChange{
     height: 5%;
-    margin-top: .5% 0;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -55,7 +54,7 @@ body{
     text-decoration: none;
 }
 .checked{
-    padding-top: 1%;
+    padding: 1% 0;
     width: 50%;
     background-color: #ffe5f2;
     color: #ff4d79;
