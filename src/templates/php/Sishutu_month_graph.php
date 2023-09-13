@@ -26,7 +26,7 @@ try{
             scales: {
                 xAxes: [{
                     ticks: {
-                        fontSize: 5, // 数字のフォントサイズを設定
+                        fontSize: 10, // 数字のフォントサイズを設定
                     }
                 }],
                 yAxes: [{
