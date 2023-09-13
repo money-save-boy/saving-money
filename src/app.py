@@ -53,24 +53,28 @@ def displayGraph(page):
         eWeek = sWeek + timedelta(days=6)
         day = ''
 
-        cursor.execute(f"SELECT * FROM History WHERE user_id='{jsonData['id']}'")
-        rows = cursor.fetchall()
-        for row in rows:
-            if page == 'month':
-                if today.month == row['torokubi'].month:
-                    day = row['torokubi'].day
-            elif page == 'year':
-                if today.year == row['torokubi'].year:
-                    day = row['torokubi'].month
-            elif page == 'week':
-                if sWeek <= row['torokubi'] <= eWeek:
-                    day = row['torokubi'].day
+        try:
+            cursor.execute(f"SELECT * FROM History WHERE user_id='{jsonData['id']}'")
+            rows = cursor.fetchall()
+            for row in rows:
+                if page == 'month':
+                    if today.month == row['torokubi'].month:
+                        day = row['torokubi'].day
+                elif page == 'year':
+                    if today.year == row['torokubi'].year:
+                        day = row['torokubi'].month
+                elif page == 'week':
+                    if sWeek <= row['torokubi'] <= eWeek:
+                        day = row['torokubi'].day
 
-            money = row['money']
-            if day in spendingSum:
-                spendingSum[day] += money
-            else:
-                spendingSum[day] = money
+                money = row['money']
+                if day in spendingSum:
+                    spendingSum[day] += money
+                else:
+                    spendingSum[day] = money
+        except Exception as e:
+            t =  f"{e.__class__.__name__}: {e}"
+            return render_template('html/error.html', error = t)
 
         post_data = [{"day": k, "money": v} for k, v in spendingSum.items()]
         post = jsonify(post_data)
