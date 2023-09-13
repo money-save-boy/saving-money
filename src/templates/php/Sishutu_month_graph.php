@@ -1,5 +1,5 @@
 <?php
-try{
+try {
     $year = date("Y");
     $month = date("n");
     $lastDay = date("t", strtotime("$year-$month-01"));
@@ -12,16 +12,16 @@ try{
     var myChart = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: [<?php for($i = 1; $i <= $lastDay; $i++) {
-                            echo '"' . ($month). '/'. ($i). '",';
+            labels: [<?php for ($i = 1; $i <= $lastDay; $i++) {
+                            echo '"' . ($month) . '/' . ($i) . '",';
                         } ?>],
             datasets: [{
                 label: "支出額",
-                data: [<?php for($i = 1; $i <= $lastDay; $i++) {
+                data: [<?php for ($i = 1; $i <= $lastDay; $i++) {
                             echo '0,';
                         } ?>],
-                backgroundColor: 'rgba(255, 99, 132, 0.2)',
-                borderColor: 'rgba(255, 99, 132, 1)',
+                backgroundColor: 'rgba(2, 164, 135, 0.2)',
+                borderColor: 'rgba(2, 164, 135, 1)',
                 borderWidth: 1
             }]
         },

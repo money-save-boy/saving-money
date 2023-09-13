@@ -2,9 +2,9 @@ document.addEventListener("DOMContentLoaded", function() {
     fetch("/src/secret.json")
     .then((response) => response.json())
     .then((data) => {
-        clearToken(data.spendingMonthLiffID);
+        clearToken(data.spendingYearLiffID);
         liff.init({
-            liffId: data.spendingMonthLiffID,
+            liffId: data.spendingYearLiffID,
             withLoginOnExternalBrowser: true
         })
         .then(() => {
@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function() {
             .then((liffData) => {
                 var jsonData = {"id": liffData.sub};
                 var json = JSON.stringify(jsonData);
-                fetch('/src/displayGraph_month', {
+                fetch('/src/displayGraph_year', {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", function() {
                         document.getElementById("mo").innerText = saving;
                     }
                 })
-                fetch('/src/displaySpending_month', {
+                fetch('/src/displaySpending_year', {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
@@ -83,12 +83,18 @@ document.addEventListener("DOMContentLoaded", function() {
                 .then((spending) => {
                     var div = document.getElementsByClassName("History")[0];
                     var text = "<div id='histitle'>支出履歴</div>";
+                    var day = 0;
+                    var money = 0;
                     for(var i = 0; i < spending[0].length; i++){
-                        text += "<div class='data'>";
-                        text += "<p>" + spending[0][i] + "</p>";
-                        text += "<p>" + spending[1][i] + "</p>";
-                        text += "<p>¥" + String(spending[2][i]).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,') + "</p>";
-                        text += "</div>";
+                        if(day == spending[0][i]){
+                            money += spending[2][i];
+                        } else {
+                            text += "<div class='data'>";
+                            text += "<p>" + String(spending[0][i]) + "月</p>";
+                            text += "<p>¥" + String(money).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,') + "</p>";
+                            text += "</div>";
+                        }
+                        day = spending[0][i];
                     }
                     div.innerHTML = text;
                 })

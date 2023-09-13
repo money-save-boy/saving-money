@@ -5,7 +5,7 @@ import subprocess
 import requests
 import json
 import MySQLdb
-import datetime
+from datetime import datetime, timedelta
 from linebot import (LineBotApi, WebhookHandler)
 from linebot.exceptions import (InvalidSignatureError)
 from linebot.models import (MessageEvent, TextMessage, TextSendMessage)
@@ -33,8 +33,8 @@ def spending_month():
     php_response = requests.get(php_server_url)
     return php_response.content, php_response.status_code
 
-@app.route('/spending_month_send', methods = ['POST'])
-def spending_month_send():
+@app.route('/displayGraph_<string:page>', methods = ['POST'])
+def displayGraph(page):
     if request.method == 'POST':
         connect = MySQLdb.connect(
             host = info['server'],
@@ -48,18 +48,29 @@ def spending_month_send():
 
         jsonData = request.get_json()
         spendingSum = {}
-        today = datetime.date.today()
+        today = datetime.now()
+        sWeek = today - timedelta(days = today.weekday())
+        eWeek = sWeek + timedelta(days = 6)
+        day = ''
 
-        cursor.execute('SELECT * FROM History')
+        cursor.execute(f"SELECT * FROM History WHERE user_id='{jsonData['id']}'")
         rows = cursor.fetchall()
         for row in rows:
-            if row['user_id'] == jsonData['id'] and today.month == row['torokubi'].month:
-                day = row['torokubi'].day
-                money = row['money']
-                if day in spendingSum:
-                    spendingSum[day] += money
-                else:
-                    spendingSum[day] = money
+            if page == 'month':
+                if today.month == row['torokubi'].month:
+                    day = row['torokubi'].day
+            elif page == 'year':
+                if today.year == row['torokubi'].year:
+                    day = row['torokubi'].month
+            elif page == 'week':
+                if sWeek <= row['torokubi'] <= eWeek:
+                    day = row['torokubi'].day
+
+            money = row['money']
+            if day in spendingSum:
+                spendingSum[day] += money
+            else:
+                spendingSum[day] = money
 
         post_data = [{"day": k, "money": v} for k, v in spendingSum.items()]
         post = jsonify(post_data)
@@ -84,7 +95,7 @@ def displayBudget():
     jsonData = request.get_json()
     budget = 0
     spending = 0
-    today = datetime.date.today()
+    today = datetime.now()
 
     cursor.execute('SELECT * FROM Yosan')
     rows = cursor.fetchall()
@@ -134,8 +145,8 @@ def displaySaving():
 
     return post
 
-@app.route('/displaySpending', methods = ['POST'])
-def displaySpending():
+@app.route('/displaySpending_<string:page>', methods = ['POST'])
+def displaySpending(page):
     connect = MySQLdb.connect(
         host = info['server'],
         user = info['user'],
@@ -150,15 +161,28 @@ def displaySpending():
     date = []
     category = []
     money = []
-    today = datetime.date.today()
+    today = datetime.now()
+    sWeek = today - timedelta(days = today.weekday())
+    eWeek = sWeek + timedelta(days = 6)
 
     cursor.execute(f"SELECT * FROM History WHERE user_id='{jsonData['id']}'")
     rows = cursor.fetchall()
     for row in rows:
-        if today.month == row['torokubi'].month:
-            date.append(f"{row['torokubi'].month}/{row['torokubi'].day}")
-            category.append(row['category'])
-            money.append(row['money'])
+        if page == 'month':
+            if today.month == row['torokubi'].month:
+                date.append(f"{row['torokubi'].month}/{row['torokubi'].day}")
+                category.append(row['category'])
+                money.append(row['money'])
+        elif page == 'year':
+            if today.year == row['torokubi'].year:
+                date.append(row['torokubi'].month)
+                category.append(row['category'])
+                money.append(row['money'])
+        elif page == 'week':
+            if sWeek <= row['torokubi'] <= eWeek:
+                date.append(f"{row['torokubi'].month}/{row['torokubi'].day}")
+                category.append(row['category'])
+                money.append(row['money'])
 
     postData = [date, category, money]
     post = jsonify(postData)
@@ -172,12 +196,16 @@ def displaySpending():
 # 年間支出履歴表示
 @app.route('/spending_year')
 def spending_year():
-    return render_template('php/Savemoney_y.php')
+    php_server_url = 'https://aso2201030.verse.jp/src/templates/php/Savemoney_y.php'
+    php_response = requests.get(php_server_url)
+    return php_response.content, php_response.status_code
 
 # 週間支出履歴表示
 @app.route('/spending_week')
 def spending_week():
-    return render_template('php/Savemoney_w.php')
+    php_server_url = 'https://aso2201030.verse.jp/src/templates/php/Savemoney_w.php'
+    php_response = requests.get(php_server_url)
+    return php_response.content, php_response.status_code
 
 # 月間貯金履歴表示
 @app.route('/saving_month')
@@ -208,7 +236,7 @@ def connectDB(page):
         userName = request.form.get('budget_userName')#フォームより取得
         budget_money = request.form.get('money')
         budget = int(budget_money)
-        today = datetime.date.today()
+        today = datetime.now()
 
         try:
             query = f"SELECT * FROM Yosan WHERE user_id='{budget_userID}'" #予算
@@ -290,7 +318,7 @@ def connectDB(page):
             category = '娯楽費'
         spending_money = request.form.get('money')
         spending = int(spending_money)
-        today = datetime.date.today()
+        today = datetime.now()
 
         try:
             cursor.execute('INSERT INTO History(user_id, category, money, torokubi) VALUES(%s, %s, %s, %s)', (spending_userID, category, spending, today))
@@ -320,7 +348,7 @@ def connectDB(page):
         total = a - b
         #totalが予算残高
         #bが合計額
-        if b > total:
+        if total < 0:
             text = '予算オーバーです！'
             #テキスト送信
             line_bot_api.push_message(
@@ -364,7 +392,7 @@ def message(event):
         b = 0
         total = 0
         text = ''
-        today = datetime.date.today()
+        today = datetime.now()
 
         cursor.execute('SELECT * FROM Yosan')
         a1 = cursor.fetchall()
@@ -394,7 +422,7 @@ def message(event):
         connect.commit()
         connect.close()
     elif event.message.text == '合計支出':
-        today = datetime.date.today()
+        today = datetime.now()
         total = 0
         text = ''
 
@@ -436,7 +464,7 @@ def message(event):
         connect.commit()
         connect.close()
     elif event.message.text == '支出履歴':
-        today = datetime.date.today()
+        today = datetime.now()
         a = [0] * 10
         date = [''] * 10
         category = [''] * 10
