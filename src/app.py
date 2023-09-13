@@ -33,7 +33,7 @@ def spending_month():
     php_response = requests.get(php_server_url)
     return php_response.content, php_response.status_code
 
-@app.route('/displayGraph_<String:page>', methods = ['POST'])
+@app.route('/displayGraph_<string:page>', methods = ['POST'])
 def displayGraph(page):
     if request.method == 'POST':
         connect = MySQLdb.connect(
