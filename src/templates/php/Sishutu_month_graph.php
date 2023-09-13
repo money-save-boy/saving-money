@@ -24,6 +24,11 @@ try{
         },
         options: {
             scales: {
+                xAxes: [{
+                    ticks: {
+                        fontSize: 5, // 数字のフォントサイズを設定
+                    }
+                }],
                 yAxes: [{
                     ticks: {
                         beginAtZero: true, //グラフの初期値を０に指定
