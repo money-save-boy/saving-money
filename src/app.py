@@ -174,10 +174,14 @@ def displaySpending(page):
                 category.append(row['category'])
                 money.append(row['money'])
         elif page == 'year':
-            if today.year == row['torokubi'].year:
-                date.append({row['torokubi'].month})
-                category.append(row['category'])
-                money.append(row['money'])
+            try:
+                if today.year == row['torokubi'].year:
+                    date.append({row['torokubi'].month})
+                    category.append(row['category'])
+                    money.append(row['money'])
+            except Exception as e:
+                t =  f"{e.__class__.__name__}: {e}"
+                return render_template('html/error.html', error = t)
         elif page == 'week':
             if sWeek <= row['torokubi'] <= eWeek:
                 date.append(f"{row['torokubi'].month}/{row['torokubi'].day}")
