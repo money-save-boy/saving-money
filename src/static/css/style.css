@@ -77,10 +77,13 @@ body{
 }
 .data{
     display: flex;
-    justify-content: space-between;
+    
     width: 75%;
     font-size: 1em;
     margin-left: 11.8%;
+}
+.data p{
+    padding-left: 10%;
 }
 .History{
     min-height: 300px;
