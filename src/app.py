@@ -49,8 +49,8 @@ def displayGraph(page):
         jsonData = request.get_json()
         spendingSum = {}
         today = datetime.now()
-        sWeek = today - timedelta(days=today.weekday())
-        eWeek = sWeek + timedelta(days=6)
+        sWeek = today - timedelta(days = today.weekday())
+        eWeek = sWeek + timedelta(days = 6)
         day = ''
 
         cursor.execute(f"SELECT * FROM History WHERE user_id='{jsonData['id']}'")
@@ -145,8 +145,8 @@ def displaySaving():
 
     return post
 
-@app.route('/displaySpending', methods = ['POST'])
-def displaySpending():
+@app.route('/displaySpending_<string:page>', methods = ['POST'])
+def displaySpending(page):
     connect = MySQLdb.connect(
         host = info['server'],
         user = info['user'],
@@ -162,14 +162,27 @@ def displaySpending():
     category = []
     money = []
     today = datetime.now()
+    sWeek = today - timedelta(days = today.weekday())
+    eWeek = sWeek + timedelta(days = 6)
 
     cursor.execute(f"SELECT * FROM History WHERE user_id='{jsonData['id']}'")
     rows = cursor.fetchall()
     for row in rows:
-        if today.month == row['torokubi'].month:
-            date.append(f"{row['torokubi'].month}/{row['torokubi'].day}")
-            category.append(row['category'])
-            money.append(row['money'])
+        if page == 'month':
+            if today.month == row['torokubi'].month:
+                date.append(f"{row['torokubi'].month}/{row['torokubi'].day}")
+                category.append(row['category'])
+                money.append(row['money'])
+        elif page == 'year':
+            if today.year == row['torokubi'].year:
+                date.append({row['torokubi'].month})
+                category.append(row['category'])
+                money.append(row['money'])
+        elif page == 'week':
+            if sWeek <= row['torokubi'] <= eWeek:
+                date.append(f"{row['torokubi'].month}/{row['torokubi'].day}")
+                category.append(row['category'])
+                money.append(row['money'])
 
     postData = [date, category, money]
     post = jsonify(postData)
