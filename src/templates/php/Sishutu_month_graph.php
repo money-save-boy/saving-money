@@ -13,7 +13,7 @@ try{
         type: 'line',
         data: {
             labels: [<?php for($i = 1; $i <= $lastDay; $i++) {
-                            echo '"' . ($i). '",';
+                            echo '"' . ($month). '/'. ($i). '",';
                         } ?>],
             datasets: [{
                 label: "支出額",
