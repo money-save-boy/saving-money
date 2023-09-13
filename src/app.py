@@ -5,7 +5,7 @@ import subprocess
 import requests
 import json
 import MySQLdb
-import datetime
+from datetime import datetime, timedelta
 from linebot import (LineBotApi, WebhookHandler)
 from linebot.exceptions import (InvalidSignatureError)
 from linebot.models import (MessageEvent, TextMessage, TextSendMessage)
@@ -33,8 +33,8 @@ def spending_month():
     php_response = requests.get(php_server_url)
     return php_response.content, php_response.status_code
 
-@app.route('/spending_month_send', methods = ['POST'])
-def spending_month_send():
+@app.route('/displayGraph_<String: page>', methods = ['POST'])
+def displayGraph(page):
     if request.method == 'POST':
         connect = MySQLdb.connect(
             host = info['server'],
@@ -49,17 +49,28 @@ def spending_month_send():
         jsonData = request.get_json()
         spendingSum = {}
         today = datetime.date.today()
+        sWeek = today - timedelta(days=today.weekday())
+        eWeek = sWeek + timedelta(days=6)
+        day = ''
 
-        cursor.execute('SELECT * FROM History')
+        cursor.execute(f"SELECT * FROM History WHERE user_id='{jsonData['id']}'")
         rows = cursor.fetchall()
         for row in rows:
-            if row['user_id'] == jsonData['id'] and today.month == row['torokubi'].month:
-                day = row['torokubi'].day
-                money = row['money']
-                if day in spendingSum:
-                    spendingSum[day] += money
-                else:
-                    spendingSum[day] = money
+            if page == 'month':
+                if today.month == row['torokubi'].month:
+                    day = row['torokubi'].day
+            elif page == 'year':
+                if today.year == row['torokubi'].year:
+                    day = row['torokubi'].month
+            elif page == 'week':
+                if sWeek <= row['torokubi'] <= eWeek:
+                    day = row['torokubi'].day
+
+            money = row['money']
+            if day in spendingSum:
+                spendingSum[day] += money
+            else:
+                spendingSum[day] = money
 
         post_data = [{"day": k, "money": v} for k, v in spendingSum.items()]
         post = jsonify(post_data)
@@ -172,12 +183,16 @@ def displaySpending():
 # 年間支出履歴表示
 @app.route('/spending_year')
 def spending_year():
-    return render_template('php/Savemoney_y.php')
+    php_server_url = 'https://aso2201030.verse.jp/src/templates/php/Savemoney_y.php'
+    php_response = requests.get(php_server_url)
+    return php_response.content, php_response.status_code
 
 # 週間支出履歴表示
 @app.route('/spending_week')
 def spending_week():
-    return render_template('php/Savemoney_w.php')
+    php_server_url = 'https://aso2201030.verse.jp/src/templates/php/Savemoney_w.php'
+    php_response = requests.get(php_server_url)
+    return php_response.content, php_response.status_code
 
 # 月間貯金履歴表示
 @app.route('/saving_month')

@@ -21,14 +21,14 @@ document.addEventListener("DOMContentLoaded", function() {
             .then((liffData) => {
                 var jsonData = {"id": liffData.sub};
                 var json = JSON.stringify(jsonData);
-                fetch('/src/spending_month_send', {
+                fetch('/src/displayGraph_month', {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
                     },
                     body: json,
                 })
-                .then((spending_month_send) => spending_month_send.json())
+                .then((displayGraph) => displayGraph.json())
                 .then((graphData) => {
                     for(var i = 0; i < graphData.length; i++){
                         for(var j = 0; j < myChart.data.labels.length; j++){

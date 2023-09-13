@@ -28,7 +28,6 @@
         <?php include('Sishutu_month_graph.php'); ?>
     </div>
     <div class="History">
-        
     </div>
     <footer>
         <div class="PageChange1">
