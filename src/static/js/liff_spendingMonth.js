@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", function() {
                         document.getElementById("mo").innerText = saving;
                     }
                 })
-                fetch('/src/displaySpending', {
+                fetch('/src/displaySpending_month', {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
