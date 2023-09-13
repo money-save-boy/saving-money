@@ -49,8 +49,12 @@ def displayGraph(page):
         jsonData = request.get_json()
         spendingSum = {}
         today = datetime.date.today()
-        sWeek = today - timedelta(days=today.weekday())
-        eWeek = sWeek + timedelta(days=6)
+        try:
+            sWeek = today - timedelta(days=today.weekday())
+            eWeek = sWeek + timedelta(days=6)
+        except Exception as e:
+            t =  f"{e.__class__.__name__}: {e}"
+            return render_template('html/error.html', error = t)
         day = ''
 
         try:
