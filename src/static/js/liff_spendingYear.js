@@ -81,20 +81,18 @@ document.addEventListener("DOMContentLoaded", function() {
                 })
                 .then((displaySpending) => displaySpending.json())
                 .then((spending) => {
+                    console.log(spending);
                     var div = document.getElementsByClassName("History")[0];
                     var text = "<div id='histitle'>支出履歴</div>";
-                    var day = 0;
-                    var money = 0;
+                    var day = new Array(12).fill(0);
                     for(var i = 0; i < spending[0].length; i++){
-                        if(day == spending[0][i]){
-                            money += spending[2][i];
-                        } else {
-                            text += "<div class='data'>";
-                            text += "<p>" + String(spending[0][i]) + "月</p>";
-                            text += "<p>¥" + String(money).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,') + "</p>";
-                            text += "</div>";
-                        }
-                        day = spending[0][i];
+                        day[spending[0][i] - 1] += spending[2][i];
+                    }
+                    for(var i = 0; i < 12; i++){
+                        text += "<div class='data'>";
+                        text += "<p>" + String(i + 1) + "月</p>";
+                        text += "<p>¥" + String(day[i]).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,') + "</p>";
+                        text += "</div>";
                     }
                     div.innerHTML = text;
                 })
