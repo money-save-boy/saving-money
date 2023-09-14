@@ -63,8 +63,13 @@ def displayGraph(page):
                 if today.year == row['torokubi'].year:
                     day = row['torokubi'].month
             elif page == 'week':
-                if sWeek <= row['torokubi'] <= eWeek:
-                    day = row['torokubi'].day
+                try:
+                    compare = datetime(row['torokubi'].year, row['torokubi'].month, row['torokubi'].day)
+                    if sWeek <= compare <= eWeek:
+                        day = row['torokubi'].day
+                except Exception as e:
+                    t =  f"{e.__class__.__name__}: {e}"
+                    return render_template('html/error.html', error = t)
 
             money = row['money']
             if day in spendingSum:
@@ -179,7 +184,8 @@ def displaySpending(page):
                 category.append(row['category'])
                 money.append(row['money'])
         elif page == 'week':
-            if sWeek <= row['torokubi'] <= eWeek:
+            compare = datetime(row['torokubi'].year, row['torokubi'].month, row['torokubi'].day)
+            if sWeek <= compare <= eWeek:
                 date.append(f"{row['torokubi'].month}/{row['torokubi'].day}")
                 category.append(row['category'])
                 money.append(row['money'])
