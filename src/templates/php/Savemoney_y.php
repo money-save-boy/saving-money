@@ -15,7 +15,7 @@
 <body>
     <div class="osirase">
         <div id="mi"></div>
-        <p id="mod">貯金額 ¥<span id="mo"></span></p>
+        <div id="mo"></div>
     </div>
     <div class="TimeChange">
         <a class="checked" href='#'>年</a>

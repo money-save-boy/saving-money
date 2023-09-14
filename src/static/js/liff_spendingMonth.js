@@ -66,10 +66,10 @@ document.addEventListener("DOMContentLoaded", function() {
                 .then((displaySaving) => displaySaving.json())
                 .then((saving) => {
                     if(saving == 0){
-                        document.getElementById("mo").innerText = saving;
+                        document.getElementById("mo").innerHTML = "<p id='mod'>貯金額 ¥" + saving + "</p>";
                     } else {
                         saving = String(saving).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,');
-                        document.getElementById("mo").innerText = saving;
+                        document.getElementById("mo").innerHTML = "<p id='mod'>貯金額 ¥" + saving + "</p>";
                     }
                 })
                 fetch('/src/displaySpending_month', {

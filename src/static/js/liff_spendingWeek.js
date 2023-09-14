@@ -2,9 +2,9 @@ document.addEventListener("DOMContentLoaded", function() {
     fetch("/src/secret.json")
     .then((response) => response.json())
     .then((data) => {
-        clearToken(data.spendingYearLiffID);
+        clearToken(data.spendingWeekLiffID);
         liff.init({
-            liffId: data.spendingYearLiffID,
+            liffId: data.spendingWeekLiffID,
             withLoginOnExternalBrowser: true
         })
         .then(() => {
@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function() {
             .then((liffData) => {
                 var jsonData = {"id": liffData.sub};
                 var json = JSON.stringify(jsonData);
-                fetch('/src/displayGraph_year', {
+                fetch('/src/displayGraph_week', {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
@@ -72,7 +72,7 @@ document.addEventListener("DOMContentLoaded", function() {
                         document.getElementById("mo").innerHTML = "<p id='mod'>貯金額 ¥" + saving + "</p>";
                     }
                 })
-                fetch('/src/displaySpending_year', {
+                fetch('/src/displaySpending_week', {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
@@ -83,14 +83,11 @@ document.addEventListener("DOMContentLoaded", function() {
                 .then((spending) => {
                     var div = document.getElementsByClassName("History")[0];
                     var text = "<div id='histitle'>支出履歴</div>";
-                    var day = new Array(12).fill(0);
                     for(var i = 0; i < spending[0].length; i++){
-                        day[spending[0][i] - 1] += spending[2][i];
-                    }
-                    for(var i = 0; i < 12; i++){
                         text += "<div class='data'>";
-                        text += "<p>" + String(i + 1) + "月</p>";
-                        text += "<p>¥" + String(day[i]).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,') + "</p>";
+                        text += "<p>" + spending[0][i] + "</p>";
+                        text += "<p>" + spending[1][i] + "</p>";
+                        text += "<p>¥" + String(spending[2][i]).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,') + "</p>";
                         text += "</div>";
                     }
                     div.innerHTML = text;
