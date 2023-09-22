@@ -80,12 +80,10 @@ body{
     width: 100%;
     font-size: 1em;
 }
-.date{
-    margin-left: 3%;
+td{
+    width: calc(100% / 3);
 }
-.price{
-    margin-right: 3%;
-}
+
 .History{
     min-height: 300px;
 
