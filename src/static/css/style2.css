@@ -75,7 +75,8 @@ body{
     min-height: 300px;
 }
 .data{
-    display: flex;
+    float: left;
+    clear: both;
     width: 75%;
     font-size: 1em;
     margin-left: 11.8%;
@@ -83,9 +84,15 @@ body{
 .data>p{
     padding-left: 10%;
 }
-.data,.category,.price{
-    margin-left: 5%;
-    width: 10%;
+.data{
+    margin-left: 15%;
+}
+.category{
+    margin-left: 30%;
+
+}
+.price{
+    margin-left: 45%;
 }
 footer{
     position: sticky;
