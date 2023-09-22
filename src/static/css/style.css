@@ -78,12 +78,13 @@ body{
 .data{
     border: none;
     width: 100%;
-    margin: 0 auto;
     font-size: 1em;
 }
-
-.data>p{
-    padding-left: 10%;
+.date{
+    margin-left: 3%;
+}
+.price{
+    margin-right: 3%;
 }
 .History{
     min-height: 300px;
