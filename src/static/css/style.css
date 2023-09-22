@@ -78,10 +78,12 @@ body{
 .data{
     border: none;
     width: 100%;
+    border-collapse: collapse; /* セル間の余白を削除 */
     font-size: 1em;
 }
-.date,.price{
+td{
     width: calc(100% / 3);
+    text-align: left;
 }
 
 .History{
