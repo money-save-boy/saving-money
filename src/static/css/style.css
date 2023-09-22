@@ -77,7 +77,11 @@ body{
 }
 .data{
     border: none;
+    width: 100%;
     font-size: 1em;
+}
+td{
+    text-align: left;
 }
 .data>p{
     padding-left: 10%;
