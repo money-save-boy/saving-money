@@ -84,6 +84,7 @@ body{
 td{
     width: calc(100% / 3);
     text-align: left;
+    padding: 3%;
 }
 
 .History{
