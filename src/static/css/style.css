@@ -90,7 +90,7 @@ body{
 }
 .data,.category,.price{
     margin-left: 15%;
-    width: 10%;
+    width: 50%;
 }
 footer{
     position: sticky;
