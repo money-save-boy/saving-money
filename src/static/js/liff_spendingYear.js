@@ -90,8 +90,8 @@ document.addEventListener("DOMContentLoaded", function() {
                     }
                     for(var i = 0; i < 12; i++){
                         text += "<tr>";
-                        text += "<td class='date'>" + String(i + 1) + "月</td>";
-                        text += "<td class='price'>¥" + String(day[i]).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,') + "</td>";
+                        text += "<td class='Ydate'>" + String(i + 1) + "月</td>";
+                        text += "<td class='Yprice'>¥" + String(day[i]).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,') + "</td>";
                         text += "</tr>";
                     }
                     div.innerHTML = text;
