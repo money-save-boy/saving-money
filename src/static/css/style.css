@@ -78,6 +78,7 @@ body{
 .data{
     border: none;
     width: 100%;
+    margin-left: 10%;
     font-size: 1em;
 }
 td{
