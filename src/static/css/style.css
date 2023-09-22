@@ -80,7 +80,7 @@ body{
     width: 100%;
     font-size: 1em;
 }
-.date{
+.date,.price{
     width: calc(100% / 3);
 }
 
