@@ -88,6 +88,9 @@ body{
     min-height: 300px;
 
 }
+.data,.category,.price{
+    margin-left: 10%;
+}
 footer{
     position: sticky;
     bottom: 0;

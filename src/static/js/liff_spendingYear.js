@@ -89,8 +89,8 @@ document.addEventListener("DOMContentLoaded", function() {
                     }
                     for(var i = 0; i < 12; i++){
                         text += "<div class='data'>";
-                        text += "<p>" + String(i + 1) + "月</p>";
-                        text += "<p>¥" + String(day[i]).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,') + "</p>";
+                        text += "<p class='date'>" + String(i + 1) + "月</p>";
+                        text += "<p class='price'>¥" + String(day[i]).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,') + "</p>";
                         text += "</div>";
                     }
                     div.innerHTML = text;
