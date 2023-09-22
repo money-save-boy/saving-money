@@ -83,13 +83,15 @@ document.addEventListener("DOMContentLoaded", function() {
                 .then((spending) => {
                     var div = document.getElementsByClassName("History")[0];
                     var text = "<div id='histitle'>支出履歴</div>";
+                    text += "<table class='data'>";
                     for(var i = 0; i < spending[0].length; i++){
-                        text += "<table class='data'>";
+                        
                         text += "<td class='date'>" + spending[0][i] + "</td>";
                         text += "<td class='category'>" + spending[1][i] + "</td>";
                         text += "<td class='price'>¥" + String(spending[2][i]).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,') + "</td>";
-                        text += "</table";
+                        
                     }
+                    text += "</table>";
                     div.innerHTML = text;
                 })
                 .catch(function(error) {
