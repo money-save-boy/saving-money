@@ -83,6 +83,9 @@ body{
 .data>p{
     padding-left: 10%;
 }
+.data,.category,.price{
+    margin-left: 10%;
+}
 footer{
     position: sticky;
     bottom: 0;

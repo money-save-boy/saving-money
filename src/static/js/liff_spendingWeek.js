@@ -87,9 +87,9 @@ document.addEventListener("DOMContentLoaded", function() {
                     var cnt = 0;
                     for(var i = 0; i < spending[0].length; i++){
                         text += "<div class='data'>";
-                        text += "<p>" + spending[0][i] + "</p>";
-                        text += "<p>" + spending[1][i] + "</p>";
-                        text += "<p>¥" + String(spending[2][i]).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,') + "</p>";
+                        text += "<p class='date'>" + spending[0][i] + "</p>";
+                        text += "<p class='category'>" + spending[1][i] + "</p>";
+                        text += "<p class='price'>¥" + String(spending[2][i]).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,') + "</p>";
                         text += "</div>";
                         cnt++;
                     }
