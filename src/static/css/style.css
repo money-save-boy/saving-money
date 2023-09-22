@@ -78,7 +78,6 @@ body{
 .data{
     border: none;
     font-size: 1em;
-    margin-left: 11.8%;
 }
 .data>p{
     padding-left: 10%;
@@ -87,10 +86,7 @@ body{
     min-height: 300px;
 
 }
-.data,.category,.price{
-    margin-left: 15%;
-    width: 50%;
-}
+
 footer{
     position: sticky;
     bottom: 0;
