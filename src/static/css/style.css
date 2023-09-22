@@ -76,8 +76,7 @@ body{
     padding: .5% 0;
 }
 .data{
-    display: flex;
-    width: 75%;
+    border: none;
     font-size: 1em;
     margin-left: 11.8%;
 }
