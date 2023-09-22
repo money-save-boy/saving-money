@@ -216,12 +216,41 @@ def spending_week():
 # 月間貯金履歴表示
 @app.route('/saving_month')
 def saving_month():
-    return render_template('php/Wallet_m.php')
+    php_server_url = 'https://aso2201030.verse.jp/src/templates/php/Wallet_m.php'
+    php_response = requests.get(php_server_url)
+    return php_response.content, php_response.status_code
 
 # 年間貯金履歴表示
 @app.route('/saving_year')
 def saving_year():
-    return render_template('php/Wallet_y.php')
+    php_server_url = 'https://aso2201030.verse.jp/src/templates/php/Wallet_y.php'
+    php_response = requests.get(php_server_url)
+    return php_response.content, php_response.status_code
+
+@app.route('/graphDisplay_<string:page>', methods = ['POST'])
+def graphDisplay(page):
+    connect = MySQLdb.connect(
+        host = info['server'],
+        user = info['user'],
+        passwd = info['pass'],
+        db = info['db'],
+        use_unicode = True,
+        charset = 'utf8'
+    )
+    cursor = connect.cursor(MySQLdb.cursors.DictCursor)
+
+    jsonData = request.get_json()
+    today = datetime.now()
+    day = ''
+
+    cursor.execute(f"select * from Tyokin where user_id='{jsonData['id']}'")
+    rows = cursor.fetchall()
+    for row in rows:
+        if page == 'month':
+            if row['torokubi'].year == today.year:
+                day = row['torokubi'].month
+                money = row['tyokin']
+
 
 #データベース接続
 @app.route('/in_<int:page>', methods = ['POST'])
