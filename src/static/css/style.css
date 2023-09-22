@@ -78,11 +78,13 @@ body{
 .data{
     border: none;
     width: 100%;
-    margin-left: 10%;
+    
     font-size: 1em;
 }
 td{
+    margin-left: 20%;
     text-align: left;
+
 }
 .data>p{
     padding-left: 10%;
