@@ -78,11 +78,11 @@ body{
 .data{
     border: none;
     width: 100%;
-    
+    margin-left: 20%;
     font-size: 1em;
 }
 td{
-    margin-left: 20%;
+    margin-left: 15%;
     text-align: left;
 
 }
