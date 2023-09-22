@@ -78,17 +78,10 @@ body{
 .data{
     border: none;
     width: 100%;
+    margin: 0 5%;
     font-size: 1em;
 }
-.date,.category{
-    margin-left: 10%;
-    text-align: left;
-}
-.price{
-    margin-left: 10%;
-    text-align: left;
 
-}
 .data>p{
     padding-left: 10%;
 }
