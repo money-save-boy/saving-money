@@ -75,18 +75,17 @@ body{
     min-height: 300px;
 }
 .data{
-    display: flex;
-    width: 75%;
+    border: none;
+    width: 100%;
+    border-collapse: collapse; /* セル間の余白を削除 */
     font-size: 1em;
-    margin-left: 11.8%;
 }
-.data>p{
+td{
+    width: calc(100% / 3);
+    text-align: left;
     padding-left: 10%;
 }
-.data,.category,.price{
-    margin-left: 15%;
-    width: 10%;
-}
+
 footer{
     position: sticky;
     bottom: 0;
