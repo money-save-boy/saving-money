@@ -92,10 +92,15 @@ body{
 .price{
     padding-left: 5%;
 }
-.Ydate,.Yprice{
+.Ydate{
     width: 50%;
     text-align: left;
-    padding-left: 20%;
+    padding-left: 30%;
+}
+.Yprice{
+    width: 50%;
+    text-align: left;
+    padding-left: 10%;
 }
 .History{
     min-height: 300px;
