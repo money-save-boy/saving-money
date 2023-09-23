@@ -81,7 +81,7 @@ body{
     border-collapse: collapse; /* セル間の余白を削除 */
     font-size: 1em;
 }
-td{
+.category,.price{
     width: calc(100% / 3);
     text-align: left;
     padding-left: 10%;
