@@ -82,7 +82,7 @@ body{
     font-size: 1em;
 }
 tr{
-    padding-top: 3%;
+    margin-top: 3%;
 }
 .category,.price{
     width: calc(100% / 3);
