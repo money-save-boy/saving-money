@@ -2,9 +2,9 @@ document.addEventListener("DOMContentLoaded", function() {
     fetch("/src/secret.json")
     .then((response) => response.json())
     .then((data) => {
-        clearToken(data.savingMonthLiffID);
+        clearToken(data.savingYearLiffID);
         liff.init({
-            liffId: data.savingMonthLiffID,
+            liffId: data.savingYearLiffID,
             withLoginOnExternalBrowser: true
         })
         .then(() => {
@@ -21,7 +21,7 @@ document.addEventListener("DOMContentLoaded", function() {
             .then((liffData) => {
                 var jsonData = {"id": liffData.sub};
                 var json = JSON.stringify(jsonData);
-                fetch('/src/graphDisplay_month', {
+                fetch('/src/graphDisplay_year', {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
@@ -30,9 +30,14 @@ document.addEventListener("DOMContentLoaded", function() {
                 })
                 .then((displayGraph) => displayGraph.json())
                 .then((graphData) => {
+                    var currentYear = new Date().getFullYear();
+                    var years = [];
+                    for (var i = 4; i >= 0; i--) {
+                        years.push(currentYear - i);
+                    }
                     for(var i = 0; i < graphData.length; i++){
                         for(var j = 0; j < myChart.data.labels.length; j++){
-                            if(graphData[i]["day"] == j + 1){
+                            if(graphData[i]["day"] == years[j]){
                                 myChart.data.datasets[0].data[j] = graphData[i]["money"];
                             }
                         }
@@ -72,7 +77,7 @@ document.addEventListener("DOMContentLoaded", function() {
                         document.getElementById("mo").innerHTML = "<p id='mod'>貯金額 ¥" + saving + "</p>";
                     }
                 })
-                fetch('/src/savingDisplay_month', {
+                fetch('/src/savingDisplay_year', {
                     method: "POST",
                     headers: {
                         "Content-Type": "application/json"
@@ -82,15 +87,24 @@ document.addEventListener("DOMContentLoaded", function() {
                 .then((savingDisplay) => savingDisplay.json())
                 .then((saving) => {
                     var div = document.getElementsByClassName("History")[0];
+                    var currentYear = new Date().getFullYear();
+                    var years = [];
+                    for (var i = 4; i >= 0; i--) {
+                        years.push(currentYear - i);
+                    }
                     var text = "<div id='histitle'>貯金履歴</div>";
                     text += "<table class='data'>";
-                    var day = new Array(12).fill(0);
-                    for(var i = 0; i < saving[0].length; i++){
-                        day[saving[0][i] - 1] += saving[1][i];
+                    var day = new Array(5).fill(0);
+                    for(var i = 0; i < 5; i++){
+                        for(var j = 0; j < saving[0].length; j++){
+                            if(years[i] == saving[0][j]){
+                                day[i] = saving[1][j];
+                            }
+                        }
                     }
-                    for(var i = 0; i < 12; i++){
+                    for(var i = 0; i < 5; i++){
                         text += "<tr>";
-                        text += "<td class='Ydate'>" + String(i + 1) + "月</td>";
+                        text += "<td class='Ydate'>" + String(years[i]) + "年</td>";
                         text += "<td class='Yprice'>¥" + String(day[i]).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,') + "</td>";
                         text += "</tr>";
                     }

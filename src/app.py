@@ -242,14 +242,81 @@ def graphDisplay(page):
     jsonData = request.get_json()
     today = datetime.now()
     day = ''
+    money = 0
+    savingSum = {}
 
     cursor.execute(f"select * from Tyokin where user_id='{jsonData['id']}'")
     rows = cursor.fetchall()
     for row in rows:
         if page == 'month':
             if row['torokubi'].year == today.year:
-                day = row['torokubi'].month
-                money = row['tyokin']
+                day = row['torokubi'].month - 1
+
+        elif page == 'year':
+            current = today.year
+            years = [current - i for i in range(5)]
+
+            for year in years:
+                if year == row['torokubi'].year:
+                    day = year
+
+        money = row['tyokin']
+
+        if day in savingSum:
+            savingSum[day] += money
+        else:
+            savingSum[day] = money
+
+    postData = [{"day": k, "money": v} for k, v in savingSum.items()]
+    post = jsonify(postData)
+
+    cursor.close()
+    connect.close()
+
+    return post
+
+@app.route('/savingDisplay_<string:page>', methods = ['POST'])
+def spendingDisplay(page):
+    connect = MySQLdb.connect(
+        host = info['server'],
+        user = info['user'],
+        passwd = info['pass'],
+        db = info['db'],
+        use_unicode = True,
+        charset = 'utf8'
+    )
+    cursor = connect.cursor(MySQLdb.cursors.DictCursor)
+
+    jsonData = request.get_json()
+    today = datetime.now()
+    date = []
+    money = []
+
+    cursor.execute(f"select * from Tyokin where user_id='{jsonData['id']}'")
+    rows = cursor.fetchall()
+    for row in rows:
+        if page == 'month':
+            if row['torokubi'].year == today.year:
+                date.append(row['torokubi'].month - 1)
+                money.append(row['tyokin'])
+
+        elif page == 'year':
+            current = today.year
+            years = [current - i for i in range(5)]
+
+            for year in years:
+                if year == row['torokubi'].year:
+                    date.append(row['torokubi'].year)
+                    money.append(row['tyokin'])
+
+    postData = [date, money]
+    post = jsonify(postData)
+
+    connect.commit()
+    cursor.close()
+    connect.close()
+
+    return post
 
 
 #データベース接続
@@ -520,7 +587,7 @@ def message(event):
 
         if cnt > 0:
             if cnt < 10:
-                text += '\n'.join([f'{date[i]} [{category[i]}] {a[i]}円' for i in range(cnt - 1, -1, -1)])
+                text += '\n'.join([f'{date[i]} [{category[i]}] {a[i]:,}円' for i in range(cnt - 1, -1, -1)])
                 text += '\n\nより詳細な履歴は支出グラフボタンから確認できます'
             else:
                 a = a[-10:]
@@ -528,7 +595,7 @@ def message(event):
                 category = category[-10:]
                 length = len(a)
 
-                text += '\n'.join([f'{date[i]} [{category[i]}] {a[i]}円' for i in range(length - 1, -1, -1)])
+                text += '\n'.join([f'{date[i]} [{category[i]}] {a[i]:,}円' for i in range(length - 1, -1, -1)])
                 text += '\n\nより詳細な履歴は支出グラフボタンから確認できます'
 
         else:

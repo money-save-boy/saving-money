@@ -28,7 +28,7 @@
     </div>
     <div class="History"></div>
     <footer>
-        <div class="PageChange1" onclick="location.href='/src/spending_year'">
+        <div class="PageChange1" onclick="location.href='/src/spending_month'">
             <p id="pig" class="fa-solid fa-piggy-bank" style="color: #ffffff; font-size: 2em; filter: drop-shadow(0 5px 5px #7e3459); margin-top:11.8%;"></p>
         </div>
         <div class="PageChange2" onclick="location.href='#'">
