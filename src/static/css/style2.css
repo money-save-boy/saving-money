@@ -80,16 +80,15 @@ body{
     border-collapse: collapse; /* セル間の余白を削除 */
     font-size: 1em;
 }
-.cell{
-    margin-top: 2%;
-}
 .category,.price{
     width: calc(100% / 3);
     text-align: left;
     padding-left: 10%;
+    padding-top: 2%;
 }
 .date{
     padding-left: 15%;
+    padding-top: 2%;
 }
 .price{
     padding-left: 5%;
