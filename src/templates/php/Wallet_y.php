@@ -18,7 +18,7 @@
     </div>
     <div class="TimeChange">
         <a class="checked" href='#'>年</a>
-        <a class="nocheck" href="/src/saving_year">月</a>
+        <a class="nocheck" href="/src/saving_month">月</a>
     </div>
     <div class="GraphArea">
         <canvas id="myChart"></canvas>
