@@ -87,13 +87,13 @@ document.addEventListener("DOMContentLoaded", function() {
                     var cnt = 0;
                     text += "<table class='data'>";
                     for(var i = 0; i < spending[0].length; i++){
-                        text += "<div class='cell'>"
+                        text += "<div class='cell'>";
                         text += "<tr>";
                         text += "<td class='date'>" + spending[0][i] + "</td>";
                         text += "<td class='category'>" + spending[1][i] + "</td>";
                         text += "<td class='price'>¥" + String(spending[2][i]).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,') + "</td>";
                         text += "</tr>";
-                        text += "</div>"
+                        text += "</div>";
                         cnt++;
                     }
                     text += "</table>";
