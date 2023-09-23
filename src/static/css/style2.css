@@ -97,11 +97,13 @@ body{
     width: 50%;
     text-align: left;
     padding-left: 28%;
+    padding-top: 2%;
 }
 .Yprice{
     width: 50%;
     text-align: left;
     padding-left: 14%;
+    padding-top: 2%;
 }
 footer{
     position: sticky;
