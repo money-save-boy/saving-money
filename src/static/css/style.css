@@ -79,6 +79,7 @@ body{
     border: none;
     width: 100%;
     border-collapse: collapse; /* セル間の余白を削除 */
+    padding-top: 1%;
     font-size: 1em;
 }
 .category,.price{
