@@ -89,10 +89,12 @@ document.addEventListener("DOMContentLoaded", function() {
                         day[spending[0][i] - 1] += spending[2][i];
                     }
                     for(var i = 0; i < 12; i++){
+                        text += "<div class='cell'>"
                         text += "<tr>";
                         text += "<td class='Ydate'>" + String(i + 1) + "月</td>";
                         text += "<td class='Yprice'>¥" + String(day[i]).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,') + "</td>";
                         text += "</tr>";
+                        text += "</div>"
                     }
                     div.innerHTML = text;
                 })

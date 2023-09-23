@@ -80,8 +80,8 @@ body{
     border-collapse: collapse; /* セル間の余白を削除 */
     font-size: 1em;
 }
-tr{
-    margin-top: 3%;
+.cell{
+    margin-top: 2%;
 }
 .category,.price{
     width: calc(100% / 3);
