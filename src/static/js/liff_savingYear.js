@@ -104,7 +104,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     }
                     for(var i = 0; i < 5; i++){
                         text += "<tr>";
-                        text += "<td class='Ydate'>" + String(years[i]) + "年</td>";
+                        text += "<td class='ydate'>" + String(years[i]) + "年</td>";
                         text += "<td class='Yprice'>¥" + String(day[i]).replace(/(\d)(?=(\d\d\d)+(?!\d))/g, '$1,') + "</td>";
                         text += "</tr>";
                     }

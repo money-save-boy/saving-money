@@ -80,6 +80,12 @@ body{
     border-collapse: collapse; /* セル間の余白を削除 */
     font-size: 1em;
 }
+.ydate{
+    width: 50%;
+    text-align: left;
+    padding-left: 23%;
+    padding-top: 2%;
+}
 .Ydate{
     width: 50%;
     text-align: left;
