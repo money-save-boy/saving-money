@@ -1,7 +1,6 @@
 #coding: utf-8
 
 from flask import Flask, render_template, request, abort, jsonify
-import subprocess
 import requests
 import json
 import MySQLdb
