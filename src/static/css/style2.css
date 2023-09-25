@@ -76,7 +76,7 @@ body{
     padding: .5% 0;
 }
 .History{
-    min-height: 300px;
+    min-height: 45vh;
 }
 .data{
     border: none;
@@ -102,7 +102,7 @@ body{
     padding-left: 14%;
     padding-top: 2%;
 }
-.noData{
+#noData{
     padding: 20%;
 }
 footer{
