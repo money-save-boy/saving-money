@@ -103,7 +103,7 @@ body{
     padding-top: 2%;
 }
 #noData{
-    padding: 20%;
+    padding: 20% 0 40% 0;
 }
 footer{
     position: sticky;
