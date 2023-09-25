@@ -110,7 +110,9 @@ body{
     min-height: 300px;
 
 }
-
+.noData{
+    padding: 20%;
+}
 footer{
     position: sticky;
     bottom: 0;
