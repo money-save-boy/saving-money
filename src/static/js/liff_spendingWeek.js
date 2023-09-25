@@ -96,7 +96,7 @@ document.addEventListener("DOMContentLoaded", function() {
                     }
                     text += "</table>";
                     if(cnt == 0){
-                        text += "<p>No Data</p>";
+                        text += "<p id='noData'>No Data</p>";
                     }
                     div.innerHTML = text;
                 })
