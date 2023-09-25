@@ -15,7 +15,6 @@ html{
 body{
     margin: 0;
     padding: 0;
-    height: 100vh;
 }
 .TimeChange{
     height: 5%;
@@ -76,9 +75,9 @@ body{
     font-size: 1em;
     padding: .5% 0;
 }
-/* .History{
-    min-height: 500px;
-} */
+.History{
+    min-height: 55vh;
+}
 .data{
     border: none;
     width: 100%;
