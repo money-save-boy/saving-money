@@ -76,9 +76,9 @@ body{
     font-size: 1em;
     padding: .5% 0;
 }
-.History{
+/* .History{
     min-height: 500px;
-}
+} */
 .data{
     border: none;
     width: 100%;
