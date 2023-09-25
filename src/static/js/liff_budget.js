@@ -20,7 +20,6 @@ window.onload = function () {
             .then((res) => res.json())
             .then((liffData) => {
                 document.getElementById("budget_userID").value = liffData.sub;
-                document.getElementById("budget_userName").value = liffData.name;
             })
         })
     })
