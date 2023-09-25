@@ -23,8 +23,8 @@ try {
                 data: [<?php for ($i = 0; $i < 5; $i++) {
                             echo '0,';
                         } ?>],
-                backgroundColor: 'rgba(2, 164, 135, 0.2)',
-                borderColor: 'rgba(2, 164, 135, 1)',
+                backgroundColor: 'rgba(255, 99, 132, 0.2)',
+                borderColor: 'rgba(255, 99, 132, 1)',
                 borderWidth: 1
             }]
         },
