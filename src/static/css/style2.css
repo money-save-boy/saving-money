@@ -67,9 +67,12 @@ body{
     margin-left: 2.5%;
 }
 #histitle{
+    position: sticky;
+    top: 1%;
     background-color: #ff4d79;
     color: white;
     font-size: 1em;
+    padding: .5% 0;
 }
 .History{
     min-height: 300px;
@@ -80,18 +83,11 @@ body{
     border-collapse: collapse; /* セル間の余白を削除 */
     font-size: 1em;
 }
-.category,.price{
-    width: calc(100% / 3);
+.ydate{
+    width: 50%;
     text-align: left;
-    padding-left: 10%;
+    padding-left: 23%;
     padding-top: 2%;
-}
-.date{
-    padding-left: 15%;
-    padding-top: 2%;
-}
-.price{
-    padding-left: 5%;
 }
 .Ydate{
     width: 50%;
