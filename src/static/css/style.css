@@ -110,7 +110,7 @@ body{
     min-height: 300px;
 
 }
-.noData{
+#noData{
     padding: 40%;
 }
 footer{
