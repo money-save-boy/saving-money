@@ -1,14 +1,13 @@
 #coding: utf-8
 
 from flask import Flask, render_template, request, abort, jsonify
-import subprocess
 import requests
 import json
 import MySQLdb
 from datetime import datetime, timedelta
 from linebot import (LineBotApi, WebhookHandler)
 from linebot.exceptions import (InvalidSignatureError)
-from linebot.models import (MessageEvent, TextMessage, TextSendMessage)
+from linebot.models import (MessageEvent, TextMessage, TextSendMessage, FollowEvent)
 
 app = Flask(__name__)
 
@@ -335,7 +334,6 @@ def connectDB(page):
     #予算入力
     if page == 1:
         budget_userID = request.form.get('budget_userID')#フォームより取得
-        userName = request.form.get('budget_userName')#フォームより取得
         budget_money = request.form.get('money')
         budget = int(budget_money)
         today = datetime.now()
@@ -351,9 +349,7 @@ def connectDB(page):
         #初回利用
         if len(rows) == 0:
             try:
-                sql = f"INSERT INTO Users VALUES ('{budget_userID}', '{userName}')" #ユーザー登録
                 sql2 = f"INSERT INTO Yosan VALUES ('{budget_userID}', {budget}, '{today}')" #予算登録
-                cursor.execute(sql)
                 cursor.execute(sql2)
             except Exception as e:
                 t =  f"{e.__class__.__name__}: {e}"
@@ -388,9 +384,7 @@ def connectDB(page):
                     )
 
             try:
-                sql4 = f"UPDATE Users SET user_name='{userName}' WHERE user_id='{budget_userID}'"
                 sql5 = f"UPDATE Yosan SET zandaka={budget}, torokubi='{today}' WHERE user_id='{budget_userID}'"
-                cursor.execute(sql4)
                 cursor.execute(sql5)
             except Exception as e:
                 t =  f"{e.__class__.__name__}: {e}"
@@ -608,6 +602,45 @@ def message(event):
 
         connect.commit()
         connect.close()
+
+@handler.add(FollowEvent)
+def handle_follow(event):
+    connect = MySQLdb.connect(
+        host = info['server'],
+        user = info['user'],
+        passwd = info['pass'],
+        db = info['db'],
+        use_unicode = True,
+        charset = 'utf8'
+    )
+    cursor = connect.cursor(MySQLdb.cursors.DictCursor)
+
+    sql1 = f"SELECT * FROM Users WHERE user_id='{event.source.user_id}'"
+    cursor.execute(sql1)
+    rows = cursor.fetchall()
+    if len(rows) == 0:
+        try:
+            line_bot_api.push_message(
+                event.source.user_id,
+                TextSendMessage(text = '友だち追加ありがとうございます！')
+            )
+            sql2 = f"INSERT INTO Users VALUES('{event.source.user_id}')"
+            cursor.execute(sql2)
+        except Exception as e:
+            t =  f"{e.__class__.__name__}: {e}"
+            line_bot_api.push_message(
+                event.source.user_id,
+                TextSendMessage(text = t)
+            )
+    else:
+        line_bot_api.push_message(
+            event.source.user_id,
+            TextSendMessage(text = 'おかえりなさい！')
+        )
+
+    connect.commit()
+    cursor.close()
+    connect.close()
 
 if __name__ == '__main__':
     app.run()
