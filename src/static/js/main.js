@@ -79,7 +79,7 @@ function checkValue(el) {
             return;
         }
     } else {
-        var ret = window.confirm("今までに一度も予算を登録していない場合、支出は登録できません。\nこのまま支出を登録しますか？");
+        var ret = window.confirm("一度登録した支出は削除・更新ができません。\nこのまま支出を登録しますか？");
         if (ret) {
             formName.submit();
             clearText(el);
