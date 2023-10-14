@@ -349,7 +349,7 @@ def connectDB(page):
         #初回利用
         if len(rows) == 0:
             try:
-                sql2 = f"INSERT INTO Yosan VALUES ('{budget_userID}', {budget}, '{today}')" #予算登録
+                sql2 = f"INSERT INTO Yosan VALUES ('{budget_userID}', {budget}, {today.strftime('%Y-%m-%d')})" #予算登録
                 cursor.execute(sql2)
             except Exception as e:
                 t =  f"{e.__class__.__name__}: {e}"
@@ -371,11 +371,16 @@ def connectDB(page):
                     for row3 in rows3:
                         total += row3['money']
 
-                    total = budget - total
+                    total = row['zandaka'] - total
                     if total < 0:
                         total = 0
-                    sql3 = f"INSERT INTO Tyokin(user_id, tyokin, torokubi) VALUES('{budget_userID}', {total}, {today})"
-                    cursor.execute(sql3)
+
+                    try:
+                        sql3 = f"INSERT INTO Tyokin(user_id, tyokin, torokubi) VALUES('{budget_userID}', {total}, {today.strftime('%Y-%m-%d')})"
+                        cursor.execute(sql3)
+                    except Exception as e:
+                        t =  f"{e.__class__.__name__}: {e}"
+                        return render_template('html/error.html', error = t)
 
                     text = f"{int(today.month) - 1}月の貯金額は{total}円でした！"
                     line_bot_api.push_message(
