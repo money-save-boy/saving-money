@@ -99,7 +99,7 @@ def displayBudget():
     jsonData = request.get_json()
     budget = 0
     spending = 0
-    today = datetime.now()
+    today = datetime.now().date()
 
     cursor.execute('SELECT * FROM Yosan')
     rows = cursor.fetchall()
@@ -239,13 +239,14 @@ def graphDisplay(page):
     cursor = connect.cursor(MySQLdb.cursors.DictCursor)
 
     jsonData = request.get_json()
-    today = datetime.now()
+    today = datetime.now().date()
     day = ''
     money = 0
     savingSum = {}
 
     cursor.execute(f"select * from Tyokin where user_id='{jsonData['id']}'")
     rows = cursor.fetchall()
+
     for row in rows:
         if page == 'month':
             if row['torokubi'].year == today.year:
@@ -255,9 +256,13 @@ def graphDisplay(page):
             current = today.year
             years = [current - i for i in range(5)]
 
-            for year in years:
-                if year == row['torokubi'].year:
-                    day = year
+            try:
+                for year in years:
+                    if year == row['torokubi'].year:
+                        day = year
+            except Exception as e:
+                t =  f"{e.__class__.__name__}: {e}"
+                return render_template('html/error.html', error = t)
 
         money = row['tyokin']
 
@@ -287,7 +292,7 @@ def spendingDisplay(page):
     cursor = connect.cursor(MySQLdb.cursors.DictCursor)
 
     jsonData = request.get_json()
-    today = datetime.now()
+    today = datetime.now().date()
     date = []
     money = []
 
@@ -321,35 +326,39 @@ def spendingDisplay(page):
 #データベース接続
 @app.route('/in_<int:page>', methods = ['POST'])
 def connectDB(page):
-    connect = MySQLdb.connect(
-        host = info['server'],
-        user = info['user'],
-        passwd = info['pass'],
-        db = info['db'],
-        use_unicode = True,
-        charset = 'utf8'
-    )
-    cursor = connect.cursor(MySQLdb.cursors.DictCursor)
+    try:
+        connect = MySQLdb.connect(
+            host = info['server'],
+            user = info['user'],
+            passwd = info['pass'],
+            db = info['db'],
+            use_unicode = True,
+            charset = 'utf8'
+        )
+        cursor = connect.cursor(MySQLdb.cursors.DictCursor)
+    except Exception as e:
+            t =  f"{e.__class__.__name__}: {e}"
+            return render_template('html/error.html', error = t)
 
     #予算入力
     if page == 1:
         budget_userID = request.form.get('budget_userID')#フォームより取得
         budget_money = request.form.get('money')
         budget = int(budget_money)
-        today = datetime.now()
+        today = datetime.now().date()
 
         try:
             query = f"SELECT * FROM Yosan WHERE user_id='{budget_userID}'" #予算
             cursor.execute(query)
+            rows = cursor.fetchall()
         except Exception as e:
             t =  f"{e.__class__.__name__}: {e}"
             return render_template('html/error.html', error = t)
-        rows = cursor.fetchall()
 
         #初回利用
         if len(rows) == 0:
             try:
-                sql2 = f"INSERT INTO Yosan VALUES ('{budget_userID}', {budget}, {today.strftime('%Y-%m-%d')})" #予算登録
+                sql2 = f"INSERT INTO Yosan VALUES ('{budget_userID}', {budget}, '{today}')" #予算登録
                 cursor.execute(sql2)
             except Exception as e:
                 t =  f"{e.__class__.__name__}: {e}"
@@ -364,29 +373,28 @@ def connectDB(page):
                 t =  f"{e.__class__.__name__}: {e}"
                 return render_template('html/error.html', error = t)
 
-            for row in rows:
-                total = 0
-                text = ''
-                if (today.year == row['torokubi'].year and today.month > row['torokubi'].month) or today.year > row['torokubi'].year:
-                    for row3 in rows3:
-                        total += row3['money']
+            try:
+                for row in rows:
+                    total = 0
+                    text = ''
+                    if (today.year == row['torokubi'].year and today.month > row['torokubi'].month) or today.year > row['torokubi'].year:
+                        for row3 in rows3:
+                            total += row3['money']
 
-                    total = row['zandaka'] - total
-                    if total < 0:
-                        total = 0
-
-                    try:
-                        sql3 = f"INSERT INTO Tyokin(user_id, tyokin, torokubi) VALUES('{budget_userID}', {total}, {today.strftime('%Y-%m-%d')})"
+                        total = budget - total
+                        if total < 0:
+                            total = 0
+                        sql3 = f"INSERT INTO Tyokin(user_id, tyokin, torokubi) VALUES('{budget_userID}', {total}, {today})"
                         cursor.execute(sql3)
-                    except Exception as e:
-                        t =  f"{e.__class__.__name__}: {e}"
-                        return render_template('html/error.html', error = t)
 
-                    text = f"{int(today.month) - 1}月の貯金額は{total}円でした！"
-                    line_bot_api.push_message(
-                        budget_userID,
-                        TextSendMessage(text = text)
-                    )
+                        text = f"{int(today.month) - 1}月の貯金額は{total}円でした！"
+                        line_bot_api.push_message(
+                            budget_userID,
+                            TextSendMessage(text = text)
+                        )
+            except Exception as e:
+                t =  f"{e.__class__.__name__}: {e}"
+                return render_template('html/error.html', error = t)
 
             try:
                 sql5 = f"UPDATE Yosan SET zandaka={budget}, torokubi='{today}' WHERE user_id='{budget_userID}'"
@@ -419,7 +427,7 @@ def connectDB(page):
             category = '娯楽費'
         spending_money = request.form.get('money')
         spending = int(spending_money)
-        today = datetime.now()
+        today = datetime.now().date()
 
         try:
             cursor.execute('INSERT INTO History(user_id, category, money, torokubi) VALUES(%s, %s, %s, %s)', (spending_userID, category, spending, today))
@@ -493,7 +501,7 @@ def message(event):
         b = 0
         total = 0
         text = ''
-        today = datetime.now()
+        today = datetime.now().date()
 
         cursor.execute('SELECT * FROM Yosan')
         a1 = cursor.fetchall()
@@ -523,7 +531,7 @@ def message(event):
         connect.commit()
         connect.close()
     elif event.message.text == '合計支出':
-        today = datetime.now()
+        today = datetime.now().date()
         total = 0
         text = ''
 
@@ -565,7 +573,7 @@ def message(event):
         connect.commit()
         connect.close()
     elif event.message.text == '支出履歴':
-        today = datetime.now()
+        today = datetime.now().date()
         a = [0] * 10
         date = [''] * 10
         category = [''] * 10
